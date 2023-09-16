@@ -26,27 +26,36 @@ numberOfPlayer.addEventListener("change", function () {
     }
 });
 
+// to record name of each player of party
+let playersOfParty = [];
+
+function getName() {
+    const firstPlayerName = document.getElementById('first-player-name');
+    const secondPlayerName = document.getElementById('second-player-name');
+    const thirdPlayerName = document.getElementById('third-player-name');
+    const fourthPlayerName = document.getElementById('fourth-player-name');
+    
+    if (firstPlayerName.value.trim() !== "" && !playersOfParty.includes(firstPlayerName.value)) playersOfParty.push(firstPlayerName.value);
+    if (secondPlayerName.value.trim() !== "" && !playersOfParty.includes(secondPlayerName.value)) playersOfParty.push(secondPlayerName.value);
+    if (thirdPlayerName.value.trim() !== "" && !playersOfParty.includes(thirdPlayerName.value)) playersOfParty.push(thirdPlayerName.value);
+    if (fourthPlayerName.value.trim() !== "" && !playersOfParty.includes(fourthPlayerName.value)) playersOfParty.push(fourthPlayerName.value);
+}
+
 // to record name, score, time of ten best players
-let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
-let gameOverTime;
-let gamerName;
-let score;
+// let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
+// let gameOverTime;
+// let score;
 
-function getName(id) {
-    gamerName = document.getElementById(id).value;
-    if (gamerName.trim() !== "") savePlayerInformation();
-}
-
-function savePlayerInformation() {
-    let party = {};
-    party["name"] = gamerName;
-    party["score"] = score;
-    party["time"] = gameOverTime;
-    scores.push(party);
-    scores.sort((a, b) => b.score - a.score);
-    const maxScoresToKeep = 10;
-    scores = scores.slice(0, maxScoresToKeep);
-    localStorage.setItem('bestScores', JSON.stringify(scores));
-    console.log(scores);
-}
+// function savePlayerInformation() {
+//     let party = {};
+//     party["name"] = gamerName;
+//     party["score"] = score;
+//     party["time"] = gameOverTime;
+//     scores.push(party);
+//     scores.sort((a, b) => b.score - a.score);
+//     const maxScoresToKeep = 10;
+//     scores = scores.slice(0, maxScoresToKeep);
+//     localStorage.setItem('bestScores', JSON.stringify(scores));
+//     console.log(scores);
+// }
 

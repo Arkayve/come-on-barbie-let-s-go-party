@@ -26,7 +26,7 @@ numberOfPlayer.addEventListener("change", function () {
     }
 });
 
-// to record name of each player of party
+// to record name of each player of party in an array
 let playersOfParty = [];
 
 function getName() {
@@ -35,6 +35,7 @@ function getName() {
     const thirdPlayerName = document.getElementById('third-player-name');
     const fourthPlayerName = document.getElementById('fourth-player-name');
     
+    // to erase blank space at start and end, to verify if input are not empty, and to assure we don't have two time the same player name, for each input name we use !==, trim() and includes methods
     if (firstPlayerName.value.trim() !== "" && !playersOfParty.includes(firstPlayerName.value)) playersOfParty.push(firstPlayerName.value);
     if (secondPlayerName.value.trim() !== "" && !playersOfParty.includes(secondPlayerName.value)) playersOfParty.push(secondPlayerName.value);
     if (thirdPlayerName.value.trim() !== "" && !playersOfParty.includes(thirdPlayerName.value)) playersOfParty.push(thirdPlayerName.value);
@@ -46,7 +47,7 @@ function getName() {
 // let gameOverTime;
 // let score;
 
-// function savePlayerInformation() {
+// function saveBestScores() {
 //     let party = {};
 //     party["name"] = gamerName;
 //     party["score"] = score;

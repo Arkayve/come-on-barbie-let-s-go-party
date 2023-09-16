@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Come on Barbie let's go party</title>
 </head>
+
 <body>
-    <script src="script.js"></script>
+
+    <head>
+        <h1>Come on Barbie let's go party</h1>
+    </head>
+
+    <section>
+        <h2>How many players are you ?</h2>
+        <select id="number-of-player" class="number-of-player">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <input id="first-player-name" type="text" placeholder="What's the first player name ?" class="player-name">
+        <button type="button" onclick="getName('first-player-name');" class="btn">Send</button>
+        <!-- <template id="number-of-player">
+            <input id="player-name" type="text" placeholder="What's the player name ?" class="player-name">
+            <button type="button" onclick="getName(id);" class="btn">Send</button>
+        </template> -->
+    </section>
+
+    <script src="assets/js/script.js"></script>
+
 </body>
+
 </html>

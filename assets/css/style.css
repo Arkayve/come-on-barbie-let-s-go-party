@@ -1,0 +1,6 @@
+
+/* to hide input and button of multiplayer if not necessary */
+.player-name:not(.active),
+.btn:not(.active) {
+    display: none;
+}

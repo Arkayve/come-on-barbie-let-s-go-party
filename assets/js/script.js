@@ -43,20 +43,25 @@ function getName() {
 }
 
 // to record name, score, time of ten best players
-// let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
-// let gameOverTime;
-// let score;
+let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
 
-// function saveBestScores() {
-//     let party = {};
-//     party["name"] = gamerName;
-//     party["score"] = score;
-//     party["time"] = gameOverTime;
-//     scores.push(party);
-//     scores.sort((a, b) => b.score - a.score);
-//     const maxScoresToKeep = 10;
-//     scores = scores.slice(0, maxScoresToKeep);
-//     localStorage.setItem('bestScores', JSON.stringify(scores));
-//     console.log(scores);
-// }
+// an array to record each player score
+let playerScores = [];
 
+// ending party time
+let gameOverTime = 0;
+
+function saveBestScores() {
+    for (let i = 0; i < playersOfParty.length; i++) {
+        let party = {};
+        party["name"] = playersOfParty[i];
+        party["score"] = playerScores[i];
+        party["time"] = gameOverTime;
+        scores.push(party);
+        scores.sort((a, b) => b.score - a.score);
+        const maxScoresToKeep = 10;
+        scores = scores.slice(0, maxScoresToKeep);
+        localStorage.setItem('bestScores', JSON.stringify(scores));
+        console.log(scores);
+    }
+}

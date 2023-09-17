@@ -27,7 +27,7 @@ numberOfPlayer.addEventListener("change", function () {
 });
 
 // to record name of each player of party in an array
-let playersOfParty = [];
+let playerNames = [];
 
 function getName() {
     const firstPlayerName = document.getElementById('first-player-name');
@@ -36,10 +36,10 @@ function getName() {
     const fourthPlayerName = document.getElementById('fourth-player-name');
     
     // to erase blank space at start and end, to verify if input are not empty, and to assure we don't have two time the same player name, for each input name we use !==, trim() and includes methods
-    if (firstPlayerName.value.trim() !== "" && !playersOfParty.includes(firstPlayerName.value)) playersOfParty.push(firstPlayerName.value);
-    if (secondPlayerName.value.trim() !== "" && !playersOfParty.includes(secondPlayerName.value)) playersOfParty.push(secondPlayerName.value);
-    if (thirdPlayerName.value.trim() !== "" && !playersOfParty.includes(thirdPlayerName.value)) playersOfParty.push(thirdPlayerName.value);
-    if (fourthPlayerName.value.trim() !== "" && !playersOfParty.includes(fourthPlayerName.value)) playersOfParty.push(fourthPlayerName.value);
+    if (firstPlayerName.value.trim() !== "" && !playerNames.includes(firstPlayerName.value)) playerNames.push(firstPlayerName.value);
+    if (secondPlayerName.value.trim() !== "" && !playerNames.includes(secondPlayerName.value)) playerNames.push(secondPlayerName.value);
+    if (thirdPlayerName.value.trim() !== "" && !playerNames.includes(thirdPlayerName.value)) playerNames.push(thirdPlayerName.value);
+    if (fourthPlayerName.value.trim() !== "" && !playerNames.includes(fourthPlayerName.value)) playerNames.push(fourthPlayerName.value);
 }
 
 // get best scores data from local storage
@@ -53,13 +53,13 @@ let gameOverTime = 0;
 
 // to record name, score, time of ten best players
 function saveBestScores() {
-    for (let i = 0; i < playersOfParty.length; i++) {
-        let party = {};
-        party["name"] = playersOfParty[i];
-        party["score"] = playerScores[i];
-        party["time"] = gameOverTime;
-        scores.push(party);
-    }
+    playerNames.forEach(i => {
+        let player = {};
+        player["name"] = playerNames[i];
+        player["score"] = playerScores[i];
+        player["time"] = gameOverTime;
+        scores.push(player);
+    })
     scores.sort((a, b) => b.score - a.score);
     const maxScoresToKeep = 10;
     scores = scores.slice(0, maxScoresToKeep);

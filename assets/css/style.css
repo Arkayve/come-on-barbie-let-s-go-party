@@ -27,6 +27,7 @@ body {
 }
 
 ol {
+    background-color: rgb(253, 213, 221);
     width: 60%;
     margin: auto;
     padding: 20px;

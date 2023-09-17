@@ -10,32 +10,40 @@
 
 <body>
 
-    <head>
+    <header>
         <h1>Come on Barbie let's go party !</h1>
-    </head>
+    </header>
 
-    <section class="player-choice">
-        <h2>How many players are you ?</h2>
-        <select id="number-of-player" class="number-of-player">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-        <input id="first-player-name" type="text" placeholder="What's the first player name ?" class="player-name active">
-        <input id="second-player-name" type="text" placeholder="What's the second player name ?" class="player-name">
-        <input id="third-player-name" type="text" placeholder="What's the third player name ?" class="player-name">
-        <input id="fourth-player-name" type="text" placeholder="What's the fourth player name ?" class="player-name">
-        <button type="button" onclick="getName();" class="btn btn-choice">Go !</button>
-    </section>
+    <main>
+        <section class="player-choice">
+            <h2>How many players are you ?</h2>
+            <select id="number-of-player" class="number-of-player">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            <input id="first-player-name" type="text" placeholder="What's the first player name ?"
+                class="player-name active">
+            <input id="second-player-name" type="text" placeholder="What's the second player name ?"
+                class="player-name">
+            <input id="third-player-name" type="text" placeholder="What's the third player name ?" class="player-name">
+            <input id="fourth-player-name" type="text" placeholder="What's the fourth player name ?"
+                class="player-name">
+            <button type="button" onclick="getName();" class="btn btn-choice">Go !</button>
+        </section>
 
-    <section class="ranking">
-        <h3>You're simply the best :</h3>
-        <ol id="ranking"></ol>
-    </section>
+        <section class="ranking">
+            <h3>You're simply the best :</h3>
+            <ol id="ranking"></ol>
+        </section>
+    </main>
+
+    <footer>
+
+    </footer>
 
     <script src="assets/js/script.js"></script>
-
 </body>
 
 </html>

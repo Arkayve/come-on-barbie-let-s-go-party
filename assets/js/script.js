@@ -83,5 +83,29 @@ function displayBestScores() {
         document.getElementById('ranking').textContent = 'No scores recorded.';
     }
 }
+
 saveBestScores();
 displayBestScores();
+
+// to have a timer in the game
+// where i will display it
+const displayTimer = document.getElementById('timer');
+
+let ms = 0;
+let s = 0;
+let mn = 0;
+
+function runTimer() {
+    ms += 1;
+    if (ms === 10) {ms = 0; s++;}
+    if (s === 60) {s = 0; mn++;}
+    displayTimer.textContent = mn + ' : ' + (s < 10 ? '0' + s : s) + ' : ' + ms;
+};
+
+function startTimer() {
+    setInterval(runTimer, 100);
+}
+
+function endTimer() {
+    clearInterval(runTimer);
+}

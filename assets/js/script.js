@@ -1,4 +1,4 @@
-// to listen and store players'number
+// to listen and get players'number
 let numberOfPlayer = document.getElementById('number-of-player');
 
 numberOfPlayer.addEventListener("change", function () {
@@ -42,7 +42,7 @@ function getName() {
     if (fourthPlayerName.value.trim() !== "" && !playersOfParty.includes(fourthPlayerName.value)) playersOfParty.push(fourthPlayerName.value);
 }
 
-// to record name, score, time of ten best players
+// get best scores data from local storage
 let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
 
 // an array to record each player score
@@ -51,6 +51,7 @@ let playerScores = [];
 // ending party time
 let gameOverTime = 0;
 
+// to record name, score, time of ten best players
 function saveBestScores() {
     for (let i = 0; i < playersOfParty.length; i++) {
         let party = {};
@@ -58,10 +59,28 @@ function saveBestScores() {
         party["score"] = playerScores[i];
         party["time"] = gameOverTime;
         scores.push(party);
-        scores.sort((a, b) => b.score - a.score);
-        const maxScoresToKeep = 10;
-        scores = scores.slice(0, maxScoresToKeep);
-        localStorage.setItem('bestScores', JSON.stringify(scores));
-        console.log(scores);
+    }
+    scores.sort((a, b) => b.score - a.score);
+    const maxScoresToKeep = 10;
+    scores = scores.slice(0, maxScoresToKeep);
+    localStorage.setItem('bestScores', JSON.stringify(scores));
+}
+
+// display best scores on index.html
+function displayBestScores() {
+    if (scores) {
+        const ranking = document.getElementById('ranking');
+        ranking.innerHTML = '';
+
+        scores.forEach((score) => {
+            const playerInfo = `${score.name} - Score: ${score.score} - Temps: ${score.time}`;
+            const listItem = document.createElement('li');
+            listItem.textContent = playerInfo;
+            ranking.appendChild(listItem);
+        });
+    } else {
+        document.getElementById('ranking').textContent = 'No scores recorded.';
     }
 }
+saveBestScores();
+displayBestScores();

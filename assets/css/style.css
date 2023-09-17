@@ -6,9 +6,6 @@
 
 body {
     background-color: pink;
-}
-
-h1 {
     text-align: center;
 }
 
@@ -20,7 +17,6 @@ h1 {
 }
 
 .player-name {
-    text-align: center;
     width: 50%;
     padding: 10px 20px;
     margin: 10px;
@@ -28,4 +24,13 @@ h1 {
 
 .btn-choice {
     width: 20%;
+}
+
+ol {
+    width: 60%;
+    margin: auto;
+    padding: 20px;
+    border: solid black 1px;
+    border-radius: 50px;
+    list-style-type: none;
 }

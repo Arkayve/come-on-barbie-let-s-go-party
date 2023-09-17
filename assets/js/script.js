@@ -72,8 +72,9 @@ function displayBestScores() {
         const ranking = document.getElementById('ranking');
         ranking.innerHTML = '';
 
-        scores.forEach((score) => {
-            const playerInfo = `${score.name} - Score: ${score.score} - Temps: ${score.time}`;
+        scores.forEach((score, index) => {
+            const rank = index + 1;
+            const playerInfo = `${rank}. ${score.name} - Score: ${score.score} - Time: ${score.time}`;
             const listItem = document.createElement('li');
             listItem.textContent = playerInfo;
             ranking.appendChild(listItem);

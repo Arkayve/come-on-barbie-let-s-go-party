@@ -107,5 +107,6 @@ function startTimer() {
 }
 
 function endTimer() {
+    gameOverTime = displayTimer.textContent;
     clearInterval(runTimer);
 }

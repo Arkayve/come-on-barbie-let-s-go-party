@@ -123,6 +123,11 @@ function playTrack(device_id) {
     return;
   }
 
+  document.getElementById('play-track').addEventListener('click', function() {
+    console.log('click');
+    playTrack(device_id);
+  })
+
   fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
     method: 'PUT',
     headers: {

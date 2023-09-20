@@ -42,6 +42,11 @@ function getName() {
     if (fourthPlayerName.value.trim() !== "" && !playerNames.includes(fourthPlayerName.value)) playerNames.push(fourthPlayerName.value);
 }
 
+// listen get-name btn to call function
+document.getElementById('get-name').addEventListener('click', function() {
+    getName();
+})
+
 // get best scores data from local storage
 let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
 

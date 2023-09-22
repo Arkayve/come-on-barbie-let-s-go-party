@@ -62,7 +62,6 @@ function saveBestScores() {
         let player = {};
         player["name"] = playerNames[i];
         player["score"] = playerScores[i];
-        player["time"] = gameOverTime;
         scores.push(player);
     })
     scores.sort((a, b) => b.score - a.score);
@@ -109,22 +108,29 @@ function runTimer() {
 }
 
 function endTimer() {
-    gameOverTime = displayTimer.textContent;
     clearInterval(timer);
 }
 
 // function to save json file in a variable
-function getQuiz(quiz, json) {
+function getQuiz(json) {
     fetch(json)
         .then(response => response.json())
         .then(data => {
-            quiz = data;
-            console.log(quiz);
+            whichQuiz = data;
+            console.log(whichQuiz);
         })
         .catch(error => {
             console.error("Une erreur s'est produite :", error);
         });
 }
 
-let reverso1;
-getQuiz(reverso1, '../assets/json/reverso_1.json');
+// to save futures questions
+let whichQuiz;
+
+// listen quiz choice and store it
+document.getElementById('quiz-choice').addEventListener('click', function(event) {
+    if (!event.target.classList.contains('btn')) return;
+    event.target.classList.add('select');
+    let quizName = event.target.getAttribute('id');
+    getQuiz(`../assets/json/${quizName}.json`);
+})

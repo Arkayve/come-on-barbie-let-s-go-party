@@ -18,5 +18,89 @@
         "Indice": "Surface",
         "Réponse": "Océans",
         "Question": "Par quoi la Terre est-elle recouverte à plus de 70 % ?"
+    },
+
+    {
+        "Indice": "Étoile",
+        "Réponse": "Patrick Star",
+        "Question": " Comment se nomme le meilleur ami de Bob l'éponge ?"
+    },
+    {
+        "Indice": "Plante",
+        "Réponse": "Photosynthèse",
+        "Question": "Par quel processus une plante fabriquet-elle sa propre nourriture ?"       
+    },
+    {
+        "Indice": "Enfants",
+        "Réponse": "Pâques",
+        "Question": "Lors de quelle fête les enfants partentils à la chasse aux œufs ?"
+    },
+    {
+        "Indice": "Calendrier",
+        "Réponse": "Halloween",
+        "Question": "Que célèbre-t-on chaque année la nuit du 31 octobre ?"
+    },
+
+    {
+        "Indice": "Cadeaux",
+        "Réponse": "Rennes",
+        "Question": "Quelles créatures tirent le traîneau du Père Noël pour ses livraisons de cadeaux ?"
+    },
+    {
+        "Indice": "Frontière",
+        "Réponse": "Canada et États-Unis",
+        "Question": "Quels sont les deux pays qui partagent la plus longue frontière ?"       
+    },
+    {
+        "Indice": "Peau de BD",
+        "Réponse": "Bleu",
+        "Question": "Quelle est la couleur de la peau des Schtroumpfs ?"
+    },
+    {
+        "Indice": "Vitesse",
+        "Réponse": "300 000 Km/s",
+        "Question": " Quelle est la vitesse de la lumière dans le vide ?"
+    },
+
+    {
+        "Indice": "Amérique",
+        "Réponse": " Bleu blanc rouge",
+        "Question": " Quelles sont les couleurs du drapeau américain ?"
+    },
+    {
+        "Indice": "Monument français",
+        "Réponse": 1889,
+        "Question": " Quelle est l'année d'inauguration de la tour Eiffel ?"       
+    },
+    {
+        "Indice": "Mur",
+        "Réponse": "Chuck Yager",
+        "Question": "Qui est le premier homme à avoir passé le mur du son ?"
+    },
+    {
+        "Indice": "Série télé",
+        "Réponse": "Peugeot 403 cabriolet",
+        "Question": "Quelle est la marque de la voiture de l'inspecteur Columbo ?"
+    },
+
+    {
+        "Indice": "Catastrophe",
+        "Réponse": "21 septembre 2001",
+        "Question": " Quand a eu lieu l'explosion de l'usine AZF à Toulouse ?"
+    },
+    {
+        "Indice": "Fête",
+        "Réponse": "Dinde",
+        "Question": "Que mangent souvent les Américains pour le dîner de Thanksgiving ?"       
+    },
+    {
+        "Indice": "Espace",
+        "Réponse": "Leika",
+        "Question": " Quel est le nom du premier chien envoyé dans l'espace ?"
+    },
+    {
+        "Indice": "Groupe",
+        "Réponse": " Liam et Noel",
+        "Question": " Quels sont les prénoms des frères Gallagher, du groupe Oasis ?"
     }
 ]

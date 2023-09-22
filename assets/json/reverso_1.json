@@ -1,0 +1,22 @@
+[
+    {
+        "Indice": 2020,
+        "Réponse": "Donald Trump",
+        "Question": "Qui était le président des États-Unis en fonction en 2020 ?"
+    },
+    {
+        "Indice": "Rivière",
+        "Réponse": "Castor",
+        "Question": "Quel animal à queue plate est réputé pour sa construction de barrages ?"       
+    },
+    {
+        "Indice": "Utilisation",
+        "Réponse": "Google",
+        "Question": "Quel moteur de recherche est à ce jour le plus utilisé sur Internet ?"
+    },
+    {
+        "Indice": "Surface",
+        "Réponse": "Océans",
+        "Question": "Par quoi la Terre est-elle recouverte à plus de 70 % ?"
+    }
+]

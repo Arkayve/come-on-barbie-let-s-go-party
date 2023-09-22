@@ -34,6 +34,10 @@ body {
     background-color: blueviolet;
 }
 
+.hidden {
+    display: none;
+}
+
 ol {
     background-color: rgb(253, 213, 221);
     width: 60%;

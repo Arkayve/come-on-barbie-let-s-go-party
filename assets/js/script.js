@@ -111,13 +111,17 @@ function endTimer() {
     clearInterval(timer);
 }
 
-// function to save json file in a variable
+// function to save question following the difficulty in a variable
+// possibility to store as many quiz as you wish
+let count = 0;
 function getQuiz(json) {
     fetch(json)
         .then(response => response.json())
         .then(data => {
-            whichQuiz = data;
-            console.log(whichQuiz);
+            questions[count] = data.quizz.fr[difficulty];
+            count++;
+            console.log(questions);
+            console.log(questions.flat());
         })
         .catch(error => {
             console.error("Une erreur s'est produite :", error);
@@ -125,12 +129,23 @@ function getQuiz(json) {
 }
 
 // to save futures questions
-let whichQuiz;
+let questions = [];
+let quizName;
+let difficulty;
 
-// listen quiz choice and store it
-document.getElementById('quiz-choice').addEventListener('click', function(event) {
+// listen which quiz we want
+document.getElementById('quiz-choice').addEventListener('mouseover', function(event) {
     if (!event.target.classList.contains('btn')) return;
+    document.querySelectorAll('.hidden').forEach(btn => {
+        btn.classList.remove('hidden');
+    })
+    if (event.target.classList.contains('btn-difficulty')) return;
+    quizName = event.target.getAttribute('id');
+})
+
+// and his difficulty
+document.getElementById('quiz-choice').addEventListener('click', function(event) {
     event.target.classList.add('select');
-    let quizName = event.target.getAttribute('id');
+    difficulty = event.target.getAttribute('id');
     getQuiz(`../assets/json/${quizName}.json`);
 })

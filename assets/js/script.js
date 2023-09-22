@@ -96,22 +96,35 @@ displayBestScores();
 // where i will display it
 const displayTimer = document.getElementById('timer');
 
-let ms = 0;
-let s = 0;
-let mn = 0;
+let ms = 10;
+let s = 19;
 
 function runTimer() {
-    ms += 1;
-    if (ms === 10) {ms = 0; s++;}
-    if (s === 60) {s = 0; mn++;}
-    displayTimer.textContent = mn + ' : ' + (s < 10 ? '0' + s : s) + ' : ' + ms;
-};
-
-function startTimer() {
-    setInterval(runTimer, 100);
+    timer = setInterval(function() {
+        ms -= 1;
+        if (s === 0 && ms === 0) endTimer();
+        else if (ms === 0) {ms = 10; s--;}
+        displayTimer.textContent = (s < 10 ? '0' + s : s) + ' : ' + (ms < 10 ? '0' + ms : ms);
+    }, 100)
 }
 
 function endTimer() {
     gameOverTime = displayTimer.textContent;
-    clearInterval(runTimer);
+    clearInterval(timer);
 }
+
+// function to save json file in a variable
+function getQuiz(quiz, json) {
+    fetch(json)
+        .then(response => response.json())
+        .then(data => {
+            quiz = data;
+            console.log(quiz);
+        })
+        .catch(error => {
+            console.error("Une erreur s'est produite :", error);
+        });
+}
+
+let reverso1;
+getQuiz(reverso1, '../assets/json/reverso_1.json');

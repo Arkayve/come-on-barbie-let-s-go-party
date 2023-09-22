@@ -120,13 +120,19 @@ function getQuiz(json) {
         .then(data => {
             questions[count] = data.quizz.fr[difficulty];
             count++;
-            console.log(questions);
-            console.log(questions.flat());
+            mixQuestions(questions)
         })
         .catch(error => {
             console.error("Une erreur s'est produite :", error);
         });
 }
+
+// function to flat all item and random questions order
+function mixQuestions(array) {
+    console.log(array.flat().map(item => ({item, ordre: Math.random()})).sort((a, b) => a.ordre - b.ordre).map(item => item.item))
+    return array.flat().map(item => ({item, ordre: Math.random()})).sort((a, b) => a.ordre - b.ordre).map(item => item.item)
+}
+
 
 // to save futures questions
 let questions = [];

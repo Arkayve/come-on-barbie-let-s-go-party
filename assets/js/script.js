@@ -127,19 +127,26 @@ function getQuiz(json) {
         });
 }
 
+
 // function to flat all item and random questions order
+// .flat to have unidimensional array ; first .map to add order value which is randomize, and item to store precedent state of object
+// .sort to randomize element in array by using order value, then second .map to get back precedent state of each object after randomize them
 function mixQuestions(array) {
-    console.log(array.flat().map(item => ({item, ordre: Math.random()})).sort((a, b) => a.ordre - b.ordre).map(item => item.item))
-    return array.flat().map(item => ({item, ordre: Math.random()})).sort((a, b) => a.ordre - b.ordre).map(item => item.item)
+    console.log(array.flat().map(item => ({item, order: Math.random()})).sort((a, b) => a.order - b.order).map(item => item.item))
+    return array.flat().map(item => ({item, order: Math.random()})).sort((a, b) => a.order - b.order).map(item => item.item)
 }
 
 
 // to save futures questions
+// to know each quiz already selected
+let alreadySelected = [];
+// to have a variable with all questions
 let questions = [];
+// here is two variables to select which qui we want regarding to difficulty
 let quizName;
 let difficulty;
 
-// listen which quiz we want
+// listen which category of quiz we want
 document.getElementById('quiz-choice').addEventListener('mouseover', function(event) {
     if (!event.target.classList.contains('btn')) return;
     document.querySelectorAll('.hidden').forEach(btn => {
@@ -149,25 +156,28 @@ document.getElementById('quiz-choice').addEventListener('mouseover', function(ev
     quizName = event.target.getAttribute('id');
 })
 
+// and his difficulty
+document.getElementById('quiz-choice').addEventListener('click', function(event) {
+    if (!event.target.classList.contains('btn-difficulty')) return;
+    event.target.classList.add('select');
+    difficulty = event.target.getAttribute('id');
+    // to prevent adding more than one time each quiz
+    if (alreadySelected.includes(quizName + difficulty)) return;
+    alreadySelected.push(quizName + difficulty);
+    console.log(alreadySelected)
+    getQuiz(`../assets/json/${quizName}.json`);
+})
+
 // to hide choice btn
 document.querySelector('.quiz-choice').addEventListener('mouseout', function(event) {
-    console.log(event.target)
     if (event.target.classList.contains('btn')) return;
     document.querySelectorAll('.btn-difficulty').forEach(btn => {
         btn.classList.add('hidden');
     })
 })
+// adding eventlistener when mouse go down on the page to hide choice btn
 document.getElementById('ranking-title').addEventListener('mouseenter', function(event) {
     document.querySelectorAll('.btn-difficulty').forEach(btn => {
          btn.classList.add('hidden');
     })
-})
-
-// and his difficulty
-document.getElementById('quiz-choice').addEventListener('click', function(event) {
-    if (event.target.classList.contains('select')) return;
-    if (!event.target.classList.contains('btn-difficulty')) return;
-    event.target.classList.add('select');
-    difficulty = event.target.getAttribute('id');
-    getQuiz(`../assets/json/${quizName}.json`);
 })

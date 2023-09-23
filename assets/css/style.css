@@ -10,9 +10,16 @@
 }
 
 body {
-    font-family: 'lobster';
     background-color: pink;
+    font-family: 'lobster';
     text-align: center;
+}
+
+#unicorn {
+    background-image: url('../img/licorn-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 h1 {
@@ -44,6 +51,7 @@ h2 {
     width: 55%;
     padding: 10px 20px;
     margin: 10px;
+    opacity: 70%;
 }
 
 .btn-player {
@@ -52,6 +60,7 @@ h2 {
 
 /* here we make style for quiz choice zone */
 .quiz-btn-container {
+    opacity: 70%;
     padding: 20px 0px;
 }
 
@@ -79,6 +88,7 @@ h2 {
 }
 
 .ranking {
+    opacity: 70%;
     background-color: rgb(253, 213, 221);
     width: 60%;
     margin: auto;

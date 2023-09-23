@@ -16,68 +16,67 @@
     </header>
 
     <main>
+        <div id="unicorn">
+            <div id="index">
 
-        <div id="index">
+                <section class="player-choice">
+                    <h2>How many players are you ?</h2>
+                    <select id="number-of-player" class="number-of-player">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <input id="first-player-name" type="text" placeholder="What's the first player name ?"
+                        class="player-name active">
+                    <input id="second-player-name" type="text" placeholder="What's the second player name ?"
+                        class="player-name">
+                    <input id="third-player-name" type="text" placeholder="What's the third player name ?"
+                        class="player-name">
+                    <input id="fourth-player-name" type="text" placeholder="What's the fourth player name ?"
+                        class="player-name">
+                    <button id="get-name" type="button" class="btn btn-player">Go !</button>
+                </section>
 
-            <section class="player-choice">
-                <h2>How many players are you ?</h2>
-                <select id="number-of-player" class="number-of-player">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-                <input id="first-player-name" type="text" placeholder="What's the first player name ?"
-                    class="player-name active">
-                <input id="second-player-name" type="text" placeholder="What's the second player name ?"
-                    class="player-name">
-                <input id="third-player-name" type="text" placeholder="What's the third player name ?"
-                    class="player-name">
-                <input id="fourth-player-name" type="text" placeholder="What's the fourth player name ?"
-                    class="player-name">
-                <button id="get-name" type="button" class="btn btn-player">Go !</button>
-            </section>
+                <section id="quiz-choice" class="quiz-choice">
+                    <div id="quiz-btn" class="quiz-btn-container">
+                        <button id="culture-1" type="button" class="btn btn-quiz">Culture.1</button>
+                        <button id="mythes-légendes" type="button" class="btn btn-quiz">Mythes et légendes</button>
+                    </div>
+                    <div id="difficulty" class="difficulty-container">
+                        <button id="débutant" type="button" class="btn btn-difficulty hidden">Easy</button>
+                        <button id="confirmé" type="button" class="btn btn-difficulty hidden">Medium</button>
+                        <button id="expert" type="button" class="btn btn-difficulty hidden">Hard</button>
+                    </div>
+                </section>
 
-            <section id="quiz-choice" class="quiz-choice">
-                <div id="quiz-btn" class="quiz-btn-container">
-                    <button id="culture-1" type="button" class="btn btn-quiz">Culture.1</button>
-                    <button id="mythes-légendes" type="button" class="btn btn-quiz">Mythes et légendes</button>
-                </div>
-                <div id="difficulty" class="difficulty-container">
-                    <button id="débutant" type="button" class="btn btn-difficulty hidden">Easy</button>
-                    <button id="confirmé" type="button" class="btn btn-difficulty hidden">Medium</button>
-                    <button id="expert" type="button" class="btn btn-difficulty hidden">Hard</button>
-                </div>
-            </section>
+                <section>
+                    <h3 id="ranking-title" class="ranking-title">You're simply the best :</h3>
+                    <ol id="ranking" class="ranking"></ol>
+                </section>
 
-            <section>
-                <h3 id="ranking-title" class="ranking-title">You're simply the best :</h3>
-                <ol id="ranking" class="ranking"></ol>
-            </section>
+                <a id="own-quiz" class="own-quiz" href="#">Wanna make your own quiz ?</a>
 
-
-            <a id="own-quiz" class="own-quiz" href="#">Wanna make your own quiz ?</a>
-
-        </div>
-
-        <div id="game">
-
-            <h2 id="who-play" class="who-play"></h2>
-            <h3 id="question"></h3>
-            <p id="timer"></p>
-
-            <div id="btn-answer-container" class="btn-answer-container">
-                <button id="btn-answer-0" class="btn btn-answer hidden"></button>
-                <button id="btn-answer-1" class="btn btn-answer hidden"></button>
-                <button id="btn-answer-2" class="btn btn-answer hidden"></button>
-                <button id="btn-answer-3" class="btn btn-answer hidden"></button>
             </div>
 
-            <p id="anecdote" class="anecdote"></p>
-            <p id="comments" class="comments"></p>
+            <div id="game">
 
+                <h2 id="who-play" class="who-play"></h2>
+                <h3 id="question"></h3>
+                <p id="timer"></p>
+
+                <div id="btn-answer-container" class="btn-answer-container">
+                    <button id="btn-answer-0" class="btn btn-answer hidden"></button>
+                    <button id="btn-answer-1" class="btn btn-answer hidden"></button>
+                    <button id="btn-answer-2" class="btn btn-answer hidden"></button>
+                    <button id="btn-answer-3" class="btn btn-answer hidden"></button>
+                </div>
+
+                <p id="anecdote" class="anecdote"></p>
+                <p id="comments" class="comments"></p>
+
+            </div>
         </div>
-
     </main>
 
     <footer>

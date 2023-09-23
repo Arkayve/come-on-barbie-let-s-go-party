@@ -48,6 +48,9 @@ document.getElementById('get-name').addEventListener('click', function () {
     getName();
     if (playerNames.length > 0 && questions.length > 0) {
         document.getElementById('index').classList.add('hidden');
+        document.querySelectorAll('.btn-answer').forEach(btn => {
+            btn.classList.remove('hidden');
+        })
         runGame();
     }
 })
@@ -219,13 +222,53 @@ function runGame() {
 
 // function to display question and answer-btn from questions array
 let anecdote;
+let answer;
 function displayQuestion() {
     const newQuestion = questions.shift();
     anecdote = newQuestion.anecdote;
+    answer = newQuestion.réponse;
+    console.log(answer)
     document.getElementById('question').textContent = newQuestion.question;
-    document.getElementById('btn-answer-1').textContent = newQuestion.propositions[0];
-    document.getElementById('btn-answer-2').textContent = newQuestion.propositions[1];
-    document.getElementById('btn-answer-3').textContent = newQuestion.propositions[2];
-    document.getElementById('btn-answer-4').textContent = newQuestion.propositions[3];
+    document.getElementById('btn-answer-0').textContent = newQuestion.propositions[0];
+    document.getElementById('btn-answer-1').textContent = newQuestion.propositions[1];
+    document.getElementById('btn-answer-2').textContent = newQuestion.propositions[2];
+    document.getElementById('btn-answer-3').textContent = newQuestion.propositions[3];
 }
+
+document.getElementById('btn-answer-container').addEventListener('click', function (event) {
+    if (!event.target.classList.contains('btn-answer')) return;
+    switch (event.target.id) {
+        case 'btn-answer-0':
+            document.getElementById('btn-answer-0').classList.add('choice');
+            document.getElementById('btn-answer-1').classList.remove('choice');
+            document.getElementById('btn-answer-2').classList.remove('choice');
+            document.getElementById('btn-answer-3').classList.remove('choice');
+            break;
+        case 'btn-answer-1':
+            document.getElementById('btn-answer-0').classList.remove('choice');
+            document.getElementById('btn-answer-1').classList.add('choice');
+            document.getElementById('btn-answer-2').classList.remove('choice');
+            document.getElementById('btn-answer-3').classList.remove('choice');
+            break;
+        case 'btn-answer-2':
+            document.getElementById('btn-answer-0').classList.remove('choice');
+            document.getElementById('btn-answer-1').classList.remove('choice');
+            document.getElementById('btn-answer-2').classList.add('choice');
+            document.getElementById('btn-answer-3').classList.remove('choice');
+            break;
+        case 'btn-answer-3':
+            document.getElementById('btn-answer-0').classList.remove('choice');
+            document.getElementById('btn-answer-1').classList.remove('choice');
+            document.getElementById('btn-answer-2').classList.remove('choice');
+            document.getElementById('btn-answer-3').classList.add('choice');
+            break;
+    }
+    document.getElementById('anecdote').textContent = anecdote;
+    endTimer();
+    if (event.target.textContent === answer) {
+        document.getElementById('comments').textContent = 'well done !'
+    } else {
+        document.getElementById('comments').textContent = 'soz, maybe next time.'
+    }
+})
 

@@ -26,8 +26,19 @@ body {
     width: 20%;
 }
 
+/* here we make style for quiz choice zone */
+.quiz-btn-container {
+    padding: 20px 0px;
+}
+
 .btn-quiz {
-    margin: 10px;
+    padding: 10px 10px;
+    height: 40px;
+    max-width: 33%;
+}
+
+.difficulty-container {
+    margin-bottom: 20px;
 }
 
 .select {
@@ -38,7 +49,12 @@ body {
     display: none;
 }
 
-ol {
+/* here is some style for ranking */
+.ranking-title {
+    margin-top: 40px;
+}
+
+.ranking {
     background-color: rgb(253, 213, 221);
     width: 60%;
     margin: auto;
@@ -46,4 +62,9 @@ ol {
     border: solid black 1px;
     border-radius: 50px;
     list-style-type: none;
+}
+
+/* here is footer */
+footer {
+    margin-top: 20px;
 }

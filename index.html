@@ -35,18 +35,20 @@
         </section>
 
         <section id="quiz-choice" class="quiz-choice">
-            <button id="culture-1" type="button" class="btn btn-quiz">Culture.1</button>
-            <button id="mythes-légendes" type="button" class="btn btn-quiz">Mythes et légendes</button>
-            <div id="difficulty">
+            <div id="quiz-btn" class="quiz-btn-container">
+                <button id="culture-1" type="button" class="btn btn-quiz">Culture.1</button>
+                <button id="mythes-légendes" type="button" class="btn btn-quiz">Mythes et légendes</button>
+            </div>
+            <div id="difficulty" class="difficulty-container">
                 <button id="débutant" type="button" class="btn btn-difficulty hidden">Easy</button>
                 <button id="confirmé" type="button" class="btn btn-difficulty hidden">Medium</button>
                 <button id="expert" type="button" class="btn btn-difficulty hidden">Hard</button>
             </div>
         </section>
 
-        <section class="ranking">
-            <h3>You're simply the best :</h3>
-            <ol id="ranking"></ol>
+        <section>
+            <h3 id="ranking-title" class="ranking-title">You're simply the best :</h3>
+            <ol id="ranking" class="ranking"></ol>
         </section>
 
     </main>

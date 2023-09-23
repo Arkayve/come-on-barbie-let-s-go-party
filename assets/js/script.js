@@ -149,8 +149,24 @@ document.getElementById('quiz-choice').addEventListener('mouseover', function(ev
     quizName = event.target.getAttribute('id');
 })
 
+// to hide choice btn
+document.querySelector('.quiz-choice').addEventListener('mouseout', function(event) {
+    console.log(event.target)
+    if (event.target.classList.contains('btn')) return;
+    document.querySelectorAll('.btn-difficulty').forEach(btn => {
+        btn.classList.add('hidden');
+    })
+})
+document.getElementById('ranking-title').addEventListener('mouseenter', function(event) {
+    document.querySelectorAll('.btn-difficulty').forEach(btn => {
+         btn.classList.add('hidden');
+    })
+})
+
 // and his difficulty
 document.getElementById('quiz-choice').addEventListener('click', function(event) {
+    if (event.target.classList.contains('select')) return;
+    if (!event.target.classList.contains('btn-difficulty')) return;
     event.target.classList.add('select');
     difficulty = event.target.getAttribute('id');
     getQuiz(`../assets/json/${quizName}.json`);

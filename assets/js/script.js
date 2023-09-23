@@ -1,6 +1,7 @@
 // to listen and get players'number
 let numberOfPlayer = document.getElementById('number-of-player');
 
+// here i display or hide input name in regards of number of players selected
 numberOfPlayer.addEventListener("change", function () {
     switch (numberOfPlayer.value) {
         case '1':
@@ -44,18 +45,12 @@ function getName() {
 
 // listen get-name btn to call function
 document.getElementById('get-name').addEventListener('click', function () {
-    localStorage.setItem('questions', JSON.stringify(questions))
     getName();
-    if (playerNames.length > 0 && questions.length > 0) document.getElementById('index').classList.add('hidden');
-    displayQuestion()
+    if (playerNames.length > 0 && questions.length > 0) {
+        document.getElementById('index').classList.add('hidden');
+        runGame();
+    }
 })
-
-function displayQuestion() {
-    const newLi = document.createElement('li');
-    const newQuestion = questions.shift();
-    newLi.innerHTML = newQuestion.question;
-    document.getElementById('test').appendChild(newLi);
-}
 
 // get best scores data from local storage
 let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
@@ -88,7 +83,7 @@ function displayBestScores() {
 
         scores.forEach((score, index) => {
             const rank = index + 1;
-            const playerInfo = `${rank}. ${score.name} - Score: ${score.score} - Time: ${score.time}`;
+            const playerInfo = `${rank}. ${score.name} - Score: ${score.score}`;
             const listItem = document.createElement('li');
             listItem.textContent = playerInfo;
             ranking.appendChild(listItem);
@@ -207,3 +202,30 @@ document.querySelector('.quiz-choice').addEventListener('mouseleave', function (
 document.getElementById('ranking-title').addEventListener('mouseenter', function (event) {
     hideDifficultyBtnAndRemoveSelectClass();
 })
+
+//***********************************************************************//
+//                       ****   **** *   *  ****                         //
+//                       *   * *   * ** **  *                            //
+//                       *     *   * * * *  ****                         //
+//                       *  ** ***** *   *  *                            //
+//                       ***** *   * *   *  ****                         //
+//***********************************************************************//
+
+// here we go !
+function runGame() {
+    displayQuestion();
+    runTimer();
+}
+
+// function to display question and answer-btn from questions array
+let anecdote;
+function displayQuestion() {
+    const newQuestion = questions.shift();
+    anecdote = newQuestion.anecdote;
+    document.getElementById('question').textContent = newQuestion.question;
+    document.getElementById('btn-answer-1').textContent = newQuestion.propositions[0];
+    document.getElementById('btn-answer-2').textContent = newQuestion.propositions[1];
+    document.getElementById('btn-answer-3').textContent = newQuestion.propositions[2];
+    document.getElementById('btn-answer-4').textContent = newQuestion.propositions[3];
+}
+

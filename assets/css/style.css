@@ -64,7 +64,7 @@ body {
     list-style-type: none;
 }
 
-/* here is footer */
-footer {
+.own-quiz {
+    display: block;
     margin-top: 20px;
 }

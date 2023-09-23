@@ -44,8 +44,18 @@ function getName() {
 
 // listen get-name btn to call function
 document.getElementById('get-name').addEventListener('click', function () {
+    localStorage.setItem('questions', JSON.stringify(questions))
     getName();
+    if (playerNames.length > 0 && questions.length > 0) document.getElementById('index').classList.add('hidden');
+    displayQuestion()
 })
+
+function displayQuestion() {
+    const newLi = document.createElement('li');
+    const newQuestion = questions.shift();
+    newLi.innerHTML = newQuestion.question;
+    document.getElementById('test').appendChild(newLi);
+}
 
 // get best scores data from local storage
 let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
@@ -133,7 +143,7 @@ function getQuiz(json) {
 // .sort to randomize element in array by using order value, then second .map to get back precedent state of each object after randomize them
 function mixQuestions(array) {
     console.log(array.flat().map(item => ({ item, order: Math.random() })).sort((a, b) => a.order - b.order).map(item => item.item))
-    return array.flat().map(item => ({ item, order: Math.random() })).sort((a, b) => a.order - b.order).map(item => item.item)
+    questions = array.flat().map(item => ({ item, order: Math.random() })).sort((a, b) => a.order - b.order).map(item => item.item)
 }
 
 // to save futures questions
@@ -171,7 +181,6 @@ document.getElementById('quiz-choice').addEventListener('click', function (event
 // function to add select class by category if already clicked
 function addSelectClassIfAlreadyClick() {
         alreadySelected.forEach(category => {
-            console.log(category)
             if (quizName === category.split(', ')[0]) {
                 document.querySelectorAll('.btn-difficulty').forEach(btn => {
                     if (btn.id === category.split(', ')[1]) btn.classList.add('select')

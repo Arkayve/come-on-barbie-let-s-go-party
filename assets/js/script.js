@@ -102,6 +102,7 @@ displayBestScores();
 // to have a timer in the game
 // where i will display it
 const displayTimer = document.getElementById('timer');
+let endTime;
 
 let ms = 10;
 let s = 19;
@@ -117,6 +118,7 @@ function runTimer() {
 
 function endTimer() {
     clearInterval(timer);
+    endTime = displayTimer.textContent;
 }
 
 // function to save question following the difficulty in a variable
@@ -216,6 +218,7 @@ document.getElementById('ranking-title').addEventListener('mouseenter', function
 
 // here we go !
 function runGame() {
+    makeRound();
     displayQuestion();
     runTimer();
 }
@@ -227,18 +230,27 @@ function displayQuestion() {
     const newQuestion = questions.shift();
     anecdote = newQuestion.anecdote;
     answer = newQuestion.réponse;
-    console.log(answer)
     document.getElementById('question').textContent = newQuestion.question;
     document.getElementById('btn-answer-0').textContent = newQuestion.propositions[0];
     document.getElementById('btn-answer-1').textContent = newQuestion.propositions[1];
     document.getElementById('btn-answer-2').textContent = newQuestion.propositions[2];
     document.getElementById('btn-answer-3').textContent = newQuestion.propositions[3];
+    console.log(answer)
 }
 
+let round = 0;
+
+function makeRound() {
+    if (round === 4) round = 0;
+    document.getElementById('who-play').textContent = `Hey ${playerNames[round]}, it's your turn`;
+}
+
+// hey that's a block isn't it ?? her we listen which button (answer) we choose
 document.getElementById('btn-answer-container').addEventListener('click', function (event) {
     if (!event.target.classList.contains('btn-answer')) return;
     switch (event.target.id) {
         case 'btn-answer-0':
+            // and make it appears glorious
             document.getElementById('btn-answer-0').classList.add('choice');
             document.getElementById('btn-answer-1').classList.remove('choice');
             document.getElementById('btn-answer-2').classList.remove('choice');
@@ -262,13 +274,31 @@ document.getElementById('btn-answer-container').addEventListener('click', functi
             document.getElementById('btn-answer-2').classList.remove('choice');
             document.getElementById('btn-answer-3').classList.add('choice');
             break;
-    }
+        }
+    // we display anecdote for each question
     document.getElementById('anecdote').textContent = anecdote;
+    round++;
     endTimer();
+    // and here we know if you are a potatoe
     if (event.target.textContent === answer) {
         document.getElementById('comments').textContent = 'well done !'
+        playerNames[round].score += 50;
+        console.log(playerNames);
+        console.log(endTime)
     } else {
         document.getElementById('comments').textContent = 'soz, maybe next time.'
     }
 })
 
+// function saveBestScores() {
+//     playerNames.forEach(i => {
+//         let player = {};
+//         player["name"] = playerNames[i];
+//         player["score"] = playerScores[i];
+//         scores.push(player);
+//     })
+//     scores.sort((a, b) => b.score - a.score);
+//     const maxScoresToKeep = 10;
+//     scores = scores.slice(0, maxScoresToKeep);
+//     localStorage.setItem('bestScores', JSON.stringify(scores));
+// }

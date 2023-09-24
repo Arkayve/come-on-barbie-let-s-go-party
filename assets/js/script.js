@@ -364,10 +364,22 @@ function fromScratch() {
     document.querySelectorAll('.btn-quiz').forEach(btn => {
         btn.classList.remove('select');
     })
+    document.querySelectorAll('.btn-answer').forEach(btn => {
+        btn.classList.remove('choice');
+    })
+    endTimer();
     document.getElementById('first-player-name').value = '';
     document.getElementById('second-player-name').value = '';
     document.getElementById('third-player-name').value = '';
     document.getElementById('fourth-player-name').value = '';
+    document.getElementById('game').classList.add('hidden');
+    document.getElementById('end-game').classList.add('hidden');
+    document.getElementById('index').classList.remove('hidden');
+    document.getElementById('quiz-btn').classList.add('hidden');
+    document.getElementById('activate-quiz-btn').classList.remove('select');
+    document.getElementById('btn-next').classList.add('hidden');
+    document.getElementById('anecdote').classList.add('hidden');
+    document.getElementById('comments').classList.add('hidden');
 }
 
 // to go back to homepage and remove all actual game variables values
@@ -375,23 +387,12 @@ document.getElementById('btn-end-party').addEventListener('click', function (eve
     if (playerScores[0] >= 0) {
         endGame();
     } else {
-        endTimer();
-        saveBestScores();
         fromScratch();
-        document.getElementById('game').classList.add('hidden');
-        document.getElementById('end-game').classList.add('hidden');
         document.getElementById('btn-end-party').classList.add('hidden');
-        document.getElementById('index').classList.remove('hidden');
-        document.getElementById('quiz-btn').classList.add('hidden');
-        document.getElementById('activate-quiz-btn').classList.remove('select');
     }
 })
 
 // listen btn go home of ending page
 document.getElementById('btn-home').addEventListener('click', function(event) {
-    document.getElementById('game').classList.add('hidden');
-    document.getElementById('end-game').classList.add('hidden');
-    document.getElementById('index').classList.remove('hidden');
-    document.getElementById('quiz-btn').classList.add('hidden');
-    document.getElementById('activate-quiz-btn').classList.remove('select');
+    fromScratch();
 })

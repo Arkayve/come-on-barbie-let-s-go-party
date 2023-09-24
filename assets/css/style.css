@@ -231,6 +231,10 @@ h3 {
     background-color: var(--bg-green);
 }
 
+.game-stats {
+    font-weight: 600;
+}
+
 /* try to make background change when good or bad response. works but will do it later */
 /* .good {
     background-image: url('../img/heart-gold-glitter.png') !important;

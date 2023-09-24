@@ -248,12 +248,19 @@ h3 {
 .soon {
     border-top: solid 2px var(--black);
     margin-top: 10px;
+    margin-bottom: 5px;
     padding-top: 15px;
-    text-shadow: 1px 1px 5px var(--bg-red);
+    text-shadow: 1px 1px 15px rgba(255, 0, 0, 0.788);
 }
 
-.soon-p {
-    font-family: var(--primary-font);
-    text-shadow: 1px 1px 3px var(--bg-red);
+.soon-spotify {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-bottom: 15px;
+}
+
+.img-spotify {
+    width: 30px;
+    height: 30px;
 }

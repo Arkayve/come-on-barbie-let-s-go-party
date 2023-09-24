@@ -95,18 +95,17 @@ function displayBestScores() {
     }
 }
 
-saveBestScores();
 displayBestScores();
 
 // to have a timer in the game
 // where i will display it
 const displayTimer = document.getElementById('timer');
 let endTime;
-
-let ms = 10;
-let s = 19;
+let s;
 
 function runTimer() {
+    let ms = 10;
+    s = 19;
     timer = setInterval(function () {
         ms -= 1;
         if (s === 0 && ms === 0) endTimer();
@@ -234,9 +233,13 @@ document.getElementById('ranking-title').addEventListener('mouseenter', function
 
 // here we go !
 function runGame() {
-    makeRound();
-    displayQuestion();
-    runTimer();
+    if (questions.length > 0) {
+        makeRound();
+        displayQuestion();
+        runTimer();
+    } else {
+        endGame();
+    }
 }
 
 // function to display question and answer-btn from questions array
@@ -257,7 +260,7 @@ function displayQuestion() {
 let round = 0;
 
 function makeRound() {
-    if (round === 4) round = 0;
+    if (round === playerNames.length) round = 0;
     document.getElementById('who-play').textContent = `Hey ${playerNames[round]}, it's your turn`;
 }
 
@@ -293,29 +296,35 @@ document.getElementById('btn-answer-container').addEventListener('click', functi
         }
     // we display anecdote for each question
     document.getElementById('anecdote').textContent = anecdote;
+    document.getElementById('btn-next').classList.remove('hidden');
+    document.getElementById('anecdote').classList.remove('hidden');
+    document.getElementById('comments').classList.remove('hidden');
     endTimer();
     // and here we know if you are a potatoe
     if (event.target.textContent === answer) {
         !playerScores[round] ? playerScores[round] = 50 : playerScores[round] += 50;
         playerScores[round] += endTime;
         document.getElementById('comments').textContent = `Well done ${playerNames[round]} ! Your actual score is ${playerScores[round]}.`;
-        console.log(playerNames);
-        console.log(endTime)
+        document.getElementById('unicorn').classList.add('good');
     } else {
-        document.getElementById('comments').textContent = `Soz, maybe next time.</br> Your actual score is ${playerScores[round]}.`;
+        if (!playerScores[round]) playerScores[round] = 0;
+        document.getElementById('comments').textContent = `Soz, maybe next time, ${playerNames[round]}. Your actual score is ${playerScores[round]}.`;
     }
     round++;
 })
 
-// function saveBestScores() {
-//     playerNames.forEach(i => {
-//         let player = {};
-//         player["name"] = playerNames[i];
-//         player["score"] = playerScores[i];
-//         scores.push(player);
-//     })
-//     scores.sort((a, b) => b.score - a.score);
-//     const maxScoresToKeep = 10;
-//     scores = scores.slice(0, maxScoresToKeep);
-//     localStorage.setItem('bestScores', JSON.stringify(scores));
-// }
+// to listen next btn, hide what have to be hide, remove choice class and go to next round
+document.getElementById('btn-next').addEventListener('click', function(event) {
+    event.target.classList.add('hidden');
+    document.getElementById('anecdote').classList.add('hidden');
+    document.getElementById('comments').classList.add('hidden');
+    document.querySelectorAll('.btn-answer').forEach(btn => {
+        btn.classList.remove('choice');
+    })
+    runGame();
+})
+
+function endGame() {
+    saveBestScores();
+    displayBestScores();
+}

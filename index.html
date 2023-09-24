@@ -17,9 +17,9 @@
 
     <main>
         <div id="unicorn">
-            <div id="index">
+            <section id="index">
 
-                <section class="player-choice">
+                <div class="player-choice">
                     <h2>How many players are you ?</h2>
                     <select id="number-of-player" class="number-of-player">
                         <option value="1">1</option>
@@ -36,9 +36,9 @@
                     <input id="fourth-player-name" type="text" placeholder="What's the fourth player name ?"
                         class="player-name">
                     <button id="get-name" type="button" class="btn btn-player">Go !</button>
-                </section>
+                </div>
 
-                <section id="quiz-choice" class="quiz-choice">
+                <div id="quiz-choice" class="quiz-choice">
                     <button type="button" id="activate-quiz-btn" class="btn activate-quiz-btn">Select category</button>
                     <div id="quiz-btn" class="quiz-btn-container hidden">
                         <button type="button" class="btn btn-quiz">Bières belges</button>
@@ -62,18 +62,18 @@
                         <button id="confirmé" type="button" class="btn btn-difficulty">Medium</button>
                         <button id="expert" type="button" class="btn btn-difficulty">Hard</button>
                     </div>
-                </section>
+                </div>
 
-                <section>
+                <div>
                     <h3 id="ranking-title" class="ranking-title">You're simply the best :</h3>
                     <ol id="ranking" class="ranking"></ol>
-                </section>
+                </div>
 
                 <a id="own-quiz" class="own-quiz" href="#">Wanna make your own quiz ?</a>
 
-            </div>
+            </section>
 
-            <div id="game" class="game hidden">
+            <section id="game" class="game hidden">
 
                 <h2 id="who-play" class="who-play"></h2>
                 <p id="timer" class="timer"></p>
@@ -86,11 +86,15 @@
                         <button type="button" id="btn-answer-3" class="btn btn-answer"></button>
                     </div>
 
-                    <p id="anecdote" class="anecdote"></p>
-                    <p id="comments" class="comments"></p>
-                    <button type="button" id="btn-next" class="btn btn-next">Next !</button>
+                    <p id="anecdote" class="anecdote hidden"></p>
+                    <p id="comments" class="comments hidden"></p>
+                    <button type="button" id="btn-next" class="btn btn-next hidden">Next !</button>
 
-            </div>
+            </section>
+
+            <section id="end-game" class="end-game hidden">
+                
+            </section>
         </div>
     </main>
 

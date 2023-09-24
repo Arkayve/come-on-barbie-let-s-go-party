@@ -11,6 +11,7 @@
     --bg-red: rgb(255, 128, 149);
     --primary-color-text: rgb(20, 20, 20);
     --black: black;
+    --white: white;
 }
 
 @font-face {
@@ -44,7 +45,10 @@ body {
     height: 500px;
 }
 
-h1, h2, h3, #own-quiz {
+h1,
+h2,
+h3,
+#own-quiz {
     font-family: var(--primary-font);
 }
 
@@ -204,7 +208,7 @@ h3 {
 }
 
 .question {
-    background-color: white;
+    background-color: var(--white);
     opacity: 90%;
     font-weight: 600;
     margin-bottom: 40px;
@@ -240,3 +244,16 @@ h3 {
     background-image: url('../img/heart-gold-glitter.png') !important;
     background-size: auto !important;
 } */
+
+.soon {
+    border-top: solid 2px var(--black);
+    margin-top: 10px;
+    padding-top: 15px;
+    text-shadow: 1px 1px 5px var(--bg-red);
+}
+
+.soon-p {
+    font-family: var(--primary-font);
+    text-shadow: 1px 1px 3px var(--bg-red);
+    padding-bottom: 15px;
+}

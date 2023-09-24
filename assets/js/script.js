@@ -142,7 +142,7 @@ let quizName;
 let difficulty;
 
 // to see/hide all categories
-document.getElementById('activate-quiz-btn').addEventListener('click', function() {
+document.getElementById('activate-quiz-btn').addEventListener('click', function () {
     document.getElementById('quiz-btn').classList.toggle('hidden');
     document.getElementById('activate-quiz-btn').classList.toggle('select');
 })
@@ -182,13 +182,13 @@ document.getElementById('quiz-choice').addEventListener('click', function (event
 
 // function to add select class by category if already clicked
 function addSelectClassIfAlreadyClick() {
-        alreadySelected.forEach(category => {
-            if (quizName === category.split(', ')[0]) {
-                document.querySelectorAll('.btn-difficulty').forEach(btn => {
-                    if (btn.id === category.split(', ')[1]) btn.classList.add('select')
-                })
-            }
-        })
+    alreadySelected.forEach(category => {
+        if (quizName === category.split(', ')[0]) {
+            document.querySelectorAll('.btn-difficulty').forEach(btn => {
+                if (btn.id === category.split(', ')[1]) btn.classList.add('select')
+            })
+        }
+    })
 }
 
 // function to hide difficulty btn and remove select class
@@ -280,7 +280,7 @@ document.getElementById('btn-answer-container').addEventListener('click', functi
             document.getElementById('btn-answer-2').classList.remove('choice');
             document.getElementById('btn-answer-3').classList.add('choice');
             break;
-        }
+    }
     // we display anecdote for each question
     document.getElementById('anecdote').textContent = anecdote;
     document.getElementById('btn-next').classList.remove('hidden');
@@ -301,7 +301,7 @@ document.getElementById('btn-answer-container').addEventListener('click', functi
 })
 
 // to listen next btn, hide what have to be hide, remove choice class and go to next round
-document.getElementById('btn-next').addEventListener('click', function(event) {
+document.getElementById('btn-next').addEventListener('click', function (event) {
     event.target.classList.add('hidden');
     document.getElementById('anecdote').classList.add('hidden');
     document.getElementById('comments').classList.add('hidden');
@@ -328,7 +328,7 @@ function endGame() {
     bestPlayer.sort((a, b) => b.score - a.score);
     document.getElementById('game-stats').innerHTML = '';
     // here we loop the array to display each players scores
-    for (const i in bestPlayer) {    
+    for (const i in bestPlayer) {
         const rank = parseInt(i) + 1;
         let playerInfo;
         if (rank === 1) {
@@ -393,7 +393,7 @@ document.getElementById('btn-end-party').addEventListener('click', function (eve
 })
 
 // listen btn go home of ending page
-document.getElementById('btn-home').addEventListener('click', function(event) {
+document.getElementById('btn-home').addEventListener('click', function (event) {
     fromScratch();
 })
 

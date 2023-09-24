@@ -372,14 +372,26 @@ function fromScratch() {
 
 // to go back to homepage and remove all actual game variables values
 document.getElementById('btn-end-party').addEventListener('click', function (event) {
-    // if () {
-    //     endGame();
-    // } else {
+    if (playerScores[0] >= 0) {
+        endGame();
+    } else {
         endTimer();
         saveBestScores();
         fromScratch();
         document.getElementById('game').classList.add('hidden');
         document.getElementById('end-game').classList.add('hidden');
+        document.getElementById('btn-end-party').classList.add('hidden');
         document.getElementById('index').classList.remove('hidden');
-    // }
+        document.getElementById('quiz-btn').classList.add('hidden');
+        document.getElementById('activate-quiz-btn').classList.remove('select');
+    }
+})
+
+// listen btn go home of ending page
+document.getElementById('btn-home').addEventListener('click', function(event) {
+    document.getElementById('game').classList.add('hidden');
+    document.getElementById('end-game').classList.add('hidden');
+    document.getElementById('index').classList.remove('hidden');
+    document.getElementById('quiz-btn').classList.add('hidden');
+    document.getElementById('activate-quiz-btn').classList.remove('select');
 })

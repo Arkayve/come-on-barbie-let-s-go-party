@@ -155,19 +155,34 @@ let questions = [];
 let quizName;
 let difficulty;
 
-// listen which category of quiz we want and make difficulty btn appear
-document.getElementById('quiz-choice').addEventListener('mouseover', function (event) {
+// to see/hide all categories
+document.getElementById('activate-quiz-btn').addEventListener('click', function() {
+    document.getElementById('quiz-btn').classList.toggle('hidden');
+})
+
+// listen which category of quiz we want
+document.getElementById('quiz-choice').addEventListener('click', function (event) {
     if (!event.target.classList.contains('btn-quiz')) return;
+    // removing select class for all category
+    document.querySelectorAll('.btn-quiz').forEach(btn => {
+        btn.classList.remove('select');
+    })
+    // removing select class for all difficulty
     document.querySelectorAll('.btn-difficulty').forEach(btn => {
         btn.classList.remove('select');
-        btn.classList.remove('hidden');
     })
+    // make difficulty btn appear
+    document.getElementById('difficulty').classList.remove('hidden');
     if (event.target.classList.contains('btn-difficulty')) return;
-    quizName = event.target.getAttribute('id');
+    // add select class for category clicked
+    event.target.classList.add('select');
+    // get qui category in a var
+    quizName = event.target.textContent;
+    // add select class if difficulty already added in questions for this category
     addSelectClassIfAlreadyClick();
 })
 
-// and his difficulty
+// listen which difficulty of quiz we want
 document.getElementById('quiz-choice').addEventListener('click', function (event) {
     if (!event.target.classList.contains('btn-difficulty')) return;
     event.target.classList.add('select');
@@ -191,8 +206,8 @@ function addSelectClassIfAlreadyClick() {
 
 // function to hide difficulty btn and remove select class
 function hideDifficultyBtnAndRemoveSelectClass() {
+    document.getElementById('difficulty').classList.add('hidden');
     document.querySelectorAll('.btn-difficulty').forEach(btn => {
-        btn.classList.add('hidden');
         btn.classList.remove('select');
     })
 }

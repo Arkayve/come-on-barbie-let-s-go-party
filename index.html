@@ -39,14 +39,28 @@
                 </section>
 
                 <section id="quiz-choice" class="quiz-choice">
-                    <div id="quiz-btn" class="quiz-btn-container">
-                        <button id="culture-1" type="button" class="btn btn-quiz">Culture.1</button>
-                        <button id="mythes-légendes" type="button" class="btn btn-quiz">Mythes et légendes</button>
+                    <button type="button" id="activate-quiz-btn" class="btn activate-quiz-btn">Select category</button>
+                    <div id="quiz-btn" class="quiz-btn-container hidden">
+                        <button type="button" class="btn btn-quiz">Bières belges</button>
+                        <button type="button" class="btn btn-quiz">COVID-19</button>
+                        <button type="button" class="btn btn-quiz">Culture en vrac</button>
+                        <button type="button" class="btn btn-quiz">Dessins animés</button>
+                        <button type="button" class="btn btn-quiz">Faits de société</button>
+                        <button type="button" class="btn btn-quiz">Grands monuments</button>
+                        <button type="button" class="btn btn-quiz">Héros de Kaamelott</button>
+                        <button type="button" class="btn btn-quiz">Marques et slogans</button>
+                        <button type="button" class="btn btn-quiz">Mont Saint-Michel</button>
+                        <button type="button" class="btn btn-quiz">Mythes et légendes</button>
+                        <button type="button" class="btn btn-quiz">Paris de nos jours</button>
+                        <button type="button" class="btn btn-quiz">Séries américaines</button>
+                        <button type="button" class="btn btn-quiz">Star Trek</button>
+                        <button type="button" class="btn btn-quiz">Stats internet 2018</button>
+                        <button type="button" class="btn btn-quiz">X-Files</button>
                     </div>
-                    <div id="difficulty" class="difficulty-container">
-                        <button id="débutant" type="button" class="btn btn-difficulty hidden">Easy</button>
-                        <button id="confirmé" type="button" class="btn btn-difficulty hidden">Medium</button>
-                        <button id="expert" type="button" class="btn btn-difficulty hidden">Hard</button>
+                    <div id="difficulty" class="difficulty-container hidden">
+                        <button id="débutant" type="button" class="btn btn-difficulty">Easy</button>
+                        <button id="confirmé" type="button" class="btn btn-difficulty">Medium</button>
+                        <button id="expert" type="button" class="btn btn-difficulty">Hard</button>
                     </div>
                 </section>
 
@@ -62,18 +76,19 @@
             <div id="game">
 
                 <h2 id="who-play" class="who-play"></h2>
-                <h3 id="question"></h3>
-                <p id="timer"></p>
+                <h4 id="question">
+                    </h3>
+                    <p id="timer"></p>
 
-                <div id="btn-answer-container" class="btn-answer-container">
-                    <button id="btn-answer-0" class="btn btn-answer hidden"></button>
-                    <button id="btn-answer-1" class="btn btn-answer hidden"></button>
-                    <button id="btn-answer-2" class="btn btn-answer hidden"></button>
-                    <button id="btn-answer-3" class="btn btn-answer hidden"></button>
-                </div>
+                    <div id="btn-answer-container" class="btn-answer-container">
+                        <button id="btn-answer-0" class="btn btn-answer hidden"></button>
+                        <button id="btn-answer-1" class="btn btn-answer hidden"></button>
+                        <button id="btn-answer-2" class="btn btn-answer hidden"></button>
+                        <button id="btn-answer-3" class="btn btn-answer hidden"></button>
+                    </div>
 
-                <p id="anecdote" class="anecdote"></p>
-                <p id="comments" class="comments"></p>
+                    <p id="anecdote" class="anecdote"></p>
+                    <p id="comments" class="comments"></p>
 
             </div>
         </div>

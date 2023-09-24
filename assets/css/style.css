@@ -8,6 +8,7 @@
     --bg-select: rgb(172, 193, 255);
     --bg-yellow: rgb(255, 255, 194);
     --bg-green: rgb(194, 255, 194);
+    --bg-red: rgb(255, 128, 149);
     --primary-color-text: rgb(20, 20, 20);
     --black: black;
 }
@@ -95,6 +96,8 @@ h3 {
     opacity: 90%;
 }
 
+.btn-home,
+.btn-end-party,
 .activate-quiz-btn,
 .btn-player {
     opacity: 90%;
@@ -104,11 +107,13 @@ h3 {
     height: 40px;
 }
 
-.btn-player:active {
-    background-color: var(--bg-select);
+.btn-player {
+    background-color: var(--bg-green);
 }
 
 /* here we make style for quiz choice zone */
+.btn-home,
+.btn-end-party,
 .activate-quiz-btn {
     width: 25%;
     height: 40px;
@@ -172,6 +177,11 @@ h3 {
     color: var(--black);
     display: block;
     padding: 20px;
+}
+
+.btn-home,
+.btn-end-party {
+    background-color: var(--bg-red);
 }
 
 /************************************************************************\\

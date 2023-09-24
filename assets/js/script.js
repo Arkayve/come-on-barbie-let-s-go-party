@@ -1,9 +1,6 @@
-// to listen and get players'number
-let numberOfPlayer = document.getElementById('number-of-player');
-
 // here i display or hide input name in regards of number of players selected
-numberOfPlayer.addEventListener("change", function () {
-    switch (numberOfPlayer.value) {
+document.getElementById('number-of-player').addEventListener("change", function () {
+    switch (document.getElementById('number-of-player').value) {
         case '1':
             document.getElementById('second-player-name').classList.remove('active');
             document.getElementById('third-player-name').classList.remove('active');
@@ -49,7 +46,7 @@ document.getElementById('get-name').addEventListener('click', function () {
     if (playerNames.length > 0 && questions.length > 0) {
         document.getElementById('index').classList.add('hidden');
         document.getElementById('game').classList.remove('hidden');
-        console.log(playerNames)
+        document.getElementById('btn-end-party').classList.remove('hidden');
         runGame();
     }
 })
@@ -59,9 +56,6 @@ let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
 
 // an array to record each player score
 let playerScores = [];
-
-// ending party time
-let gameOverTime = 0;
 
 // to record name, score, time of ten best players
 function saveBestScores() {
@@ -78,28 +72,24 @@ function saveBestScores() {
 }
 
 // display best scores on index.html
-function displayBestScores() {
+function displayBestScores(where) {
     if (scores) {
-        const ranking = document.getElementById('ranking');
-        ranking.innerHTML = '';
-
+        where.innerHTML = '';
         scores.forEach((score, index) => {
             const rank = index + 1;
             const playerInfo = `${rank}. ${score.name} - Score: ${score.score}`;
             const listItem = document.createElement('li');
             listItem.textContent = playerInfo;
-            ranking.appendChild(listItem);
+            where.appendChild(listItem);
         });
     } else {
-        document.getElementById('ranking').textContent = 'No scores recorded.';
+        where.textContent = 'No scores recorded.';
     }
 }
 
-displayBestScores();
+displayBestScores(document.getElementById('ranking'));
 
 // to have a timer in the game
-// where i will display it
-const displayTimer = document.getElementById('timer');
 let endTime;
 let s;
 
@@ -110,14 +100,13 @@ function runTimer() {
         ms -= 1;
         if (s === 0 && ms === 0) endTimer();
         else if (ms === 0) { ms = 10; s--; }
-        displayTimer.textContent = (s < 10 ? '0' + s : s) + ' : ' + (ms < 10 ? '0' + ms : ms);
+        document.getElementById('timer').textContent = (s < 10 ? '0' + s : s) + ' : ' + (ms < 10 ? '0' + ms : ms);
     }, 100)
 }
 
 function endTimer() {
     clearInterval(timer);
     endTime = Math.round(s);
-    console.log(endTime);
 }
 
 // function to save question following the difficulty in a variable
@@ -132,7 +121,7 @@ function getQuiz(json) {
             mixQuestions(questions)
         })
         .catch(error => {
-            console.error("Une erreur s'est produite :", error);
+            console.error("Error :", error);
         });
 }
 
@@ -141,11 +130,9 @@ function getQuiz(json) {
 // .flat to have unidimensional array ; first .map to add order value which is randomize, and item to store precedent state of object
 // .sort to randomize element in array by using order value, then second .map to get back precedent state of each object after randomize them
 function mixQuestions(array) {
-    console.log(array.flat().map(item => ({ item, order: Math.random() })).sort((a, b) => a.order - b.order).map(item => item.item))
     questions = array.flat().map(item => ({ item, order: Math.random() })).sort((a, b) => a.order - b.order).map(item => item.item)
 }
 
-// to save futures questions
 // to know each quiz already selected
 let alreadySelected = [];
 // to have a variable with all questions
@@ -254,7 +241,7 @@ function displayQuestion() {
     document.getElementById('btn-answer-1').textContent = newQuestion.propositions[1];
     document.getElementById('btn-answer-2').textContent = newQuestion.propositions[2];
     document.getElementById('btn-answer-3').textContent = newQuestion.propositions[3];
-    console.log(answer)
+    console.log(answer);
 }
 
 let round = 0;
@@ -324,7 +311,75 @@ document.getElementById('btn-next').addEventListener('click', function(event) {
     runGame();
 })
 
+// here we make magic to display cool infos for players
+const bestPlayer = [];
 function endGame() {
+    document.getElementById('btn-end-party').classList.add('hidden');
+    document.getElementById('game').classList.add('hidden');
+    document.getElementById('end-game').classList.remove('hidden');
+    // here we make an array of object with names and scores
+    for (const i in playerNames) {
+        let player = {};
+        player["name"] = playerNames[i];
+        player["score"] = playerScores[i];
+        bestPlayer.push(player);
+    }
+    // here we sort players by scores
+    bestPlayer.sort((a, b) => b.score - a.score);
+    document.getElementById('game-stats').innerHTML = '';
+    // here we loop the array to display each players scores
+    for (const i in bestPlayer) {    
+        const rank = parseInt(i) + 1;
+        let playerInfo;
+        if (rank === 1) {
+            playerInfo = `What a glorious game ${bestPlayer[i].name} ! With a score of ${bestPlayer[i].score}, you are the champion, my friend.`
+        } else if (rank === bestPlayer.length) {
+            playerInfo = `Well... at least, you tried ${bestPlayer[i].name}. With a score of ${bestPlayer[i].score}, you're a loser baby.`
+        } else {
+            playerInfo = `${bestPlayer[i].name} finished at position ${rank} with a score of ${bestPlayer[i].score}.`;
+        }
+        const listItem = document.createElement('li');
+        listItem.textContent = playerInfo;
+        document.getElementById('game-stats').appendChild(listItem);
+    }
+    // here we add players of the party to best scores, function saveBestScores will keep ten best of all of them
+    bestPlayer.forEach(player => {
+        scores.push(player);
+    })
     saveBestScores();
-    displayBestScores();
+    displayBestScores(document.getElementById('end-ranking'));
 }
+
+// here we reset all previous game values
+function fromScratch() {
+    playerNames = [];
+    playerScores = [];
+    count = 0;
+    alreadySelected = [];
+    questions = [];
+    quizName = '';
+    difficulty = '';
+    anecdote = '';
+    answer = '';
+    document.querySelectorAll('.btn-quiz').forEach(btn => {
+        btn.classList.remove('select');
+    })
+    document.getElementById('first-player-name').value = '';
+    document.getElementById('second-player-name').value = '';
+    document.getElementById('third-player-name').value = '';
+    document.getElementById('fourth-player-name').value = '';
+}
+
+// to go back to homepage and remove all actual game variables values
+document.getElementById('btn-end-party').addEventListener('click', function (event) {
+    // if () {
+    //     endGame();
+    // } else {
+        endTimer();
+        saveBestScores();
+        fromScratch();
+        document.getElementById('game').classList.add('hidden');
+        document.getElementById('end-game').classList.add('hidden');
+        document.getElementById('index').classList.remove('hidden');
+    // }
+})

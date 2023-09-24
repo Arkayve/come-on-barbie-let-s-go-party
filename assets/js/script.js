@@ -48,9 +48,8 @@ document.getElementById('get-name').addEventListener('click', function () {
     getName();
     if (playerNames.length > 0 && questions.length > 0) {
         document.getElementById('index').classList.add('hidden');
-        document.querySelectorAll('.btn-answer').forEach(btn => {
-            btn.classList.remove('hidden');
-        })
+        document.getElementById('game').classList.remove('hidden');
+        console.log(playerNames)
         runGame();
     }
 })
@@ -118,7 +117,8 @@ function runTimer() {
 
 function endTimer() {
     clearInterval(timer);
-    endTime = displayTimer.textContent;
+    endTime = Math.round(s);
+    console.log(endTime);
 }
 
 // function to save question following the difficulty in a variable
@@ -158,6 +158,7 @@ let difficulty;
 // to see/hide all categories
 document.getElementById('activate-quiz-btn').addEventListener('click', function() {
     document.getElementById('quiz-btn').classList.toggle('hidden');
+    document.getElementById('activate-quiz-btn').classList.toggle('select');
 })
 
 // listen which category of quiz we want
@@ -292,17 +293,18 @@ document.getElementById('btn-answer-container').addEventListener('click', functi
         }
     // we display anecdote for each question
     document.getElementById('anecdote').textContent = anecdote;
-    round++;
     endTimer();
     // and here we know if you are a potatoe
     if (event.target.textContent === answer) {
-        document.getElementById('comments').textContent = 'well done !'
-        playerNames[round].score += 50;
+        !playerScores[round] ? playerScores[round] = 50 : playerScores[round] += 50;
+        playerScores[round] += endTime;
+        document.getElementById('comments').textContent = `Well done ${playerNames[round]} ! Your actual score is ${playerScores[round]}.`;
         console.log(playerNames);
         console.log(endTime)
     } else {
-        document.getElementById('comments').textContent = 'soz, maybe next time.'
+        document.getElementById('comments').textContent = `Soz, maybe next time.</br> Your actual score is ${playerScores[round]}.`;
     }
+    round++;
 })
 
 // function saveBestScores() {

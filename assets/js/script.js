@@ -164,7 +164,7 @@ document.getElementById('quiz-choice').addEventListener('click', function (event
     // add select class for category clicked
     event.target.classList.add('select');
     // get qui category in a var
-    quizName = event.target.textContent;
+    quizName = event.target.dataset.quizName;
     // add select class if difficulty already added in questions for this category
     addSelectClassIfAlreadyClick();
 })

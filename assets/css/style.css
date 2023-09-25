@@ -24,6 +24,31 @@
     src: url('../fonts/Mooli-Regular.ttf');
 }
 
+/* utils */
+.hidden {
+    display: none !important;
+}
+
+.opacity {
+    opacity: 90%;
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.column {
+    flex-direction: column;
+}
+
 body {
     background-color: var(--bg-pink);
     color: var(--primary-color-text);
@@ -32,12 +57,12 @@ body {
 }
 
 /* to hide input of other players if not use */
-.player-name:not(.active) {
+.player-choice__player-name:not(.active) {
     display: none;
 }
 
 /* have a unicorn in background */
-#unicorn {
+.unicorn {
     background-image: url('../img/licorn-bg.png');
     background-repeat: no-repeat;
     background-size: contain;
@@ -47,27 +72,29 @@ body {
 
 h1,
 h2,
-h3,
-#own-quiz {
+h3 {
     font-family: var(--primary-font);
+}
+
+h1,
+h2,
+h3 {
+    text-shadow: 2px 2px var(--pink-light);
 }
 
 h1 {
     font-size: 3rem;
-    margin: 40px;
-    text-shadow: 2px 2px var(--pink-light);
+    margin: 40px;  
 }
 
 h2 {
     font-size: 1.5rem;
     margin-bottom: 20px;
-    text-shadow: 2px 2px var(--pink-light);
 }
 
 h3 {
     font-size: 1.2rem;
     margin: 20px auto 10px auto;
-    text-shadow: 2px 2px var(--pink-light);
 }
 
 .btn {
@@ -76,20 +103,14 @@ h3 {
 }
 
 /* make some style for inputs names spaces and go button */
-.number-of-player {
+.player-choice__player-number {
     font-family: var(--secondary-font);
     padding: 5px 10px;
     border-radius: 20px;
     margin-bottom: 10px;
 }
 
-.player-choice {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.player-name {
+.player-choice__player-name {
     font-family: var(--secondary-font);
     font-weight: 600;
     text-align: center;
@@ -97,60 +118,50 @@ h3 {
     width: 55%;
     padding: 10px 20px;
     margin: 10px;
-    opacity: 90%;
 }
 
-.btn-home,
-.btn-end-party,
-.activate-quiz-btn,
-.btn-player {
-    opacity: 90%;
+.endgame__btn-home,
+.game__btn-end-party,
+.quiz-choice__btn-category,
+.player-choice__btn-go {
     width: 15%;
     border-radius: 20px;
     margin: 10px;
     height: 40px;
 }
 
-.btn-player {
+.player-choice__btn-go {
     background-color: var(--bg-green);
 }
 
 /* here we make style for quiz choice zone */
-.btn-home,
-.btn-end-party,
-.activate-quiz-btn {
+.quiz-choice__btn-category {
     width: 25%;
     height: 40px;
     margin-top: 10px;
 }
 
-.quiz-btn-container {
-    display: flex;
+.quiz-container {
     flex-wrap: wrap;
-    justify-content: center;
     padding: 10px 0px;
     width: 90%;
     margin: auto;
 }
 
-.btn-answer,
-.btn-quiz {
+.game__answer__btn,
+.quiz-container__btn {
     border-radius: 5px;
-    opacity: 90%;
-    display: flex;
-    align-items: center;
     padding: 10px 10px;
     height: 50px;
     max-width: 33%;
     margin: 2px;
 }
 
-.difficulty-container {
+.quiz-choice__difficulty {
     margin-bottom: 20px;
 }
 
-.btn-difficulty {
-    opacity: 90%;
+.quiz-choice__difficulty__btn {
     border-radius: 20px;
     height: 40px;
 }
@@ -159,15 +170,12 @@ h3 {
     background-color: var(--bg-select);
 }
 
-.hidden {
-    display: none;
-}
+
 
 /* here is some style for ranking */
-.anecdote,
-.question,
-.ranking {
-    opacity: 70%;
+.game__anecdote,
+.index__ranking-list,
+.endgame__ranking-list {
     background-color: var(--pink-light);
     width: 60%;
     margin: auto;
@@ -177,14 +185,20 @@ h3 {
     list-style-type: none;
 }
 
-.own-quiz {
+.index__ranking-list,
+.endgame__ranking-list {
+    opacity: 70%;
+}
+
+.index__own-quiz-link {
+    font-family: var(--primary-font);
     color: var(--black);
     display: block;
     padding: 20px;
 }
 
-.btn-home,
-.btn-end-party {
+.endgame__btn-home,
+.game__btn-end-party {
     background-color: var(--bg-red);
 }
 
@@ -195,26 +209,37 @@ h3 {
 //                       *  ** ***** *   *  *                            \\
 //                       ***** *   * *   *  ****                         \\
 //***********************************************************************/
-.btn-next,
-.timer {
+.game__timer {
     border: solid 1px var(--black);
     border-radius: 20px;
     background-color: var(--bg-yellow);
-    opacity: 90%;
     width: 20%;
     margin: 30px auto 40px auto;
     padding: 10px 10px;
     font-weight: 600;
 }
 
-.question {
-    background-color: var(--white);
-    opacity: 90%;
+.game__btn-next {
+    border: solid 1px var(--black);
+    border-radius: 20px;
+    background-color: var(--bg-yellow);
+    width: 20%;
+    margin: 20px auto 10px auto;
+    padding: 10px 10px;
     font-weight: 600;
-    margin-bottom: 40px;
 }
 
-.btn-answer {
+.game__question {
+    width: 60%;
+    background-color: var(--white);
+    font-weight: 600;
+    margin: auto auto 40px auto;
+    padding: 20px;
+    border: solid var(--black) 1px;
+    border-radius: 50px;
+}
+
+.game__answer__btn {
     display: inline-block;
 }
 
@@ -222,20 +247,19 @@ h3 {
     background-color: var(--bg-select);
 }
 
-.anecdote {
-    opacity: 90%;
+.game__anecdote {
     margin: 40px auto;
 }
 
-.comments {
+.game__comments {
     font-weight: 600;
 }
 
-.btn-next {
+.game__btn-next {
     background-color: var(--bg-green);
 }
 
-.game-stats {
+.endgame__stats {
     font-weight: 600;
 }
 
@@ -245,7 +269,7 @@ h3 {
     background-size: auto !important;
 } */
 
-.soon {
+.index__soon-title {
     border-top: solid 2px var(--black);
     margin-top: 10px;
     margin-bottom: 5px;
@@ -253,16 +277,12 @@ h3 {
     text-shadow: 1px 1px 15px rgba(255, 0, 0, 0.788);
 }
 
-.soon-spotify {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.spotify-container {
     padding-bottom: 15px;
 }
 
-.img-spotify {
+.spotify-container__img {
     margin-left: 2px;
     width: 30px;
     height: 30px;
-    opacity: 80%;
 }

@@ -1,6 +1,6 @@
 // here i display or hide input name in regards of number of players selected
-document.getElementById('number-of-player').addEventListener("change", function () {
-    switch (document.getElementById('number-of-player').value) {
+document.getElementById('player-choice__player-number').addEventListener("change", function () {
+    switch (document.getElementById('player-choice__player-number').value) {
         case '1':
             document.getElementById('second-player-name').classList.remove('active');
             document.getElementById('third-player-name').classList.remove('active');
@@ -40,13 +40,13 @@ function getName() {
     if (fourthPlayerName.value.trim() !== "" && !playerNames.includes(fourthPlayerName.value)) playerNames.push(fourthPlayerName.value);
 }
 
-// listen get-name btn to call function
-document.getElementById('get-name').addEventListener('click', function () {
+// listen btn-go btn to call function
+document.getElementById('player-choice__btn-go').addEventListener('click', function () {
     getName();
     if (playerNames.length > 0 && questions.length > 0) {
         document.getElementById('index').classList.add('hidden');
         document.getElementById('game').classList.remove('hidden');
-        document.getElementById('btn-end-party').classList.remove('hidden');
+        document.getElementById('game__btn-end-party').classList.remove('hidden');
         runGame();
     }
 })
@@ -87,7 +87,7 @@ function displayBestScores(where) {
     }
 }
 
-displayBestScores(document.getElementById('ranking'));
+displayBestScores(document.getElementById('index__ranking-list'));
 
 // to have a timer in the game
 let endTime;
@@ -100,7 +100,7 @@ function runTimer() {
         ms -= 1;
         if (s === 0 && ms === 0) endTimer();
         else if (ms === 0) { ms = 10; s--; }
-        document.getElementById('timer').textContent = (s < 10 ? '0' + s : s) + ' : ' + (ms < 10 ? '0' + ms : ms);
+        document.getElementById('game__timer').textContent = (s < 10 ? '0' + s : s) + ' : ' + (ms < 10 ? '0' + ms : ms);
     }, 100)
 }
 
@@ -142,25 +142,25 @@ let quizName;
 let difficulty;
 
 // to see/hide all categories
-document.getElementById('activate-quiz-btn').addEventListener('click', function () {
-    document.getElementById('quiz-btn').classList.toggle('hidden');
-    document.getElementById('activate-quiz-btn').classList.toggle('select');
+document.getElementById('quiz-choice__btn-category').addEventListener('click', function () {
+    document.getElementById('quiz-container').classList.toggle('hidden');
+    document.getElementById('quiz-choice__btn-category').classList.toggle('select');
 })
 
 // listen which category of quiz we want
 document.getElementById('quiz-choice').addEventListener('click', function (event) {
-    if (!event.target.classList.contains('btn-quiz')) return;
+    if (!event.target.classList.contains('quiz-container__btn')) return;
     // removing select class for all category
-    document.querySelectorAll('.btn-quiz').forEach(btn => {
+    document.querySelectorAll('.quiz-container__btn').forEach(btn => {
         btn.classList.remove('select');
     })
     // removing select class for all difficulty
-    document.querySelectorAll('.btn-difficulty').forEach(btn => {
+    document.querySelectorAll('.quiz-choice__difficulty__btn').forEach(btn => {
         btn.classList.remove('select');
     })
     // make difficulty btn appear
-    document.getElementById('difficulty').classList.remove('hidden');
-    if (event.target.classList.contains('btn-difficulty')) return;
+    document.getElementById('quiz-choice__difficulty').classList.remove('hidden');
+    if (event.target.classList.contains('quiz-choice__difficulty__btn')) return;
     // add select class for category clicked
     event.target.classList.add('select');
     // get qui category in a var
@@ -171,7 +171,7 @@ document.getElementById('quiz-choice').addEventListener('click', function (event
 
 // listen which difficulty of quiz we want
 document.getElementById('quiz-choice').addEventListener('click', function (event) {
-    if (!event.target.classList.contains('btn-difficulty')) return;
+    if (!event.target.classList.contains('quiz-choice__difficulty__btn')) return;
     event.target.classList.add('select');
     difficulty = event.target.getAttribute('id');
     // to prevent adding more than one time each quiz
@@ -184,7 +184,7 @@ document.getElementById('quiz-choice').addEventListener('click', function (event
 function addSelectClassIfAlreadyClick() {
     alreadySelected.forEach(category => {
         if (quizName === category.split(', ')[0]) {
-            document.querySelectorAll('.btn-difficulty').forEach(btn => {
+            document.querySelectorAll('.quiz-choice__difficulty__btn').forEach(btn => {
                 if (btn.id === category.split(', ')[1]) btn.classList.add('select')
             })
         }
@@ -193,8 +193,8 @@ function addSelectClassIfAlreadyClick() {
 
 // function to hide difficulty btn and remove select class
 function hideDifficultyBtnAndRemoveSelectClass() {
-    document.getElementById('difficulty').classList.add('hidden');
-    document.querySelectorAll('.btn-difficulty').forEach(btn => {
+    document.getElementById('quiz-choice__difficulty').classList.add('hidden');
+    document.querySelectorAll('.quiz-choice__difficulty__btn').forEach(btn => {
         btn.classList.remove('select');
     })
 }
@@ -206,7 +206,7 @@ document.querySelector('.quiz-choice').addEventListener('mouseleave', function (
 })
 
 // adding eventlistener when mouse go down on the page to hide choice btn
-document.getElementById('ranking-title').addEventListener('mouseenter', function (event) {
+document.getElementById('index__ranking-title').addEventListener('mouseenter', function (event) {
     hideDifficultyBtnAndRemoveSelectClass();
 })
 
@@ -236,7 +236,7 @@ function displayQuestion() {
     const newQuestion = questions.shift();
     anecdote = newQuestion.anecdote;
     answer = newQuestion.réponse;
-    document.getElementById('question').textContent = newQuestion.question;
+    document.getElementById('game__question').textContent = newQuestion.question;
     document.getElementById('btn-answer-0').textContent = newQuestion.propositions[0];
     document.getElementById('btn-answer-1').textContent = newQuestion.propositions[1];
     document.getElementById('btn-answer-2').textContent = newQuestion.propositions[2];
@@ -248,12 +248,12 @@ let round = 0;
 
 function makeRound() {
     if (round === playerNames.length) round = 0;
-    document.getElementById('who-play').textContent = `Hey ${playerNames[round]}, it's your turn`;
+    document.getElementById('game__who-play').textContent = `Hey ${playerNames[round]}, it's your turn`;
 }
 
 // hey that's a block isn't it ?? her we listen which button (answer) we choose
-document.getElementById('btn-answer-container').addEventListener('click', function (event) {
-    if (!event.target.classList.contains('btn-answer')) return;
+document.getElementById('game__answer-container').addEventListener('click', function (event) {
+    if (!event.target.classList.contains('game__answer__btn')) return;
     switch (event.target.id) {
         case 'btn-answer-0':
             // and make it appears glorious
@@ -282,30 +282,30 @@ document.getElementById('btn-answer-container').addEventListener('click', functi
             break;
     }
     // we display anecdote for each question
-    document.getElementById('anecdote').textContent = anecdote;
-    document.getElementById('btn-next').classList.remove('hidden');
-    document.getElementById('anecdote').classList.remove('hidden');
-    document.getElementById('comments').classList.remove('hidden');
+    document.getElementById('game__anecdote').textContent = anecdote;
+    document.getElementById('game__btn-next').classList.remove('hidden');
+    document.getElementById('game__anecdote').classList.remove('hidden');
+    document.getElementById('game__comments').classList.remove('hidden');
     endTimer();
     // and here we know if you are a potatoe
     if (event.target.textContent === answer) {
         !playerScores[round] ? playerScores[round] = 50 : playerScores[round] += 50;
         playerScores[round] += endTime;
-        document.getElementById('comments').textContent = `Well done ${playerNames[round]} ! Your actual score is ${playerScores[round]}.`;
+        document.getElementById('game__comments').textContent = `Well done ${playerNames[round]} ! Your actual score is ${playerScores[round]}.`;
         document.getElementById('unicorn').classList.add('good');
     } else {
         if (!playerScores[round]) playerScores[round] = 0;
-        document.getElementById('comments').textContent = `Soz, maybe next time, ${playerNames[round]}. Your actual score is ${playerScores[round]}.`;
+        document.getElementById('game__comments').textContent = `Soz, maybe next time, ${playerNames[round]}. Your actual score is ${playerScores[round]}.`;
     }
     round++;
 })
 
 // to listen next btn, hide what have to be hide, remove choice class and go to next round
-document.getElementById('btn-next').addEventListener('click', function (event) {
+document.getElementById('game__btn-next').addEventListener('click', function (event) {
     event.target.classList.add('hidden');
-    document.getElementById('anecdote').classList.add('hidden');
-    document.getElementById('comments').classList.add('hidden');
-    document.querySelectorAll('.btn-answer').forEach(btn => {
+    document.getElementById('game__anecdote').classList.add('hidden');
+    document.getElementById('game__comments').classList.add('hidden');
+    document.querySelectorAll('.game__answer__btn').forEach(btn => {
         btn.classList.remove('choice');
     })
     runGame();
@@ -314,9 +314,9 @@ document.getElementById('btn-next').addEventListener('click', function (event) {
 // here we make magic to display cool infos for players
 const bestPlayer = [];
 function endGame() {
-    document.getElementById('btn-end-party').classList.add('hidden');
+    document.getElementById('game__btn-end-party').classList.add('hidden');
     document.getElementById('game').classList.add('hidden');
-    document.getElementById('end-game').classList.remove('hidden');
+    document.getElementById('endgame').classList.remove('hidden');
     // here we make an array of object with names and scores
     for (const i in playerNames) {
         let player = {};
@@ -326,7 +326,7 @@ function endGame() {
     }
     // here we sort players by scores
     bestPlayer.sort((a, b) => b.score - a.score);
-    document.getElementById('game-stats').innerHTML = '';
+    document.getElementById('endgame__stats').innerHTML = '';
     // here we loop the array to display each players scores
     for (const i in bestPlayer) {
         const rank = parseInt(i) + 1;
@@ -340,14 +340,14 @@ function endGame() {
         }
         const listItem = document.createElement('li');
         listItem.textContent = playerInfo;
-        document.getElementById('game-stats').appendChild(listItem);
+        document.getElementById('endgame__stats').appendChild(listItem);
     }
     // here we add players of the party to best scores, function saveBestScores will keep ten best of all of them
     bestPlayer.forEach(player => {
         scores.push(player);
     })
     saveBestScores();
-    displayBestScores(document.getElementById('end-ranking'));
+    displayBestScores(document.getElementById('endgame__ranking-list'));
 }
 
 // here we reset all previous game values
@@ -361,10 +361,10 @@ function fromScratch() {
     difficulty = '';
     anecdote = '';
     answer = '';
-    document.querySelectorAll('.btn-quiz').forEach(btn => {
+    document.querySelectorAll('.quiz-container__btn').forEach(btn => {
         btn.classList.remove('select');
     })
-    document.querySelectorAll('.btn-answer').forEach(btn => {
+    document.querySelectorAll('.game__answer__btn').forEach(btn => {
         btn.classList.remove('choice');
     })
     endTimer();
@@ -373,27 +373,27 @@ function fromScratch() {
     document.getElementById('third-player-name').value = '';
     document.getElementById('fourth-player-name').value = '';
     document.getElementById('game').classList.add('hidden');
-    document.getElementById('end-game').classList.add('hidden');
+    document.getElementById('endgame').classList.add('hidden');
     document.getElementById('index').classList.remove('hidden');
-    document.getElementById('quiz-btn').classList.add('hidden');
-    document.getElementById('activate-quiz-btn').classList.remove('select');
-    document.getElementById('btn-next').classList.add('hidden');
-    document.getElementById('anecdote').classList.add('hidden');
-    document.getElementById('comments').classList.add('hidden');
+    document.getElementById('quiz-container').classList.add('hidden');
+    document.getElementById('quiz-choice__btn-category').classList.remove('select');
+    document.getElementById('game__btn-next').classList.add('hidden');
+    document.getElementById('game__anecdote').classList.add('hidden');
+    document.getElementById('game__comments').classList.add('hidden');
 }
 
 // to go back to homepage and remove all actual game variables values
-document.getElementById('btn-end-party').addEventListener('click', function (event) {
+document.getElementById('game__btn-end-party').addEventListener('click', function (event) {
     if (playerScores[0] >= 0) {
         endGame();
     } else {
         fromScratch();
-        document.getElementById('btn-end-party').classList.add('hidden');
+        document.getElementById('game__btn-end-party').classList.add('hidden');
     }
 })
 
 // listen btn go home of ending page
-document.getElementById('btn-home').addEventListener('click', function (event) {
+document.getElementById('endgame__btn-home').addEventListener('click', function (event) {
     fromScratch();
 })
 

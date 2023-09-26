@@ -10,14 +10,15 @@
 </head>
 
 <body>
-
+    
     <header>
-        <h1>Come on Barbie let's go party !</h1>
     </header>
-
+    
     <main>
-        <div class="unicorn">
-            <section id="index">
+        <section id="index">
+            <h1>Come on Barbie let's go party !</h1>
+                <img class="unicorn" alt="dabbing unicorn" src="assets/img/licorn-bg.png">
+                
 
                 <div class="player-choice flex column align-center">
                     <h2>How many players are you ?</h2>
@@ -28,21 +29,19 @@
                         <option value="4">4</option>
                     </select>
                     <input id="first-player-name" type="text" placeholder="What's the first player name ?"
-                        class="player-choice__player-name active opacity">
+                        class="player-choice__player-name active">
                     <input id="second-player-name" type="text" placeholder="What's the second player name ?"
-                        class="player-choice__player-name opacity">
+                        class="player-choice__player-name">
                     <input id="third-player-name" type="text" placeholder="What's the third player name ?"
-                        class="player-choice__player-name opacity">
+                        class="player-choice__player-name">
                     <input id="fourth-player-name" type="text" placeholder="What's the fourth player name ?"
-                        class="player-choice__player-name opacity">
-                    <button id="player-choice__btn-go" type="button" class="btn player-choice__btn-go opacity">Go
-                        !</button>
+                        class="player-choice__player-name">
                 </div>
 
                 <div id="quiz-choice" class="quiz-choice">
                     <button type="button" id="quiz-choice__btn-category"
-                        class="btn quiz-choice__btn-category opacity">Select category</button>
-                    <div id="quiz-container" class="quiz-container flex justify-center hidden opacity">
+                        class="btn quiz-choice__btn-category">Select category</button>
+                    <div id="quiz-container" class="quiz-container flex justify-center hidden">
                         <button type="button" class="btn quiz-container__btn flex align-center"
                             data-quiz-name="bieres_belges">Bières belges</button>
                         <button type="button" class="btn quiz-container__btn flex align-center"
@@ -85,7 +84,7 @@
                         <button type="button" class="btn quiz-container__btn flex align-center"
                             data-quiz-name="x_files">X-Files</button>
                     </div>
-                    <div id="quiz-choice__difficulty" class="quiz-choice__difficulty hidden opacity">
+                    <div id="quiz-choice__difficulty" class="quiz-choice__difficulty hidden">
                         <button id="débutant" type="button" class="btn quiz-choice__difficulty__btn">Easy</button>
                         <button id="confirmé" type="button" class="btn quiz-choice__difficulty__btn">Medium</button>
                         <button id="expert" type="button" class="btn quiz-choice__difficulty__btn">Hard</button>
@@ -94,36 +93,30 @@
 
                 <div>
                     <h3 id="index__ranking-title" class="index__ranking-title">They're simply the best :</h3>
-                    <ol id="index__ranking-list" class="index__ranking-list opacity"></ol>
+                    <ol id="index__ranking-list" class="index__ranking-list"></ol>
                 </div>
 
                 <a id="index__own-quiz-link" class="index__own-quiz-link" href="#">Wanna make your own quiz ?</a>
-                <h3 id="index__soon-title" class="index__soon-title">Soon :</h3>
-                <div class="spotify-container flex justify-center align-center">
-                    <p>Music Quiz Powered by <span class="spotify">Spotify !</span></p>
-                    <img src="assets/img/icone-spotify.png" alt="icone Spotify" class="spotify-container__img opacity">
-                </div>
-
             </section>
 
             <section id="game" class="game hidden">
 
                 <h2 id="game__who-play" class="game__who-play"></h2>
-                <p id="game__timer" class="game__timer opacity"></p>
-                <h4 id="game__question" class="game__question opacity"></h4>
+                <p id="game__timer" class="game__timer"></p>
+                <h4 id="game__question" class="game__question"></h4>
 
-                <div id="game__answer-container" class="game__answer-container opacity">
+                <div id="game__answer-container" class="game__answer-container">
                     <button type="button" id="btn-answer-0" class="btn game__answer__btn flex align-center"></button>
                     <button type="button" id="btn-answer-1" class="btn game__answer__btn flex align-center"></button>
                     <button type="button" id="btn-answer-2" class="btn game__answer__btn flex align-center"></button>
                     <button type="button" id="btn-answer-3" class="btn game__answer__btn flex align-center"></button>
                 </div>
 
-                <p id="game__anecdote" class="game__anecdote hidden opacity"></p>
+                <p id="game__anecdote" class="game__anecdote hidden"></p>
                 <p id="game__comments" class="game__comments hidden"></p>
                 <div class="flex column align-center justify-center">
-                    <button type="button" id="game__btn-next" class="btn game__btn-next hidden opacity">Next !</button>
-                    <button type="button" id="game__btn-end-party" class="btn game__btn-end-party hidden opacity">End
+                    <button type="button" id="game__btn-next" class="btn game__btn-next hidden">Next !</button>
+                    <button type="button" id="game__btn-end-party" class="btn game__btn-end-party hidden">End
                         party</button>
                 </div>
 
@@ -136,11 +129,10 @@
                 </div>
                 <div>
                     <h3 class="endgame__ranking-title">They're simply the best :</h3>
-                    <ol id="endgame__ranking-list" class="endgame__ranking-list opacity"></ol>
+                    <ol id="endgame__ranking-list" class="endgame__ranking-list"></ol>
                 </div>
-                <button type="button" id="endgame__btn-home" class="btn endgame__btn-home opacity">Go home</button>
+                <button type="button" id="endgame__btn-home" class="btn endgame__btn-home">Go home</button>
             </section>
-        </div>
     </main>
 
     <footer>

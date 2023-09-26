@@ -9,7 +9,6 @@
     --bg-yellow: rgb(255, 255, 194);
     --bg-green: rgb(194, 255, 194);
     --bg-red: rgb(255, 128, 149);
-    --primary-color-text: rgb(20, 20, 20);
     --black: black;
     --white: white;
 }
@@ -29,10 +28,6 @@
     display: none !important;
 }
 
-.opacity {
-    opacity: 90%;
-}
-
 .flex {
     display: flex;
 }
@@ -43,7 +38,7 @@
 
 .align-center {
     align-items: center;
-}
+} 
 
 .column {
     flex-direction: column;
@@ -51,9 +46,9 @@
 
 body {
     background-color: var(--bg-pink);
-    color: var(--primary-color-text);
     font-family: var(--secondary-font);
     text-align: center;
+    
 }
 
 /* to hide input of other players if not use */
@@ -61,40 +56,28 @@ body {
     display: none;
 }
 
-/* have a unicorn in background */
+/* have a unicorn */
 .unicorn {
-    background-image: url('../img/licorn-bg.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    height: 500px;
-}
-
-h1,
-h2,
-h3 {
-    font-family: var(--primary-font);
-}
-
-h1,
-h2,
-h3 {
-    text-shadow: 2px 2px var(--pink-light);
+    height: 260px;
 }
 
 h1 {
+    font-family: var(--primary-font);
     font-size: 3rem;
     margin: 40px;  
 }
 
 h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 30px 40px 40px 40px;
 }
 
 h3 {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
+    font-weight: 500;
     margin: 20px auto 10px auto;
+    width: 60%;
 }
 
 .btn {
@@ -105,33 +88,33 @@ h3 {
 /* make some style for inputs names spaces and go button */
 .player-choice__player-number {
     font-family: var(--secondary-font);
-    padding: 5px 10px;
-    border-radius: 20px;
-    margin-bottom: 10px;
+    font-size: 2rem;
+    border: solid black 2px;
+    background-color: var(--bg-green);
+    padding: 10px 40px;
+    border-radius: 40px;
+    margin-bottom: 15px;
 }
 
 .player-choice__player-name {
     font-family: var(--secondary-font);
-    font-weight: 600;
-    text-align: center;
-    border-radius: 20px;
-    width: 55%;
+    font-size: 1.8rem;
+    background-color: var(--bg-green);
+    border: solid black 2px;
+    border-radius: 25px;
+    width: 70%;
     padding: 10px 20px;
-    margin: 10px;
+    margin: 15px;
+    overflow-wrap: break-word;
 }
 
 .endgame__btn-home,
 .game__btn-end-party,
-.quiz-choice__btn-category,
-.player-choice__btn-go {
+.quiz-choice__btn-category {
     width: 15%;
     border-radius: 20px;
     margin: 10px;
     height: 40px;
-}
-
-.player-choice__btn-go {
-    background-color: var(--bg-green);
 }
 
 /* here we make style for quiz choice zone */

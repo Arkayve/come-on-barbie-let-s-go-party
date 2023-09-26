@@ -41,7 +41,7 @@ function getName() {
 }
 
 // listen btn-go btn to call function
-document.getElementById('player-choice__btn-go').addEventListener('click', function () {
+document.getElementById('quiz-choice__btn-category').addEventListener('click', function () {
     getName();
     if (playerNames.length > 0 && questions.length > 0) {
         document.getElementById('index').classList.add('hidden');
@@ -143,8 +143,10 @@ let difficulty;
 
 // to see/hide all categories
 document.getElementById('quiz-choice__btn-category').addEventListener('click', function () {
-    document.getElementById('quiz-container').classList.toggle('hidden');
-    document.getElementById('quiz-choice__btn-category').classList.toggle('select');
+    // document.getElementById('quiz-container').classList.toggle('hidden');
+    document.getElementById('index').classList.add('hidden');
+    document.getElementById('quiz-container').classList.remove('hidden');
+    // document.getElementById('quiz-choice__btn-category').classList.toggle('select');
 })
 
 // listen which category of quiz we want
@@ -376,10 +378,10 @@ function fromScratch() {
     document.getElementById('endgame').classList.add('hidden');
     document.getElementById('index').classList.remove('hidden');
     document.getElementById('quiz-container').classList.add('hidden');
-    document.getElementById('quiz-choice__btn-category').classList.remove('select');
     document.getElementById('game__btn-next').classList.add('hidden');
     document.getElementById('game__anecdote').classList.add('hidden');
     document.getElementById('game__comments').classList.add('hidden');
+    displayBestScores(document.getElementById('index__ranking-list'));
 }
 
 // to go back to homepage and remove all actual game variables values

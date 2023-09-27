@@ -62,13 +62,9 @@ function displayCategories() {
 
 function colorCategory() {
     let categoryCount = 0;
-    alreadySelected.forEach(category => {
-        console.log(category.split(', ')[0])    
+    alreadySelected.forEach(category => {   
         if (categoryName === category.split(', ')[0]) {
-            console.log(category)
-            console.log(categoryName)
             categoryCount++
-            console.log(categoryCount)
         }
         if (categoryCount < 3) {
             document.querySelector(`[data-category-name="${categoryName}"]`).classList.remove('full-select');
@@ -83,7 +79,12 @@ function colorCategory() {
 document.getElementById('index__category-container__nav').addEventListener('click', function(event) {
     if (!event.target.classList.contains('index__category-container__nav__img')) return;
     if (event.target.id === 'category-back') {
+        console.log(event.target)
         returnToIndex();
+    }
+    if (event.target.id === 'category-validate') {
+        console.log(event.target)
+        runGame();
     }
 })
 
@@ -193,12 +194,6 @@ document.getElementById('index__category-container').addEventListener('click', f
     document.querySelectorAll('.index__category-container__btn').forEach(btn => {
         btn.classList.remove('select');
     })
-    // removing select class for all difficulty
-    // document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
-    //     btn.classList.remove('select');
-    // })
-    // add select class for category clicked
-    // event.target.classList.add('select');
     // get category in a var
     categoryName = event.target.dataset.categoryName;
     document.getElementById('index__difficulty-container__title').textContent = `Select difficulty for ${event.target.textContent}:`
@@ -255,6 +250,8 @@ function removeSelectClassOfDifficultyBtn() {
 
 // here we go !
 function runGame() {
+    document.getElementById('index__category-container').classList.add('hidden');
+    document.getElementById('game').classList.remove('hidden');
     if (questions.length > 0) {
         makeRound();
         displayQuestion();
@@ -288,46 +285,50 @@ function makeRound() {
 
 // hey that's a block isn't it ?? her we listen which button (answer) we choose
 document.getElementById('game__answer-container').addEventListener('click', function (event) {
-    if (!event.target.classList.contains('game__answer__btn')) return;
+    if (!event.target.classList.contains('game__answer-container__btn')) return;
     switch (event.target.id) {
         case 'btn-answer-0':
             // and make it appears glorious
-            document.getElementById('btn-answer-0').classList.add('choice');
-            document.getElementById('btn-answer-1').classList.remove('choice');
-            document.getElementById('btn-answer-2').classList.remove('choice');
-            document.getElementById('btn-answer-3').classList.remove('choice');
+            document.getElementById('btn-answer-0').classList.add('select');
+            document.getElementById('btn-answer-1').classList.remove('select');
+            document.getElementById('btn-answer-2').classList.remove('select');
+            document.getElementById('btn-answer-3').classList.remove('select');
             break;
         case 'btn-answer-1':
-            document.getElementById('btn-answer-0').classList.remove('choice');
-            document.getElementById('btn-answer-1').classList.add('choice');
-            document.getElementById('btn-answer-2').classList.remove('choice');
-            document.getElementById('btn-answer-3').classList.remove('choice');
+            document.getElementById('btn-answer-0').classList.remove('select');
+            document.getElementById('btn-answer-1').classList.add('select');
+            document.getElementById('btn-answer-2').classList.remove('select');
+            document.getElementById('btn-answer-3').classList.remove('select');
             break;
         case 'btn-answer-2':
-            document.getElementById('btn-answer-0').classList.remove('choice');
-            document.getElementById('btn-answer-1').classList.remove('choice');
-            document.getElementById('btn-answer-2').classList.add('choice');
-            document.getElementById('btn-answer-3').classList.remove('choice');
+            document.getElementById('btn-answer-0').classList.remove('select');
+            document.getElementById('btn-answer-1').classList.remove('select');
+            document.getElementById('btn-answer-2').classList.add('select');
+            document.getElementById('btn-answer-3').classList.remove('select');
             break;
         case 'btn-answer-3':
-            document.getElementById('btn-answer-0').classList.remove('choice');
-            document.getElementById('btn-answer-1').classList.remove('choice');
-            document.getElementById('btn-answer-2').classList.remove('choice');
-            document.getElementById('btn-answer-3').classList.add('choice');
+            document.getElementById('btn-answer-0').classList.remove('select');
+            document.getElementById('btn-answer-1').classList.remove('select');
+            document.getElementById('btn-answer-2').classList.remove('select');
+            document.getElementById('btn-answer-3').classList.add('select');
             break;
     }
     // we display anecdote for each question
     document.getElementById('game__anecdote').textContent = anecdote;
-    document.getElementById('game__btn-next').classList.remove('hidden');
-    document.getElementById('game__anecdote').classList.remove('hidden');
+    document.getElementById('game__who-play').classList.add('hidden');
+    document.getElementById('game__question').classList.add('hidden');
+    document.getElementById('game__timer').classList.add('hidden');
+    document.getElementById('game__answer-container').classList.add('hidden');
     document.getElementById('game__comments').classList.remove('hidden');
+    document.getElementById('cat-unicorn').classList.remove('hidden');
+    document.getElementById('game__anecdote').classList.remove('hidden');
+    document.getElementById('game__nav').classList.remove('hidden');
     endTimer();
     // and here we know if you are a potatoe
     if (event.target.textContent === answer) {
         !playerScores[round] ? playerScores[round] = 50 : playerScores[round] += 50;
         playerScores[round] += endTime;
         document.getElementById('game__comments').textContent = `Well done ${playerNames[round]} ! Your actual score is ${playerScores[round]}.`;
-        document.getElementById('unicorn').classList.add('good');
     } else {
         if (!playerScores[round]) playerScores[round] = 0;
         document.getElementById('game__comments').textContent = `Soz, maybe next time, ${playerNames[round]}. Your actual score is ${playerScores[round]}.`;
@@ -335,21 +336,36 @@ document.getElementById('game__answer-container').addEventListener('click', func
     round++;
 })
 
-// to listen next btn, hide what have to be hide, remove choice class and go to next round
-document.getElementById('game__btn-next').addEventListener('click', function (event) {
-    event.target.classList.add('hidden');
-    document.getElementById('game__anecdote').classList.add('hidden');
-    document.getElementById('game__comments').classList.add('hidden');
-    document.querySelectorAll('.game__answer__btn').forEach(btn => {
-        btn.classList.remove('choice');
-    })
-    runGame();
+// to listen next btn, hide what have to be hide, remove select class and go to next round
+document.getElementById('game__nav').addEventListener('click', function (event) {
+    if (!event.target.classList.contains('game__nav__img')) return;
+    console.log(event.target)
+    if (event.target.id == 'game-end') {
+        if (playerScores[0] >= 0) {
+            endGame();
+        } else {
+            fromScratch();
+        }
+    }
+    if (event.target.id == 'game-next') {
+        document.getElementById('game__who-play').classList.remove('hidden');
+        document.getElementById('game__question').classList.remove('hidden');
+        document.getElementById('game__timer').classList.remove('hidden');
+        document.getElementById('game__answer-container').classList.remove('hidden');
+        document.getElementById('game__comments').classList.add('hidden');
+        document.getElementById('cat-unicorn').classList.add('hidden');
+        document.getElementById('game__anecdote').classList.add('hidden');
+        document.getElementById('game__nav').classList.add('hidden');
+        document.querySelectorAll('.game__answer-container__btn').forEach(btn => {
+            btn.classList.remove('select');
+        })
+        runGame();
+    }
 })
 
 // here we make magic to display cool infos for players
-const bestPlayer = [];
 function endGame() {
-    document.getElementById('game__btn-end-party').classList.add('hidden');
+    const bestPlayer = [];
     document.getElementById('game').classList.add('hidden');
     document.getElementById('endgame').classList.remove('hidden');
     // here we make an array of object with names and scores
@@ -382,7 +398,6 @@ function endGame() {
         scores.push(player);
     })
     saveBestScores();
-    displayBestScores(document.getElementById('endgame__ranking-list'));
 }
 
 // here we reset all previous game values
@@ -397,38 +412,37 @@ function fromScratch() {
     anecdote = '';
     answer = '';
     document.querySelectorAll('.index__category-container__btn').forEach(btn => {
-        btn.classList.remove('select');
+        btn.classList.remove('partially-select');
+        btn.classList.remove('full-select');
     })
-    document.querySelectorAll('.game__answer__btn').forEach(btn => {
-        btn.classList.remove('choice');
+    document.querySelectorAll('.game__answer-container__btn').forEach(btn => {
+        btn.classList.remove('select');
     })
     endTimer();
     document.getElementById('first-player-name').value = '';
     document.getElementById('second-player-name').value = '';
     document.getElementById('third-player-name').value = '';
     document.getElementById('fourth-player-name').value = '';
-    document.getElementById('game').classList.add('hidden');
     document.getElementById('endgame').classList.add('hidden');
-    document.getElementById('index').classList.remove('hidden');
-    document.getElementById('index__category-container').classList.add('hidden');
-    document.getElementById('game__btn-next').classList.add('hidden');
-    document.getElementById('game__anecdote').classList.add('hidden');
+    document.getElementById('game').classList.add('hidden');
+    document.getElementById('game__who-play').classList.remove('hidden');
+    document.getElementById('game__question').classList.remove('hidden');
+    document.getElementById('game__timer').classList.remove('hidden');
+    document.getElementById('game__answer-container').classList.remove('hidden');
     document.getElementById('game__comments').classList.add('hidden');
+    document.getElementById('cat-unicorn').classList.add('hidden');
+    document.getElementById('game__anecdote').classList.add('hidden');
+    document.getElementById('game__nav').classList.add('hidden');
+    document.getElementById('index__player').classList.remove('hidden');
+    document.getElementById('index__category-container').classList.add('hidden');
+    document.getElementById('index__difficulty-container').classList.add('hidden');
+    document.getElementById('index__ranking-container').classList.remove('hidden');
+    document.getElementById('index__own-quiz-link').classList.remove('hidden');
     displayBestScores(document.getElementById('index__ranking-container__list'));
 }
 
-// to go back to homepage and remove all actual game variables values
-document.getElementById('game__btn-end-party').addEventListener('click', function (event) {
-    if (playerScores[0] >= 0) {
-        endGame();
-    } else {
-        fromScratch();
-        document.getElementById('game__btn-end-party').classList.add('hidden');
-    }
-})
-
 // listen btn go home of ending page
-document.getElementById('endgame__btn-home').addEventListener('click', function (event) {
+document.getElementById('home-mushroom').addEventListener('click', function (event) {
     fromScratch();
 })
 

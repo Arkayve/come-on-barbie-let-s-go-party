@@ -11,7 +11,7 @@
     --bg-green: rgb(194, 255, 194);
     --bg-red: rgb(255, 128, 149);
     --bg-orange: #FFBF49;
-    --bg-grey: #FFE6EA;
+    --bg-grey: #EDEDED;
     --black: black;
     --white: white;
 }
@@ -48,7 +48,8 @@
 }
 
 .select,
-.full-select {
+.full-select,
+.choice {
     background-color: var(--bg-select) !important;
 }
 
@@ -74,7 +75,6 @@ h1 {
 
 h2 {
     font-size: 2rem;
-    font-weight: 500;
     margin: 30px 40px 40px 40px;
 }
 
@@ -127,6 +127,27 @@ h3 {
     width: 80%;
     padding: 10px 20px;
     margin: 15px;
+}
+
+.index__ranking-container__list {
+    font-size: 1.5rem;
+    background-color: var(--pink-light);
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    margin-top: 30px;
+    border: solid var(--black) 1px;
+    border-radius: 50px;
+    list-style-type: none;
+    opacity: 70%;
+}
+
+.index__own-quiz-link {
+    font-family: var(--primary-font);
+    font-size: 1.5rem;
+    color: var(--black);
+    display: block;
+    padding: 30px;
 }
 
 /* CHOICE OF CATEGORY */
@@ -189,119 +210,95 @@ h3 {
     margin-top: 30px;
 }
 
-.endgame__btn-home,
-.game__btn-end-party {
-    width: 15%;
-    border-radius: 20px;
-    margin: 10px;
-    height: 40px;
-}
-
-.game__answer__btn {
-    border-radius: 5px;
-    padding: 10px 10px;
-    height: 50px;
-    max-width: 33%;
-    margin: 2px;
-}
-
-.index__ranking-container__list {
-    font-size: 1.5rem;
-    background-color: var(--pink-light);
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-    margin-top: 30px;
-    border: solid var(--black) 1px;
-    border-radius: 50px;
-    list-style-type: none;
-}
-
-.game__anecdote,
-.endgame__ranking-list {
-    background-color: var(--pink-light);
-    width: 60%;
-    margin: auto;
-    padding: 20px;
-    border: solid var(--black) 1px;
-    border-radius: 50px;
-    list-style-type: none;
-}
-
-.index__ranking-container__list,
-.endgame__ranking-list {
-    opacity: 70%;
-}
-
-.index__own-quiz-link {
-    font-family: var(--primary-font);
-    font-size: 1.5rem;
-    color: var(--black);
-    display: block;
-    padding: 30px;
-}
-
-.endgame__btn-home,
-.game__btn-end-party {
-    background-color: var(--bg-red);
-}
-
-.game__timer {
-    border: solid 1px var(--black);
-    border-radius: 20px;
-    background-color: var(--bg-yellow);
-    width: 20%;
-    margin: 30px auto 40px auto;
-    padding: 10px 10px;
-    font-weight: 600;
-}
-
-.game__btn-next {
-    border: solid 1px var(--black);
-    border-radius: 20px;
-    background-color: var(--bg-yellow);
-    width: 20%;
-    margin: 20px auto 10px auto;
-    padding: 10px 10px;
-    font-weight: 600;
+/* GAME */
+.game__who-play {
+    margin-top: 50px;
 }
 
 .game__question {
-    width: 60%;
-    background-color: var(--white);
-    font-weight: 600;
+    font-size: 1.8rem;
+    width: 80%;
+    background-color: var(--pink-light);
     margin: auto auto 40px auto;
-    padding: 20px;
+    padding: 20px 10px;
     border: solid var(--black) 1px;
     border-radius: 50px;
 }
 
-.game__answer__btn {
-    display: inline-block;
+.game__timer {
+    font-size: 1.8rem;
+    border: solid 1px var(--black);
+    border-radius: 40px;
+    background-color: var(--bg-yellow);
+    width: 30%;
+    margin: 30px auto 30px auto;
+    padding: 20px 10px;
+    font-weight: 600;
 }
 
-.choice {
-    background-color: var(--bg-select);
+.game__answer-container__btn {
+    text-align: center;
+    font-size: 1.8rem;
+    background-color: var(--bg-grey);
+    border-radius: 40px;
+    width: 90%;
+    padding: 10px 20px;
+    margin: 15px;
+}
+
+/* ANSWER */
+.game__comments {
+    font-size: 1.8rem;
+    font-weight: 400;
+    width: 70%;
+    background-color: var(--pink-light);
+    margin: 30px auto 10px auto;
+    padding: 20px 10px;
+    border: solid var(--black) 1px;
+    border-radius: 50px;
+}
+
+.cat-unicorn {
+    width: 50%;
 }
 
 .game__anecdote {
+    font-size: 1.8rem;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.game__nav {
+    justify-content: space-around;
     margin: 40px auto;
 }
 
-.game__comments {
-    font-weight: 600;
+.game__nav__img {
+    width: 25%;
 }
 
-.game__btn-next {
-    background-color: var(--bg-green);
+/* ENDGAME */
+
+.endgame h2 {
+    margin-top: 50px;
+    font-weight: 600;
 }
 
 .endgame__stats {
-    font-weight: 600;
+    width: 90%;
+    margin: 30px auto;
+    font-size: 1.8rem;
+    list-style-type: none;
 }
 
-/* try to make background change when good or bad response. works but will do it later */
-/* .good {
-    background-image: url('../img/heart-gold-glitter.png') !important;
-    background-size: auto !important;
-} */
+.glory-unicorn {
+    width: 100%;
+}
+
+.home-mushroom {
+    width: 25%;
+    margin-top: -50px;
+    margin-bottom: 30px;
+    border-radius: 100px;
+    box-shadow: 5px 5px 5px var(--black);
+}

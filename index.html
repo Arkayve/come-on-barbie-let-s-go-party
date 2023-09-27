@@ -18,7 +18,7 @@
         <section id="index">
             <div id="index__player" class="flex column align-center">
                 <h1>Come on Barbie let's go party !</h1>
-                <img class="unicorn" alt="dabbing unicorn" src="assets/img/licorn-bg.png">
+                <img class="unicorn" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
                 <h2>How many players are you ?</h2>
                 <select id="index__player__number" class="index__player__number">
                     <option value="1">1</option>
@@ -81,8 +81,10 @@
                 <button type="button" class="btn index__category-container__btn flex justify-center"
                     data-category-name="x_files">X-Files</button>
                 <div id="index__category-container__nav" class="index__category-container__nav flex">
-                    <img src="assets/img/go-back-btn.png" alt="icon arrow left" id="category-back" class="index__category-container__nav__img">
-                    <img src="assets/img/validate-btn.png" alt="icon validate" id="category-validate" class="index__category-container__nav__img hidden">
+                    <img src="assets/img/go-back-btn.png" alt="icon arrow left" id="category-back"
+                        class="index__category-container__nav__img">
+                    <img src="assets/img/validate-btn.png" alt="icon validate" id="category-validate"
+                        class="index__category-container__nav__img hidden">
                 </div>
             </div>
             <div id="index__difficulty-container" class="index__difficulty-container flex column align-center hidden">
@@ -91,11 +93,12 @@
                 <button id="confirmé" type="button" class="btn index__difficulty-container__btn medium">Medium</button>
                 <button id="expert" type="button" class="btn index__difficulty-container__btn hard">Hard</button>
                 <img src="assets/img/go-back-btn.png" alt="icon arrow left" data-value="back"
-                        class="index__difficulty-container__nav__img">
+                    class="index__difficulty-container__nav__img">
             </div>
 
             <div id="index__ranking-container">
-                <h3 id="index__ranking-container__title" class="index__ranking-container__title">They're simply the best :</h3>
+                <h3 id="index__ranking-container__title" class="index__ranking-container__title">They're simply the best
+                    :</h3>
                 <ol id="index__ranking-container__list" class="index__ranking-container__list"></ol>
             </div>
 
@@ -105,37 +108,35 @@
         <section id="game" class="game hidden">
 
             <h2 id="game__who-play" class="game__who-play"></h2>
-            <p id="game__timer" class="game__timer"></p>
             <h4 id="game__question" class="game__question"></h4>
+            <p id="game__timer" class="game__timer"></p>
 
-            <div id="game__answer-container" class="game__answer-container">
-                <button type="button" id="btn-answer-0" class="btn game__answer__btn flex align-center"></button>
-                <button type="button" id="btn-answer-1" class="btn game__answer__btn flex align-center"></button>
-                <button type="button" id="btn-answer-2" class="btn game__answer__btn flex align-center"></button>
-                <button type="button" id="btn-answer-3" class="btn game__answer__btn flex align-center"></button>
+            <div id="game__answer-container" class="game__answer-container flex column align-center">
+                <button type="button" id="btn-answer-0" class="btn game__answer-container__btn"></button>
+                <button type="button" id="btn-answer-1" class="btn game__answer-container__btn"></button>
+                <button type="button" id="btn-answer-2" class="btn game__answer-container__btn"></button>
+                <button type="button" id="btn-answer-3" class="btn game__answer-container__btn"></button>
             </div>
 
-            <p id="game__anecdote" class="game__anecdote hidden"></p>
             <p id="game__comments" class="game__comments hidden"></p>
-            <div class="flex column align-center justify-center">
-                <button type="button" id="game__btn-next" class="btn game__btn-next hidden">Next !</button>
-                <button type="button" id="game__btn-end-party" class="btn game__btn-end-party hidden">End
-                    party</button>
+            <img src="assets/img/cat-unicorn.png" alt="cat with unicorn costum" id="cat-unicorn"
+                class="cat-unicorn hidden">
+            <p id="game__anecdote" class="game__anecdote hidden"></p>
+            <div id="game__nav" class="game__nav flex hidden">
+                <img src="assets/img/end-party-btn.png" alt="icon arrow left" id="game-end" class="game__nav__img">
+                <img src="assets/img/validate-btn.png" alt="icon validate" id="game-next"
+                    class="game__nav__img">
             </div>
 
         </section>
 
         <section id="endgame" class="endgame hidden">
-            <div>
                 <h2>Here are your game stats !</h2>
                 <p id="endgame__stats" class="endgame__stats"></p>
-            </div>
-            <div>
-                <h3 class="endgame__ranking-title">They're simply the best :</h3>
-                <ol id="endgame__ranking-list" class="endgame__ranking-list"></ol>
-            </div>
-            <button type="button" id="endgame__btn-home" class="btn endgame__btn-home">Go home</button>
+                <img src="assets/img/unicorn-ftw.png" alt="glory unicorn" class="glory-unicorn">
+            <img src="assets/img/home-mushroom.png" alt="home mushroom" id="home-mushroom" class="home-mushroom">
         </section>
+
     </main>
 
     <footer>

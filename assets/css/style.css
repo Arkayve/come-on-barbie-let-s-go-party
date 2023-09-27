@@ -1,14 +1,17 @@
 :root {
-    /* fonts */
+    /* FONTS */
     --primary-font: 'lobster';
     --secondary-font: 'mooli-regular';
-    /* colors */
+
+    /* COLORS */
     --bg-pink: pink;
     --pink-light: rgb(255, 230, 234);
     --bg-select: rgb(172, 193, 255);
     --bg-yellow: rgb(255, 255, 194);
     --bg-green: rgb(194, 255, 194);
     --bg-red: rgb(255, 128, 149);
+    --bg-orange: #FFBF49;
+    --bg-grey: #FFE6EA;
     --black: black;
     --white: white;
 }
@@ -23,7 +26,7 @@
     src: url('../fonts/Mooli-Regular.ttf');
 }
 
-/* utils */
+/* UTILS */
 .hidden {
     display: none !important;
 }
@@ -44,19 +47,21 @@
     flex-direction: column;
 }
 
+.select,
+.full-select {
+    background-color: var(--bg-select);
+}
+
+.partially-select {
+    background-color: var(--bg-orange);
+}
+
 body {
     background-color: var(--bg-pink);
     font-family: var(--secondary-font);
-    text-align: center;
-    
+    text-align: center;    
 }
 
-/* to hide input of other players if not use */
-.player-choice__player-name:not(.active) {
-    display: none;
-}
-
-/* have a unicorn */
 .unicorn {
     height: 260px;
 }
@@ -82,57 +87,117 @@ h3 {
 
 .btn {
     font-family: var(--secondary-font);
-    font-weight: 600;
 }
 
-/* make some style for inputs names spaces and go button */
-.player-choice__player-number {
+/* NUMBER OF PLAYER */
+/* to hide input of other players if not use */
+.index__player__name:not(.active) {
+    display: none;
+}
+
+.index__player__number {
     font-family: var(--secondary-font);
     font-size: 2rem;
-    border: solid black 2px;
     background-color: var(--bg-green);
-    padding: 10px 40px;
+    border: solid black 2px;
     border-radius: 40px;
+    padding: 10px 40px;
     margin-bottom: 15px;
 }
 
-.player-choice__player-name {
+/* INPUT NAMES */
+.index__player__name {
     font-family: var(--secondary-font);
     font-size: 1.8rem;
-    background-color: var(--bg-green);
+    text-align: center;
+    background-color: var(--bg-grey);
     border: solid black 2px;
-    border-radius: 25px;
+    border-radius: 40px;
     width: 70%;
     padding: 10px 20px;
     margin: 15px;
-    overflow-wrap: break-word;
+}
+
+/* BTN SELECT CATEGORY */
+.index__player__btn-category {
+    background-color: var(--bg-green);
+    text-align: center;
+    font-size: 1.8rem;
+    border-radius: 40px;
+    width: 80%;
+    padding: 10px 20px;
+    margin: 15px;
+}
+
+/* CHOICE OF CATEGORY */
+.index__category-container {
+    padding: 10px 0px;
+}
+
+.index__category-container__btn {
+    text-align: center;
+    font-size: 1.8rem;
+    background-color: var(--bg-grey);
+    border-radius: 40px;
+    width: 90%;
+    padding: 10px 20px;
+    margin: 15px;
+}
+
+.index__category-container__nav {
+    justify-content: space-around;
+    margin: 20px auto;
+}
+
+.index__category-container__nav__img {
+    width: 25%;
+}
+
+/* CHOICE OF DIFFICULTY */
+.index__difficulty-container {
+    height: 700px;
+    justify-content: space-around;
+}
+
+.index__difficulty-container h2 {
+    margin-top: 50px;
+}
+
+.index__difficulty-container__btn {
+    font-size: 1.8rem;
+    background-color: var(--bg-grey);
+    width: 90%;
+    padding: 10px 20px;
+    margin: 15px;
+    border-radius: 40px;
+}
+
+.easy {
+    background-color: var(--bg-green);
+}
+
+.medium {
+    background-color: var(--bg-yellow);
+}
+
+.hard {
+    background-color: var(--bg-red);
+}
+
+.index__difficulty-container__nav__img {
+    width: 25%;
+    margin-top: 30px;
 }
 
 .endgame__btn-home,
-.game__btn-end-party,
-.quiz-choice__btn-category {
+.game__btn-end-party {
     width: 15%;
     border-radius: 20px;
     margin: 10px;
     height: 40px;
 }
 
-/* here we make style for quiz choice zone */
-.quiz-choice__btn-category {
-    width: 25%;
-    height: 40px;
-    margin-top: 10px;
-}
-
-.quiz-container {
-    flex-wrap: wrap;
-    padding: 10px 0px;
-    width: 90%;
-    margin: auto;
-}
-
-.game__answer__btn,
-.quiz-container__btn {
+.game__answer__btn {
     border-radius: 5px;
     padding: 10px 10px;
     height: 50px;
@@ -140,24 +205,19 @@ h3 {
     margin: 2px;
 }
 
-.quiz-choice__difficulty {
-    margin-bottom: 20px;
+.index__ranking-container__list {
+    font-size: 1.5rem;
+    background-color: var(--pink-light);
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    margin-top: 30px;
+    border: solid var(--black) 1px;
+    border-radius: 50px;
+    list-style-type: none;
 }
 
-.quiz-choice__difficulty__btn {
-    border-radius: 20px;
-    height: 40px;
-}
-
-.select {
-    background-color: var(--bg-select);
-}
-
-
-
-/* here is some style for ranking */
 .game__anecdote,
-.index__ranking-list,
 .endgame__ranking-list {
     background-color: var(--pink-light);
     width: 60%;
@@ -168,16 +228,17 @@ h3 {
     list-style-type: none;
 }
 
-.index__ranking-list,
+.index__ranking-container__list,
 .endgame__ranking-list {
     opacity: 70%;
 }
 
 .index__own-quiz-link {
     font-family: var(--primary-font);
+    font-size: 1.5rem;
     color: var(--black);
     display: block;
-    padding: 20px;
+    padding: 30px;
 }
 
 .endgame__btn-home,
@@ -185,13 +246,6 @@ h3 {
     background-color: var(--bg-red);
 }
 
-/************************************************************************\\
-//                       ****   **** *   *  ****                         \\
-//                       *   * *   * ** **  *                            \\
-//                       *     *   * * * *  ****                         \\
-//                       *  ** ***** *   *  *                            \\
-//                       ***** *   * *   *  ****                         \\
-//***********************************************************************/
 .game__timer {
     border: solid 1px var(--black);
     border-radius: 20px;
@@ -251,21 +305,3 @@ h3 {
     background-image: url('../img/heart-gold-glitter.png') !important;
     background-size: auto !important;
 } */
-
-.index__soon-title {
-    border-top: solid 2px var(--black);
-    margin-top: 10px;
-    margin-bottom: 5px;
-    padding-top: 15px;
-    text-shadow: 1px 1px 15px rgba(255, 0, 0, 0.788);
-}
-
-.spotify-container {
-    padding-bottom: 15px;
-}
-
-.spotify-container__img {
-    margin-left: 2px;
-    width: 30px;
-    height: 30px;
-}

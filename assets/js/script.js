@@ -1,6 +1,6 @@
 // here i display or hide input name in regards of number of players selected
-document.getElementById('player-choice__player-number').addEventListener("change", function () {
-    switch (document.getElementById('player-choice__player-number').value) {
+document.getElementById('index__player__number').addEventListener("change", function () {
+    switch (document.getElementById('index__player__number').value) {
         case '1':
             document.getElementById('second-player-name').classList.remove('active');
             document.getElementById('third-player-name').classList.remove('active');
@@ -40,16 +40,39 @@ function getName() {
     if (fourthPlayerName.value.trim() !== "" && !playerNames.includes(fourthPlayerName.value)) playerNames.push(fourthPlayerName.value);
 }
 
-// listen btn-go btn to call function
-document.getElementById('quiz-choice__btn-category').addEventListener('click', function () {
+// listen btn-category to reveal categories
+document.getElementById('index__player__btn-category').addEventListener('click', function () {
     getName();
-    if (playerNames.length > 0 && questions.length > 0) {
-        document.getElementById('index').classList.add('hidden');
-        document.getElementById('game').classList.remove('hidden');
-        document.getElementById('game__btn-end-party').classList.remove('hidden');
-        runGame();
+    displayCategories();
+})
+console.log(playerNames)
+function displayCategories() {
+    if (playerNames.length == 0 || document.getElementById('index__player__number').value != playerNames.length) return;
+    if (questions.length > 0) {
+        document.getElementById('category-validate').classList.remove('hidden');
+    }
+    document.getElementById('index__player').classList.add('hidden');
+    document.getElementById('index__category-container').classList.remove('hidden');
+    document.getElementById('index__difficulty-container').classList.add('hidden');
+    document.getElementById('index__ranking-container').classList.add('hidden');
+    document.getElementById('index__own-quiz-link').classList.add('hidden');
+}
+
+document.getElementById('index__category-container__nav').addEventListener('click', function(event) {
+    if (!event.target.classList.contains('index__category-container__nav__img')) return;
+    if (event.target.id === 'category-back') {
+        returnToIndex();
     }
 })
+
+function returnToIndex() {
+    document.getElementById('index__player').classList.remove('hidden');
+    document.getElementById('index__category-container').classList.add('hidden');
+    document.getElementById('index__ranking-container').classList.remove('hidden');
+    document.getElementById('index__own-quiz-link').classList.remove('hidden');
+}
+
+
 
 // get best scores data from local storage
 let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
@@ -87,7 +110,7 @@ function displayBestScores(where) {
     }
 }
 
-displayBestScores(document.getElementById('index__ranking-list'));
+displayBestScores(document.getElementById('index__ranking-container__list'));
 
 // to have a timer in the game
 let endTime;
@@ -131,6 +154,7 @@ function getQuiz(json) {
 // .sort to randomize element in array by using order value, then second .map to get back precedent state of each object after randomize them
 function mixQuestions(array) {
     questions = array.flat().map(item => ({ item, order: Math.random() })).sort((a, b) => a.order - b.order).map(item => item.item)
+    console.log(questions);
 }
 
 // to know each quiz already selected
@@ -138,79 +162,91 @@ let alreadySelected = [];
 // to have a variable with all questions
 let questions = [];
 // here is two variables to select which quiz we want regarding to difficulty
-let quizName;
+let categoryName;
 let difficulty;
 
 // to see/hide all categories
-document.getElementById('quiz-choice__btn-category').addEventListener('click', function () {
-    // document.getElementById('quiz-container').classList.toggle('hidden');
-    document.getElementById('index').classList.add('hidden');
-    document.getElementById('quiz-container').classList.remove('hidden');
-    // document.getElementById('quiz-choice__btn-category').classList.toggle('select');
-})
+// document.getElementById('index__player__btn-category').addEventListener('click', function () {
+    // document.getElementById('index__category-container').classList.toggle('hidden');
+    // document.getElementById('index').classList.add('hidden');
+    // document.getElementById('index__category-container').classList.remove('hidden');
+    // document.getElementById('index__player__btn-category').classList.toggle('select');
+// })
 
 // listen which category of quiz we want
-document.getElementById('quiz-choice').addEventListener('click', function (event) {
-    if (!event.target.classList.contains('quiz-container__btn')) return;
+document.getElementById('index__category-container').addEventListener('click', function (event) {
+    if (!event.target.classList.contains('index__category-container__btn')) return;
     // removing select class for all category
-    document.querySelectorAll('.quiz-container__btn').forEach(btn => {
+    document.querySelectorAll('.index__category-container__btn').forEach(btn => {
         btn.classList.remove('select');
     })
     // removing select class for all difficulty
-    document.querySelectorAll('.quiz-choice__difficulty__btn').forEach(btn => {
-        btn.classList.remove('select');
-    })
+    // document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
+    //     btn.classList.remove('select');
+    // })
     // make difficulty btn appear
-    document.getElementById('quiz-choice__difficulty').classList.remove('hidden');
-    if (event.target.classList.contains('quiz-choice__difficulty__btn')) return;
+    // document.getElementById('index__difficulty-container').classList.remove('hidden');
+    // if (event.target.classList.contains('index__difficulty-container__btn')) return;
     // add select class for category clicked
-    event.target.classList.add('select');
+    // event.target.classList.add('select');
     // get qui category in a var
-    quizName = event.target.dataset.quizName;
+    console.log(event.target.dataset.categoryName)
+    categoryName = event.target.dataset.categoryName;
+    console.log(categoryName);
+    displayDifficulty();
     // add select class if difficulty already added in questions for this category
-    addSelectClassIfAlreadyClick();
+    // addSelectClassIfAlreadyClick();
 })
 
+function displayDifficulty() {
+    document.getElementById('index__category-container').classList.add('hidden');
+    document.getElementById('index__difficulty-container').classList.remove('hidden');
+}
+
 // listen which difficulty of quiz we want
-document.getElementById('quiz-choice').addEventListener('click', function (event) {
-    if (!event.target.classList.contains('quiz-choice__difficulty__btn')) return;
+document.getElementById('index__difficulty-container').addEventListener('click', function (event) {
+    if (event.target.dataset.value === 'back') {
+        displayCategories();
+    }
+    if (!event.target.classList.contains('index__difficulty-container__btn')) return;
     event.target.classList.add('select');
     difficulty = event.target.getAttribute('id');
+    console.log(difficulty);
     // to prevent adding more than one time each quiz
-    if (alreadySelected.includes(quizName + ', ' + difficulty)) return;
-    alreadySelected.push(quizName + ', ' + difficulty);
-    getQuiz(`../assets/json/${quizName}.json`);
+    if (alreadySelected.includes(categoryName + ', ' + difficulty)) return;
+    alreadySelected.push(categoryName + ', ' + difficulty);
+    getQuiz(`../assets/json/${categoryName}.json`);
 })
 
 // function to add select class by category if already clicked
-function addSelectClassIfAlreadyClick() {
-    alreadySelected.forEach(category => {
-        if (quizName === category.split(', ')[0]) {
-            document.querySelectorAll('.quiz-choice__difficulty__btn').forEach(btn => {
-                if (btn.id === category.split(', ')[1]) btn.classList.add('select')
-            })
-        }
-    })
-}
+// function addSelectClassIfAlreadyClick() {
+//     alreadySelected.forEach(category => {
+//         if (categoryName === category.split(', ')[0]) {
+//             document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
+//                 if (btn.id === category.split(', ')[1]) btn.classList.add('select')
+//             })
+//         }
+//     })
+// }
 
 // function to hide difficulty btn and remove select class
-function hideDifficultyBtnAndRemoveSelectClass() {
-    document.getElementById('quiz-choice__difficulty').classList.add('hidden');
-    document.querySelectorAll('.quiz-choice__difficulty__btn').forEach(btn => {
-        btn.classList.remove('select');
-    })
-}
+// function hideDifficultyBtnAndRemoveSelectClass() {
+//     document.getElementById('index__difficulty-container').classList.add('hidden');
+//     document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
+//         btn.classList.remove('select');
+//     })
+// }
 
 // to hide choice btn
-document.querySelector('.quiz-choice').addEventListener('mouseleave', function (event) {
-    if (event.target.classList.contains('btn')) return;
-    hideDifficultyBtnAndRemoveSelectClass();
-})
+// document.querySelector('.quiz-choice').addEventListener('mouseleave', function (event) {
+//     if (event.target.classList.contains('btn')) return;
+//     hideDifficultyBtnAndRemoveSelectClass();
+// })
 
 // adding eventlistener when mouse go down on the page to hide choice btn
-document.getElementById('index__ranking-title').addEventListener('mouseenter', function (event) {
-    hideDifficultyBtnAndRemoveSelectClass();
-})
+// document.getElementById('index__ranking-container__title').addEventListener('mouseenter', function (event) {
+//     hideDifficultyBtnAndRemoveSelectClass();
+// })
 
 //***********************************************************************//
 //                       ****   **** *   *  ****                         //
@@ -359,11 +395,11 @@ function fromScratch() {
     count = 0;
     alreadySelected = [];
     questions = [];
-    quizName = '';
+    categoryName = '';
     difficulty = '';
     anecdote = '';
     answer = '';
-    document.querySelectorAll('.quiz-container__btn').forEach(btn => {
+    document.querySelectorAll('.index__category-container__btn').forEach(btn => {
         btn.classList.remove('select');
     })
     document.querySelectorAll('.game__answer__btn').forEach(btn => {
@@ -377,11 +413,11 @@ function fromScratch() {
     document.getElementById('game').classList.add('hidden');
     document.getElementById('endgame').classList.add('hidden');
     document.getElementById('index').classList.remove('hidden');
-    document.getElementById('quiz-container').classList.add('hidden');
+    document.getElementById('index__category-container').classList.add('hidden');
     document.getElementById('game__btn-next').classList.add('hidden');
     document.getElementById('game__anecdote').classList.add('hidden');
     document.getElementById('game__comments').classList.add('hidden');
-    displayBestScores(document.getElementById('index__ranking-list'));
+    displayBestScores(document.getElementById('index__ranking-container__list'));
 }
 
 // to go back to homepage and remove all actual game variables values

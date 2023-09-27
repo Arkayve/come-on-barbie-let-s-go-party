@@ -10,129 +10,132 @@
 </head>
 
 <body>
-    
+
     <header>
     </header>
-    
+
     <main>
         <section id="index">
-            <h1>Come on Barbie let's go party !</h1>
+            <div id="index__player" class="flex column align-center">
+                <h1>Come on Barbie let's go party !</h1>
                 <img class="unicorn" alt="dabbing unicorn" src="assets/img/licorn-bg.png">
-                
-
-                <div class="player-choice flex column align-center">
-                    <h2>How many players are you ?</h2>
-                    <select id="player-choice__player-number" class="player-choice__player-number">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                    <input id="first-player-name" type="text" placeholder="What's the first player name ?"
-                        class="player-choice__player-name active">
-                    <input id="second-player-name" type="text" placeholder="What's the second player name ?"
-                        class="player-choice__player-name">
-                    <input id="third-player-name" type="text" placeholder="What's the third player name ?"
-                        class="player-choice__player-name">
-                    <input id="fourth-player-name" type="text" placeholder="What's the fourth player name ?"
-                        class="player-choice__player-name">
+                <h2>How many players are you ?</h2>
+                <select id="index__player__number" class="index__player__number">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <input id="first-player-name" type="text" placeholder="What's the first player name ?"
+                    class="index__player__name active">
+                <input id="second-player-name" type="text" placeholder="What's the second player name ?"
+                    class="index__player__name">
+                <input id="third-player-name" type="text" placeholder="What's the third player name ?"
+                    class="index__player__name">
+                <input id="fourth-player-name" type="text" placeholder="What's the fourth player name ?"
+                    class="index__player__name">
+                <button type="button" id="index__player__btn-category" class="btn index__player__btn-category">Select
+                    category</button>
+            </div>
+            <div id="index__category-container" class="index__category-container flex align-center column hidden">
+                <h2>Select category :</h2>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="bieres_belges">Bières belges</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="covid_19">COVID-19</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="culture_en_vrac">Culture en
+                    vrac</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="dessins_animes">Dessins
+                    animés</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="faits_de_societe">Faits de
+                    société</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="grands_monuments">Grands
+                    monuments</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="heros_de_kaamelott">Héros de
+                    Kaamelott</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="marques_et_slogans">Marques et
+                    slogans</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="mont_saint_michel">Mont
+                    Saint-Michel</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="mythes_et_legendes">Mythes et
+                    légendes</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="paris_de_nos_jours">Paris de nos
+                    jours</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="series_americaines">Séries
+                    américaines</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="star_trek">Star Trek</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="stats_internet_2018">Stats internet
+                    2018</button>
+                <button type="button" class="btn index__category-container__btn flex justify-center"
+                    data-category-name="x_files">X-Files</button>
+                <div id="index__category-container__nav" class="index__category-container__nav flex">
+                    <img src="assets/img/go-back-btn.png" alt="icon arrow left" id="category-back" class="index__category-container__nav__img">
+                    <img src="assets/img/validate-btn.png" alt="icon validate" id="category-validate" class="index__category-container__nav__img hidden">
                 </div>
+            </div>
+            <div id="index__difficulty-container" class="index__difficulty-container flex column align-center hidden">
+                <h2>Select difficulty :</h2>
+                <button id="débutant" type="button" class="btn index__difficulty-container__btn easy">Easy</button>
+                <button id="confirmé" type="button" class="btn index__difficulty-container__btn medium">Medium</button>
+                <button id="expert" type="button" class="btn index__difficulty-container__btn hard">Hard</button>
+                <img src="assets/img/go-back-btn.png" alt="icon arrow left" data-value="back"
+                        class="index__difficulty-container__nav__img">
+            </div>
 
-                <div id="quiz-choice" class="quiz-choice">
-                    <button type="button" id="quiz-choice__btn-category"
-                        class="btn quiz-choice__btn-category">Select category</button>
-                    <div id="quiz-container" class="quiz-container flex justify-center hidden">
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="bieres_belges">Bières belges</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="covid_19">COVID-19</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="culture_en_vrac">Culture en
-                            vrac</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="dessins_animes">Dessins
-                            animés</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="faits_de_societe">Faits de
-                            société</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="grands_monuments">Grands
-                            monuments</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="heros_de_kaamelott">Héros de
-                            Kaamelott</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="marques_et_slogans">Marques et
-                            slogans</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="mont_saint_michel">Mont
-                            Saint-Michel</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="mythes_et_legendes">Mythes et
-                            légendes</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="paris_de_nos_jours">Paris de nos
-                            jours</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="series_americaines">Séries
-                            américaines</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="star_trek">Star Trek</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="stats_internet_2018">Stats internet
-                            2018</button>
-                        <button type="button" class="btn quiz-container__btn flex align-center"
-                            data-quiz-name="x_files">X-Files</button>
-                    </div>
-                    <div id="quiz-choice__difficulty" class="quiz-choice__difficulty hidden">
-                        <button id="débutant" type="button" class="btn quiz-choice__difficulty__btn">Easy</button>
-                        <button id="confirmé" type="button" class="btn quiz-choice__difficulty__btn">Medium</button>
-                        <button id="expert" type="button" class="btn quiz-choice__difficulty__btn">Hard</button>
-                    </div>
-                </div>
+            <div id="index__ranking-container">
+                <h3 id="index__ranking-container__title" class="index__ranking-container__title">They're simply the best :</h3>
+                <ol id="index__ranking-container__list" class="index__ranking-container__list"></ol>
+            </div>
 
-                <div>
-                    <h3 id="index__ranking-title" class="index__ranking-title">They're simply the best :</h3>
-                    <ol id="index__ranking-list" class="index__ranking-list"></ol>
-                </div>
+            <a id="index__own-quiz-link" class="index__own-quiz-link" href="#">Wanna make your own quiz ?</a>
+        </section>
 
-                <a id="index__own-quiz-link" class="index__own-quiz-link" href="#">Wanna make your own quiz ?</a>
-            </section>
+        <section id="game" class="game hidden">
 
-            <section id="game" class="game hidden">
+            <h2 id="game__who-play" class="game__who-play"></h2>
+            <p id="game__timer" class="game__timer"></p>
+            <h4 id="game__question" class="game__question"></h4>
 
-                <h2 id="game__who-play" class="game__who-play"></h2>
-                <p id="game__timer" class="game__timer"></p>
-                <h4 id="game__question" class="game__question"></h4>
+            <div id="game__answer-container" class="game__answer-container">
+                <button type="button" id="btn-answer-0" class="btn game__answer__btn flex align-center"></button>
+                <button type="button" id="btn-answer-1" class="btn game__answer__btn flex align-center"></button>
+                <button type="button" id="btn-answer-2" class="btn game__answer__btn flex align-center"></button>
+                <button type="button" id="btn-answer-3" class="btn game__answer__btn flex align-center"></button>
+            </div>
 
-                <div id="game__answer-container" class="game__answer-container">
-                    <button type="button" id="btn-answer-0" class="btn game__answer__btn flex align-center"></button>
-                    <button type="button" id="btn-answer-1" class="btn game__answer__btn flex align-center"></button>
-                    <button type="button" id="btn-answer-2" class="btn game__answer__btn flex align-center"></button>
-                    <button type="button" id="btn-answer-3" class="btn game__answer__btn flex align-center"></button>
-                </div>
+            <p id="game__anecdote" class="game__anecdote hidden"></p>
+            <p id="game__comments" class="game__comments hidden"></p>
+            <div class="flex column align-center justify-center">
+                <button type="button" id="game__btn-next" class="btn game__btn-next hidden">Next !</button>
+                <button type="button" id="game__btn-end-party" class="btn game__btn-end-party hidden">End
+                    party</button>
+            </div>
 
-                <p id="game__anecdote" class="game__anecdote hidden"></p>
-                <p id="game__comments" class="game__comments hidden"></p>
-                <div class="flex column align-center justify-center">
-                    <button type="button" id="game__btn-next" class="btn game__btn-next hidden">Next !</button>
-                    <button type="button" id="game__btn-end-party" class="btn game__btn-end-party hidden">End
-                        party</button>
-                </div>
+        </section>
 
-            </section>
-
-            <section id="endgame" class="endgame hidden">
-                <div>
-                    <h2>Here are your game stats !</h2>
-                    <p id="endgame__stats" class="endgame__stats"></p>
-                </div>
-                <div>
-                    <h3 class="endgame__ranking-title">They're simply the best :</h3>
-                    <ol id="endgame__ranking-list" class="endgame__ranking-list"></ol>
-                </div>
-                <button type="button" id="endgame__btn-home" class="btn endgame__btn-home">Go home</button>
-            </section>
+        <section id="endgame" class="endgame hidden">
+            <div>
+                <h2>Here are your game stats !</h2>
+                <p id="endgame__stats" class="endgame__stats"></p>
+            </div>
+            <div>
+                <h3 class="endgame__ranking-title">They're simply the best :</h3>
+                <ol id="endgame__ranking-list" class="endgame__ranking-list"></ol>
+            </div>
+            <button type="button" id="endgame__btn-home" class="btn endgame__btn-home">Go home</button>
+        </section>
     </main>
 
     <footer>

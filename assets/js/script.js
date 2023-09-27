@@ -45,7 +45,7 @@ document.getElementById('index__player__btn-category').addEventListener('click',
     getName();
     displayCategories();
 })
-console.log(playerNames)
+
 function displayCategories() {
     if (playerNames.length == 0 || document.getElementById('index__player__number').value != playerNames.length) return;
     if (questions.length > 0) {
@@ -56,6 +56,28 @@ function displayCategories() {
     document.getElementById('index__difficulty-container').classList.add('hidden');
     document.getElementById('index__ranking-container').classList.add('hidden');
     document.getElementById('index__own-quiz-link').classList.add('hidden');
+    colorCategory();
+    removeSelectClassOfDifficultyBtn();
+}
+
+function colorCategory() {
+    let categoryCount = 0;
+    alreadySelected.forEach(category => {
+        console.log(category.split(', ')[0])    
+        if (categoryName === category.split(', ')[0]) {
+            console.log(category)
+            console.log(categoryName)
+            categoryCount++
+            console.log(categoryCount)
+        }
+        if (categoryCount < 3) {
+            document.querySelector(`[data-category-name="${categoryName}"]`).classList.remove('full-select');
+            document.querySelector(`[data-category-name="${categoryName}"]`).classList.add('partially-select');
+        } else if (categoryCount === 3) {
+            document.querySelector(`[data-category-name="${categoryName}"]`).classList.remove('partially-select');
+            document.querySelector(`[data-category-name="${categoryName}"]`).classList.add('full-select');
+        }
+    })
 }
 
 document.getElementById('index__category-container__nav').addEventListener('click', function(event) {
@@ -154,7 +176,6 @@ function getQuiz(json) {
 // .sort to randomize element in array by using order value, then second .map to get back precedent state of each object after randomize them
 function mixQuestions(array) {
     questions = array.flat().map(item => ({ item, order: Math.random() })).sort((a, b) => a.order - b.order).map(item => item.item)
-    console.log(questions);
 }
 
 // to know each quiz already selected
@@ -164,14 +185,6 @@ let questions = [];
 // here is two variables to select which quiz we want regarding to difficulty
 let categoryName;
 let difficulty;
-
-// to see/hide all categories
-// document.getElementById('index__player__btn-category').addEventListener('click', function () {
-    // document.getElementById('index__category-container').classList.toggle('hidden');
-    // document.getElementById('index').classList.add('hidden');
-    // document.getElementById('index__category-container').classList.remove('hidden');
-    // document.getElementById('index__player__btn-category').classList.toggle('select');
-// })
 
 // listen which category of quiz we want
 document.getElementById('index__category-container').addEventListener('click', function (event) {
@@ -184,18 +197,14 @@ document.getElementById('index__category-container').addEventListener('click', f
     // document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
     //     btn.classList.remove('select');
     // })
-    // make difficulty btn appear
-    // document.getElementById('index__difficulty-container').classList.remove('hidden');
-    // if (event.target.classList.contains('index__difficulty-container__btn')) return;
     // add select class for category clicked
     // event.target.classList.add('select');
-    // get qui category in a var
-    console.log(event.target.dataset.categoryName)
+    // get category in a var
     categoryName = event.target.dataset.categoryName;
-    console.log(categoryName);
+    document.getElementById('index__difficulty-container__title').textContent = `Select difficulty for ${event.target.textContent}:`
     displayDifficulty();
     // add select class if difficulty already added in questions for this category
-    // addSelectClassIfAlreadyClick();
+    addSelectClassIfAlreadyClick();
 })
 
 function displayDifficulty() {
@@ -211,7 +220,6 @@ document.getElementById('index__difficulty-container').addEventListener('click',
     if (!event.target.classList.contains('index__difficulty-container__btn')) return;
     event.target.classList.add('select');
     difficulty = event.target.getAttribute('id');
-    console.log(difficulty);
     // to prevent adding more than one time each quiz
     if (alreadySelected.includes(categoryName + ', ' + difficulty)) return;
     alreadySelected.push(categoryName + ', ' + difficulty);
@@ -219,34 +227,23 @@ document.getElementById('index__difficulty-container').addEventListener('click',
 })
 
 // function to add select class by category if already clicked
-// function addSelectClassIfAlreadyClick() {
-//     alreadySelected.forEach(category => {
-//         if (categoryName === category.split(', ')[0]) {
-//             document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
-//                 if (btn.id === category.split(', ')[1]) btn.classList.add('select')
-//             })
-//         }
-//     })
-// }
+function addSelectClassIfAlreadyClick() {
+    alreadySelected.forEach(category => {
+        if (categoryName === category.split(', ')[0]) {
+            document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
+                if (btn.id === category.split(', ')[1]) btn.classList.add('select');
+            })
+        }
+        }
+    )
+}
 
-// function to hide difficulty btn and remove select class
-// function hideDifficultyBtnAndRemoveSelectClass() {
-//     document.getElementById('index__difficulty-container').classList.add('hidden');
-//     document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
-//         btn.classList.remove('select');
-//     })
-// }
-
-// to hide choice btn
-// document.querySelector('.quiz-choice').addEventListener('mouseleave', function (event) {
-//     if (event.target.classList.contains('btn')) return;
-//     hideDifficultyBtnAndRemoveSelectClass();
-// })
-
-// adding eventlistener when mouse go down on the page to hide choice btn
-// document.getElementById('index__ranking-container__title').addEventListener('mouseenter', function (event) {
-//     hideDifficultyBtnAndRemoveSelectClass();
-// })
+// function to remove select class of difficulty buttons
+function removeSelectClassOfDifficultyBtn() {
+    document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
+        btn.classList.remove('select');
+    })
+}
 
 //***********************************************************************//
 //                       ****   **** *   *  ****                         //

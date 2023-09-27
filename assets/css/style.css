@@ -49,11 +49,11 @@
 
 .select,
 .full-select {
-    background-color: var(--bg-select);
+    background-color: var(--bg-select) !important;
 }
 
 .partially-select {
-    background-color: var(--bg-orange);
+    background-color: var(--bg-orange) !important;
 }
 
 body {

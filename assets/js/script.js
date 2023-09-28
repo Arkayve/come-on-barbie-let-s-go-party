@@ -42,7 +42,7 @@ function displayCategories() {
 // function to color categories in regards of difficulties selected
 function colorCategory() {
     let categoryCount = 0;
-    alreadySelected.forEach(category => {   
+    alreadySelected.forEach(category => {
         if (categoryName === category.split(', ')[0]) {
             categoryCount++
         }
@@ -57,7 +57,7 @@ function colorCategory() {
 }
 
 // listen validate / go back buttons of categories
-document.getElementById('index__category-container__nav').addEventListener('click', function(event) {
+document.getElementById('index__category-container__nav').addEventListener('click', function (event) {
     if (!event.target.classList.contains('index__category-container__nav__img')) return;
     if (event.target.id === 'category-back') {
         returnToIndex();
@@ -206,7 +206,7 @@ function addSelectClassIfAlreadyClick() {
                 if (btn.id === category.split(', ')[1]) btn.classList.add('select');
             })
         }
-        }
+    }
     )
 }
 
@@ -240,8 +240,8 @@ function displayQuestion() {
     document.getElementById('game__question').textContent = newQuestion.question;
     for (let i = 0; i < 4; i++) {
         const answerBtn = document.getElementById('btn-answer-' + i);
-        answerBtn.textContent = newQuestion.propositions[i];      
-    }      
+        answerBtn.textContent = newQuestion.propositions[i];
+    }
 }
 
 let round = 0;
@@ -360,7 +360,7 @@ function endGame() {
 function hideOrShowElement(arrayToHide, arrayToShow) {
     arrayToHide.forEach(elementId => {
         const element = document.getElementById(elementId);
-        element.classList.add('hidden');      
+        element.classList.add('hidden');
     });
     arrayToShow.forEach(elementId => {
         const element = document.getElementById(elementId);

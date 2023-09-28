@@ -4,14 +4,14 @@
     --secondary-font: 'mooli-regular';
 
     /* COLORS */
-    --bg-pink: pink;
+    --pink: pink;
     --pink-light: rgb(255, 230, 234);
-    --bg-select: rgb(172, 193, 255);
-    --bg-yellow: rgb(255, 255, 194);
-    --bg-green: rgb(194, 255, 194);
-    --bg-red: rgb(255, 128, 149);
-    --bg-orange: #FFBF49;
-    --bg-grey: #EDEDED;
+    --blue-light: rgb(172, 193, 255);
+    --yellow-light: rgb(255, 255, 194);
+    --green-light: rgb(194, 255, 194);
+    --red-light: rgb(255, 128, 149);
+    --orange-light: #FFBF49;
+    --grey-light: #EDEDED;
     --black: black;
     --white: white;
 }
@@ -41,7 +41,7 @@
 
 .align-center {
     align-items: center;
-} 
+}
 
 .column {
     flex-direction: column;
@@ -50,17 +50,17 @@
 .select,
 .full-select,
 .choice {
-    background-color: var(--bg-select) !important;
+    background-color: var(--blue-light) !important;
 }
 
 .partially-select {
-    background-color: var(--bg-orange) !important;
+    background-color: var(--orange-light) !important;
 }
 
 body {
-    background-color: var(--bg-pink);
+    background-color: var(--pink);
     font-family: var(--secondary-font);
-    text-align: center;    
+    text-align: center;
 }
 
 .unicorn {
@@ -70,7 +70,7 @@ body {
 h1 {
     font-family: var(--primary-font);
     font-size: 3rem;
-    margin: 40px;  
+    margin: 40px;
 }
 
 h2 {
@@ -98,7 +98,7 @@ h3 {
 .index__player__number {
     font-family: var(--secondary-font);
     font-size: 2rem;
-    background-color: var(--bg-green);
+    background-color: var(--green-light);
     border: solid black 2px;
     border-radius: 40px;
     padding: 10px 40px;
@@ -110,7 +110,7 @@ h3 {
     font-family: var(--secondary-font);
     font-size: 1.8rem;
     text-align: center;
-    background-color: var(--bg-grey);
+    background-color: var(--grey-light);
     border: solid black 2px;
     border-radius: 40px;
     width: 70%;
@@ -120,7 +120,7 @@ h3 {
 
 /* BTN SELECT CATEGORY */
 .index__player__btn-category {
-    background-color: var(--bg-green);
+    background-color: var(--green-light);
     text-align: center;
     font-size: 1.8rem;
     border-radius: 40px;
@@ -158,7 +158,7 @@ h3 {
 .index__category-container__btn {
     text-align: center;
     font-size: 1.8rem;
-    background-color: var(--bg-grey);
+    background-color: var(--grey-light);
     border-radius: 40px;
     width: 90%;
     padding: 10px 20px;
@@ -186,7 +186,7 @@ h3 {
 
 .index__difficulty-container__btn {
     font-size: 1.8rem;
-    background-color: var(--bg-grey);
+    background-color: var(--grey-light);
     width: 90%;
     padding: 10px 20px;
     margin: 15px;
@@ -194,15 +194,15 @@ h3 {
 }
 
 .easy {
-    background-color: var(--bg-green);
+    background-color: var(--green-light);
 }
 
 .medium {
-    background-color: var(--bg-yellow);
+    background-color: var(--yellow-light);
 }
 
 .hard {
-    background-color: var(--bg-red);
+    background-color: var(--red-light);
 }
 
 .index__difficulty-container__nav__img {
@@ -229,7 +229,7 @@ h3 {
     font-size: 1.8rem;
     border: solid 1px var(--black);
     border-radius: 40px;
-    background-color: var(--bg-yellow);
+    background-color: var(--yellow-light);
     width: 30%;
     margin: 30px auto 30px auto;
     padding: 20px 10px;
@@ -239,7 +239,7 @@ h3 {
 .game__answer-container__btn {
     text-align: center;
     font-size: 1.8rem;
-    background-color: var(--bg-grey);
+    background-color: var(--grey-light);
     border-radius: 40px;
     width: 90%;
     padding: 10px 20px;

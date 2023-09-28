@@ -26,6 +26,10 @@ document.getElementById('index__player__btn-category').addEventListener('click',
     displayCategories();
 })
 
+document.getElementById('index__player__btn-reset').addEventListener('click', function(event) {
+    fromScratch();
+})
+
 // function to display categories
 function displayCategories() {
     if (playerNames.length == 0 || document.getElementById('index__player__number').value != playerNames.length) return;
@@ -385,7 +389,6 @@ function fromScratch() {
     document.querySelectorAll('.game__answer-container__btn').forEach(btn => {
         btn.classList.remove('select');
     })
-    endTimer();
     document.getElementById('first-player-name').value = '';
     document.getElementById('second-player-name').value = '';
     document.getElementById('third-player-name').value = '';

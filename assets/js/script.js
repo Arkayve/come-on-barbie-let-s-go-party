@@ -199,7 +199,7 @@ document.getElementById('index__difficulty-container').addEventListener('click',
     // to prevent adding more than one time each quiz
     if (alreadySelected.includes(categoryName + ', ' + difficulty)) return;
     alreadySelected.push(categoryName + ', ' + difficulty);
-    getQuiz(`../assets/json/${categoryName}.json`);
+    getQuiz(`assets/json/${categoryName}.json`);
 })
 
 // function to add select class by category if already clicked

@@ -61,6 +61,7 @@ body {
     background-color: var(--pink);
     font-family: var(--secondary-font);
     text-align: center;
+    color: var(--black);
 }
 
 .unicorn {

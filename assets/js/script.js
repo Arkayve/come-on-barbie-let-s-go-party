@@ -33,9 +33,6 @@ document.getElementById('index__player__btn-reset').addEventListener('click', fu
 // function to display categories
 function displayCategories() {
     if (playerNames.length == 0 || document.getElementById('index__player__number').value != playerNames.length) return;
-    if (questions.length > 0) {
-        document.getElementById('category-validate').classList.remove('hidden');
-    }
     const elementsToHide = ['index__main-title', 'index__img-unicorn', 'index__player', 'index__difficulty-container', 'index__ranking-container', 'index__own-quiz-link'];
     const elementsToShow = ['index__category-container', 'index__category-responsive', 'index__category-container__title', 'index__category-container__nav'];
     hideOrShowElement(elementsToHide, elementsToShow);
@@ -76,6 +73,7 @@ function returnToIndex() {
     const elementsToHide = ['index__category-container'];
     const elementsToShow = ['index__main-title', 'index__img-unicorn', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
+    document.getElementById('index__difficulty-container__title').textContent = '';
 }
 
 // get best scores data from local storage
@@ -171,6 +169,7 @@ let difficulty;
 // listen which category of quiz we want
 document.getElementById('index__category-container').addEventListener('click', function (event) {
     if (!event.target.classList.contains('index__category-container__btn')) return;
+    removeSelectClassOfDifficultyBtn();
     // removing select class for all category
     document.querySelectorAll('.index__category-container__btn').forEach(btn => {
         btn.classList.remove('select');
@@ -192,16 +191,21 @@ function displayDifficulty() {
 
 // listen which difficulty of quiz we want
 document.getElementById('index__difficulty-container').addEventListener('click', function (event) {
+    console.log(event.target)
+    console.log(questions)
     if (event.target.dataset.value === 'back') {
         displayCategories();
     }
     if (!event.target.classList.contains('index__difficulty-container__btn')) return;
+    if (!categoryName) return;
     event.target.classList.add('select');
     difficulty = event.target.getAttribute('id');
     // to prevent adding more than one time each quiz
     if (alreadySelected.includes(categoryName + ', ' + difficulty)) return;
     alreadySelected.push(categoryName + ', ' + difficulty);
     getQuiz(`assets/json/${categoryName}.json`);
+    colorCategory();
+    document.getElementById('category-validate').classList.remove('hidden');
 })
 
 // function to add select class by category if already clicked
@@ -211,9 +215,8 @@ function addSelectClassIfAlreadyClick() {
             document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
                 if (btn.id === category.split(', ')[1]) btn.classList.add('select');
             })
-        }
-    }
-    )
+        } 
+    })
 }
 
 // function to remove select class of difficulty buttons
@@ -254,7 +257,7 @@ let round = 0;
 
 function makeRound() {
     if (round === playerNames.length) round = 0;
-    document.getElementById('game__who-play').textContent = `Hey ${playerNames[round]}, it's your turn`;
+    document.getElementById('game__who-play').textContent = `Hey ${playerNames[round]}, it's your turn. ${questions.length} question${questions.length > 1 ? 's' : ''} left.`;
 }
 
 function loopAnswerBtn(target) {
@@ -395,7 +398,8 @@ function fromScratch() {
     document.getElementById('second-player-name').value = '';
     document.getElementById('third-player-name').value = '';
     document.getElementById('fourth-player-name').value = '';
-    const elementsToHide = ['endgame', 'game', 'game__comments', 'cat-unicorn', 'game__anecdote', 'game__nav', 'index__category-container', 'index__difficulty-container'];
+    document.getElementById('index__difficulty-container__title').textContent = '';
+    const elementsToHide = ['endgame', 'game', 'game__comments', 'cat-unicorn', 'game__anecdote', 'game__nav', 'index__category-container', 'index__difficulty-container', 'category-validate'];
     const elementsToShow = ['index__main-title', 'index__img-unicorn', 'game__who-play', 'game__question', 'game__timer', 'game__answer-container', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
     displayBestScores(document.getElementById('index__ranking-container__list'));

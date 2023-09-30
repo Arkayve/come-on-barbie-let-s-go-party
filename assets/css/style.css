@@ -379,11 +379,6 @@ h3 {
         margin: 0px auto;
     }
 
-    /* TO CHANGE BECAUSE NORMALLY IT APPEARS WHEN QUESTIONS ADDED */
-    .index__category-container__nav__img {
-        display: block !important;
-    }
-
     .index__difficulty-container__title {
         display: block;
     }

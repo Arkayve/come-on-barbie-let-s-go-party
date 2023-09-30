@@ -190,8 +190,7 @@ h3 {
 }
 
 .index__category-container__nav__img {
-    width: 25%;
-    max-width: 100px;
+    width: 30%;
 }
 
 /* CHOICE OF DIFFICULTY */
@@ -290,7 +289,7 @@ h3 {
 
 .cat-unicorn {
     width: 50%;
-    max-width: 400px;
+    max-width: 300px;
 }
 
 .game__anecdote {
@@ -328,12 +327,12 @@ h3 {
 
 .glory-unicorn {
     width: 90%;
-    max-width: 600px;
+    max-width: 500px;
 }
 
 .home-mushroom {
     width: 25%;
-    max-width: 150px;
+    max-width: 120px;
     margin-top: -50px;
     margin-bottom: 30px;
     border-radius: 100px;
@@ -355,7 +354,6 @@ h3 {
         margin-top: 30px;
     }
 
-    /* DON'T WORK */
     .index__category-container__title {
         display: block !important;
     }
@@ -381,6 +379,11 @@ h3 {
         margin: 0px auto;
     }
 
+    /* TO CHANGE BECAUSE NORMALLY IT APPEARS WHEN QUESTIONS ADDED */
+    .index__category-container__nav__img {
+        display: block !important;
+    }
+
     .index__difficulty-container__title {
         display: block;
     }
@@ -402,6 +405,24 @@ h3 {
 
     .index__difficulty-responsive__btn {
         margin-top: 70px;
+    }
+
+    /* GAME */
+    .game__who-play {
+        margin: 80px;
+    }
+
+    .game__question {
+        padding: 50px 100px;
+    }
+
+    .game__answer-container {
+        flex-wrap: wrap;
+        height: 300px
+    }
+
+    .game__answer-container__btn {
+        padding: 20px 30px;
     }
 
 }

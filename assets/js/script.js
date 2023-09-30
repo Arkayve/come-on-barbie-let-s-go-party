@@ -26,7 +26,7 @@ document.getElementById('index__player__btn-category').addEventListener('click',
     displayCategories();
 })
 
-document.getElementById('index__player__btn-reset').addEventListener('click', function(event) {
+document.getElementById('index__player__btn-reset').addEventListener('click', function (event) {
     fromScratch();
 })
 
@@ -84,12 +84,21 @@ let playerScores = [];
 
 // to record name, score, time of ten best players
 function saveBestScores() {
-    playerNames.forEach(i => {
-        let player = {};
-        player["name"] = playerNames[i];
-        player["score"] = playerScores[i];
+    if (playerNames === 1) {
+        let player = {
+            name: playerNames[0],
+            score: playerScores[0]
+        };
         scores.push(player);
-    })
+    } else if (playerNames > 1) {
+        playerNames.forEach(i => {
+            let player = {};
+            player["name"] = playerNames[i];
+            player["score"] = playerScores[i];
+            scores.push(player);
+            console.log(scores)
+        })
+    }
     scores.sort((a, b) => b.score - a.score);
     const maxScoresToKeep = 10;
     scores = scores.slice(0, maxScoresToKeep);
@@ -191,8 +200,6 @@ function displayDifficulty() {
 
 // listen which difficulty of quiz we want
 document.getElementById('index__difficulty-container').addEventListener('click', function (event) {
-    console.log(event.target)
-    console.log(questions)
     if (event.target.dataset.value === 'back') {
         displayCategories();
     }
@@ -215,7 +222,7 @@ function addSelectClassIfAlreadyClick() {
             document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
                 if (btn.id === category.split(', ')[1]) btn.classList.add('select');
             })
-        } 
+        }
     })
 }
 

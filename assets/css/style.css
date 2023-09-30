@@ -61,7 +61,6 @@ body {
     background-color: var(--pink);
     font-family: var(--secondary-font);
     text-align: center;
-    color: var(--black);
 }
 
 .unicorn {
@@ -106,6 +105,7 @@ h3 {
     border-radius: 40px;
     padding: 10px 40px;
     margin-bottom: 15px;
+    color: var(--black);
 }
 
 /* INPUT NAMES */
@@ -133,6 +133,7 @@ h3 {
     max-width: 500px;
     padding: 10px 20px;
     margin: 15px;
+    color: var(--black);
 }
 
 /* BTN RESET CHANGES */
@@ -145,6 +146,7 @@ h3 {
     width: 35%;
     border-radius: 40px;
     border: solid 1px var(--black);
+    color: var(--black);
 }
 
 .index__ranking-container__list {
@@ -183,6 +185,7 @@ h3 {
     max-width: 370px;
     padding: 10px 20px;
     margin: 15px;
+    color: var(--black);
 }
 
 .index__category-container__nav {
@@ -212,6 +215,7 @@ h3 {
     padding: 10px 20px;
     margin: 15px;
     border-radius: 40px;
+    color: var(--black);
 }
 
 .easy {
@@ -273,6 +277,7 @@ h3 {
     max-width: 400px;
     padding: 10px 20px;
     margin: 15px;
+    color: var(--black);
 }
 
 /* ANSWER */

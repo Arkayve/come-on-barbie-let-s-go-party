@@ -65,13 +65,14 @@ body {
 
 .unicorn {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
 }
 
 h1 {
     font-family: var(--primary-font);
     font-size: 3rem;
-    margin: 40px;
+    margin: 40px auto;
+    max-width: 400px;
 }
 
 h2 {
@@ -345,10 +346,6 @@ h3 {
         width: 80%;
         margin: auto;
     }
-
-    /* .index__player__number option {
-        font-size: 1rem;
-    } */
 
     .index__ranking-container__title {
         margin-top: 30px;

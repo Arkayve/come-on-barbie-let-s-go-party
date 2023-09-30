@@ -36,7 +36,7 @@ function displayCategories() {
     if (questions.length > 0) {
         document.getElementById('category-validate').classList.remove('hidden');
     }
-    const elementsToHide = ['index__player', 'index__difficulty-container', 'index__ranking-container', 'index__own-quiz-link'];
+    const elementsToHide = ['index__main-title', 'index__img-unicorn', 'index__player', 'index__difficulty-container', 'index__ranking-container', 'index__own-quiz-link'];
     const elementsToShow = ['index__category-container'];
     hideOrShowElement(elementsToHide, elementsToShow);
     colorCategory();
@@ -74,7 +74,7 @@ document.getElementById('index__category-container__nav').addEventListener('clic
 // a function to go back to homepage
 function returnToIndex() {
     const elementsToHide = ['index__category-container'];
-    const elementsToShow = ['index__player', 'index__ranking-container', 'index__own-quiz-link'];
+    const elementsToShow = ['index__main-title', 'index__img-unicorn', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
 }
 
@@ -394,7 +394,7 @@ function fromScratch() {
     document.getElementById('third-player-name').value = '';
     document.getElementById('fourth-player-name').value = '';
     const elementsToHide = ['endgame', 'game', 'game__comments', 'cat-unicorn', 'game__anecdote', 'game__nav', 'index__category-container', 'index__difficulty-container'];
-    const elementsToShow = ['game__who-play', 'game__question', 'game__timer', 'game__answer-container', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
+    const elementsToShow = ['index__main-title', 'index__img-unicorn', 'game__who-play', 'game__question', 'game__timer', 'game__answer-container', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
     displayBestScores(document.getElementById('index__ranking-container__list'));
 }

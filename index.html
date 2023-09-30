@@ -16,27 +16,39 @@
 
     <main>
         <section id="index">
-            <div id="index__player" class="flex column align-center">
-                <h1>Come on Barbie let's go party !</h1>
-                <img class="unicorn" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
-                <h2>How many players are you ?</h2>
-                <select id="index__player__number" class="index__player__number">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-                <input id="first-player-name" type="text" placeholder="First player name ?"
-                    class="index__player__name active">
-                <input id="second-player-name" type="text" placeholder="Second player name ?"
-                    class="index__player__name">
-                <input id="third-player-name" type="text" placeholder="Third player name ?"
-                    class="index__player__name">
-                <input id="fourth-player-name" type="text" placeholder="Fourth player name ?"
-                    class="index__player__name">
-                <button type="button" id="index__player__btn-category" class="btn index__player__btn-category">Select
-                    category</button>
-                <button type="button" id="index__player__btn-reset" class="btn index__player__btn-reset">Reset changes</button>
+            <h1 id="index__main-title">Come on Barbie let's go party !</h1>
+            <img id="index__img-unicorn" class="unicorn" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
+            <div class="index__container">
+                <div id="index__player" class="flex column align-center">
+                    <h2>How many players are you ?</h2>
+                    <select id="index__player__number" class="index__player__number">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <input id="first-player-name" type="text" placeholder="First player name ?"
+                        class="index__player__name active">
+                    <input id="second-player-name" type="text" placeholder="Second player name ?"
+                        class="index__player__name">
+                    <input id="third-player-name" type="text" placeholder="Third player name ?"
+                        class="index__player__name">
+                    <input id="fourth-player-name" type="text" placeholder="Fourth player name ?"
+                        class="index__player__name">
+                    <button type="button" id="index__player__btn-category"
+                        class="btn index__player__btn-category">Select
+                        category</button>
+                    <button type="button" id="index__player__btn-reset" class="btn index__player__btn-reset">Reset
+                        changes</button>
+                </div>
+                <div id="index__ranking-container">
+                    <h3 id="index__ranking-container__title" class="index__ranking-container__title">They're simply the
+                        best
+                        :</h3>
+                    <ol id="index__ranking-container__list" class="index__ranking-container__list"></ol>
+                    <a id="index__own-quiz-link" class="index__own-quiz-link" href="#">Wanna make your own quiz ?</a>
+                </section>
+                </div>
             </div>
             <div id="index__category-container" class="index__category-container flex align-center column hidden">
                 <h2>Select category :</h2>
@@ -97,14 +109,6 @@
                     class="index__difficulty-container__nav__img">
             </div>
 
-            <div id="index__ranking-container">
-                <h3 id="index__ranking-container__title" class="index__ranking-container__title">They're simply the best
-                    :</h3>
-                <ol id="index__ranking-container__list" class="index__ranking-container__list"></ol>
-            </div>
-
-            <a id="index__own-quiz-link" class="index__own-quiz-link" href="#">Wanna make your own quiz ?</a>
-        </section>
 
         <section id="game" class="game hidden">
 

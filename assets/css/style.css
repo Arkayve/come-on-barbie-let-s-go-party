@@ -179,7 +179,7 @@ h3 {
     background-color: var(--grey-light);
     border-radius: 40px;
     width: 90%;
-    max-width: 500px;
+    max-width: 370px;
     padding: 10px 20px;
     margin: 15px;
 }
@@ -191,7 +191,7 @@ h3 {
 
 .index__category-container__nav__img {
     width: 25%;
-    max-width: 250px;
+    max-width: 100px;
 }
 
 /* CHOICE OF DIFFICULTY */
@@ -230,6 +230,10 @@ h3 {
     width: 25%;
     max-width: 125px;
     margin-top: 30px;
+}
+
+.index__difficulty-responsive__img {
+    display: none;
 }
 
 /* GAME */
@@ -340,7 +344,7 @@ h3 {
 @media screen and (min-width: 800px) {
 
     /* INDEX PAGE */
-    .index__container {
+    .index__responsive-container {
         display: flex;
         justify-content: space-around;
         width: 80%;
@@ -349,6 +353,55 @@ h3 {
 
     .index__ranking-container__title {
         margin-top: 30px;
+    }
+
+    /* DON'T WORK */
+    .index__category-container__title {
+        display: block !important;
+    }
+
+    .index__category-responsive {
+        flex-direction: row;
+        flex-wrap: wrap;
+        display: flex !important;
+    }
+
+    .index__difficulty-container__nav__img {
+        display: none;
+    }
+
+    .index__difficulty-container {
+        display: flex !important;
+        height: 500px;
+    }
+
+    .index__category-container__nav {
+        display: flex !important;
+        width: 40%;
+        margin: 0px auto;
+    }
+
+    .index__difficulty-container__title {
+        display: block;
+    }
+
+    .index__difficulty-container__btn {
+        max-width: 300px;
+    }
+
+    .index__difficulty-responsive__img {
+        display: inline;
+        height: 400px;
+    }
+
+    .index__difficulty-responsive {
+        display: flex;
+        justify-content: space-around;
+        margin-top: -50px;
+    }
+
+    .index__difficulty-responsive__btn {
+        margin-top: 70px;
     }
 
 }

@@ -37,7 +37,7 @@ function displayCategories() {
         document.getElementById('category-validate').classList.remove('hidden');
     }
     const elementsToHide = ['index__main-title', 'index__img-unicorn', 'index__player', 'index__difficulty-container', 'index__ranking-container', 'index__own-quiz-link'];
-    const elementsToShow = ['index__category-container'];
+    const elementsToShow = ['index__category-container', 'index__category-responsive', 'index__category-container__title', 'index__category-container__nav'];
     hideOrShowElement(elementsToHide, elementsToShow);
     colorCategory();
     removeSelectClassOfDifficultyBtn();
@@ -184,7 +184,9 @@ document.getElementById('index__category-container').addEventListener('click', f
 })
 
 function displayDifficulty() {
-    document.getElementById('index__category-container').classList.add('hidden');
+    document.getElementById('index__category-container__nav').classList.add('hidden');
+    document.getElementById('index__category-responsive').classList.add('hidden');
+    document.getElementById('index__category-container__title').classList.add('hidden');
     document.getElementById('index__difficulty-container').classList.remove('hidden');
 }
 

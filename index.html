@@ -18,7 +18,7 @@
         <section id="index">
             <h1 id="index__main-title">Come on Barbie let's go party !</h1>
             <img id="index__img-unicorn" class="unicorn" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
-            <div class="index__container">
+            <div class="index__responsive-container">
                 <div id="index__player" class="flex column align-center">
                     <h2>How many players are you ?</h2>
                     <select id="index__player__number" class="index__player__number">
@@ -47,52 +47,76 @@
                         :</h3>
                     <ol id="index__ranking-container__list" class="index__ranking-container__list"></ol>
                     <a id="index__own-quiz-link" class="index__own-quiz-link" href="#">Wanna make your own quiz ?</a>
-                </section>
                 </div>
             </div>
-            <div id="index__category-container" class="index__category-container flex align-center column hidden">
-                <h2>Select category :</h2>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="bieres_belges">Bières belges</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="covid_19">COVID-19</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="culture_en_vrac">Culture en
-                    vrac</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="dessins_animes">Dessins
-                    animés</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="faits_de_societe">Faits de
-                    société</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="grands_monuments">Grands
-                    monuments</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="heros_de_kaamelott">Héros de
-                    Kaamelott</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="marques_et_slogans">Marques et
-                    slogans</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="mont_saint_michel">Mont
-                    Saint-Michel</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="mythes_et_legendes">Mythes et
-                    légendes</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="paris_de_nos_jours">Paris de nos
-                    jours</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="series_americaines">Séries
-                    américaines</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="star_trek">Star Trek</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="stats_internet_2018">Stats internet
-                    2018</button>
-                <button type="button" class="btn index__category-container__btn flex justify-center"
-                    data-category-name="x_files">X-Files</button>
+            <div id="index__category-container" class="index__category-container hidden">
+
+                <h2 id="index__category-container__title" class="index__category-container__title">Select category :</h2>
+
+                <div id="index__category-responsive"
+                    class="index__category-responsive flex align-center justify-center column">
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="bieres_belges">Bières belges</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="covid_19">COVID-19</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="culture_en_vrac">Culture en
+                        vrac</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="dessins_animes">Dessins
+                        animés</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="faits_de_societe">Faits de
+                        société</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="grands_monuments">Grands
+                        monuments</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="heros_de_kaamelott">Héros de
+                        Kaamelott</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="marques_et_slogans">Marques et
+                        slogans</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="mont_saint_michel">Mont
+                        Saint-Michel</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="mythes_et_legendes">Mythes et
+                        légendes</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="paris_de_nos_jours">Paris de nos
+                        jours</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="series_americaines">Séries
+                        américaines</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="star_trek">Star Trek</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="stats_internet_2018">Stats internet
+                        2018</button>
+                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                        data-category-name="x_files">X-Files</button>
+                </div>
+
+                <div id="index__difficulty-container"
+                    class="index__difficulty-container flex column align-center hidden">
+                    <h2 id="index__difficulty-container__title"></h2>
+                    <div class="index__difficulty-responsive">
+                        <img src="assets/img/panfa-kawai.png" alt="panda kawai" class="index__difficulty-responsive__img">
+                        <div class="index__difficulty-responsive__btn">
+                            <button id="débutant" type="button"
+                                class="btn index__difficulty-container__btn easy">Easy</button>
+                            <button id="confirmé" type="button"
+                                class="btn index__difficulty-container__btn medium">Medium</button>
+                            <button id="expert" type="button"
+                                class="btn index__difficulty-container__btn hard">Hard</button>
+                        </div>
+                        <img src="assets/img/unicorn-star.png" alt="unicorn with a star" class="index__difficulty-responsive__img">
+                    </div>
+                    <img src="assets/img/go-back-btn.png" alt="icon arrow left" data-value="back"
+                        class="index__difficulty-container__nav__img">
+                </div>
+
                 <div id="index__category-container__nav" class="index__category-container__nav flex">
                     <img src="assets/img/go-back-btn.png" alt="icon arrow left" id="category-back"
                         class="index__category-container__nav__img">
@@ -100,15 +124,8 @@
                         class="index__category-container__nav__img hidden">
                 </div>
             </div>
-            <div id="index__difficulty-container" class="index__difficulty-container flex column align-center hidden">
-                <h2 id="index__difficulty-container__title"></h2>
-                <button id="débutant" type="button" class="btn index__difficulty-container__btn easy">Easy</button>
-                <button id="confirmé" type="button" class="btn index__difficulty-container__btn medium">Medium</button>
-                <button id="expert" type="button" class="btn index__difficulty-container__btn hard">Hard</button>
-                <img src="assets/img/go-back-btn.png" alt="icon arrow left" data-value="back"
-                    class="index__difficulty-container__nav__img">
-            </div>
 
+        </section>
 
         <section id="game" class="game hidden">
 

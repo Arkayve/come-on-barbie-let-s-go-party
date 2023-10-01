@@ -137,6 +137,7 @@ h3 {
 }
 
 /* BTN RESET CHANGES */
+.index__ranking-container__btn-clear,
 .index__player__btn-reset {
     background-color: var(--red-light);
     text-align: center;

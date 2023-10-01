@@ -439,3 +439,8 @@ document.getElementById('home-mushroom').addEventListener('click', function (eve
 // backup of bestScores for test of localstorage functions in another computer
 // [{"name":"A","score":500},{"name":"B","score":450},{"name":"C","score":400},{"name":"D","score":350},{"name":"E","score":300},{"name":"F","score":250},{"name":"G","score":200},{"name":"H","score":150},{"name":"I","score":100},{"name":"J","score":50}];
 
+document.getElementById('index__ranking-container__btn-clear').addEventListener('click', function(event) {
+    const warningText = "Warning, you're about to clear cache of the game. You won't have any scores store after. Are you sure you want to do that ?";
+    if (confirm(warningText)) localStorage.removeItem('bestScores');
+    window.location.reload();
+})

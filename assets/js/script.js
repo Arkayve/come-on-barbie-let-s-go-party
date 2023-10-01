@@ -96,7 +96,6 @@ function saveBestScores() {
             player["name"] = playerNames[i];
             player["score"] = playerScores[i];
             scores.push(player);
-            console.log(scores)
         })
     }
     scores.sort((a, b) => b.score - a.score);
@@ -152,7 +151,7 @@ function getQuiz(json) {
         .then(data => {
             questions[count] = data.quizz.fr[difficulty];
             count++;
-            mixQuestions(questions)
+            console.log(questions)
         })
         .catch(error => {
             console.error("Error :", error);
@@ -238,6 +237,8 @@ function runGame() {
     document.getElementById('index__category-container').classList.add('hidden');
     document.getElementById('game').classList.remove('hidden');
     if (questions.length > 0) {
+        mixQuestions(questions);
+        console.log(questions);
         makeRound();
         displayQuestion();
         runTimer();

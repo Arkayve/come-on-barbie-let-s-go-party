@@ -10,7 +10,7 @@ document.getElementById('index__player__number').addEventListener("change", func
 // to record name of each player of party in an array
 let playerNames = [];
 
-function getName() {
+function savePlayerName() {
     const playerNameIdArray = ['first-player-name', 'second-player-name', 'third-player-name', 'fourth-player-name'];
     playerNameIdArray.forEach(playerNameId => {
         const playerName = document.getElementById(playerNameId).value.trim();
@@ -22,16 +22,18 @@ function getName() {
 
 // listen btn-category to reveal categories
 document.getElementById('index__player__btn-category').addEventListener('click', function () {
-    getName();
+    savePlayerName();
     displayCategories();
 })
 
+// to reset changes if btn pressed in homepage
 document.getElementById('index__player__btn-reset').addEventListener('click', function (event) {
     fromScratch();
 })
 
 // function to display categories
 function displayCategories() {
+    // here we verify if playernames fields aren't empty, and correspond to number of players
     if (playerNames.length == 0 || document.getElementById('index__player__number').value != playerNames.length) return;
     const elementsToHide = ['index__main-title', 'index__img-unicorn', 'index__player', 'index__difficulty-container', 'index__ranking-container', 'index__own-quiz-link'];
     const elementsToShow = ['index__category-container', 'index__category-responsive', 'index__category-container__title', 'index__category-container__nav'];
@@ -48,7 +50,7 @@ function colorCategory() {
             categoryCount++
         }
     })
-    if (categoryCount == 0 && categoryName !== undefined) {
+    if (categoryCount === 0 && categoryName !== undefined) {
         document.querySelector(`[data-category-name="${categoryName}"]`).classList.remove('full-select');
         document.querySelector(`[data-category-name="${categoryName}"]`).classList.remove('partially-select');
 
@@ -68,6 +70,7 @@ document.getElementById('index__category-container__nav').addEventListener('clic
         returnToIndex();
     }
     if (event.target.id === 'category-validate') {
+        mixQuestions(questions);
         runGame();
     }
 })
@@ -86,7 +89,7 @@ let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
 // an array to record each player score
 let playerScores = [];
 
-// to record name, score, time of ten best players
+// to record names and scores of ten best players
 function saveBestScores() {
     if (playerNames === 1) {
         let player = {
@@ -110,7 +113,7 @@ function saveBestScores() {
 
 // display best scores on index.html
 function displayBestScores(where) {
-    if (scores) {
+    if (scores.length > 0) {
         where.innerHTML = '';
         scores.forEach((score, index) => {
             const rank = index + 1;
@@ -120,7 +123,9 @@ function displayBestScores(where) {
             where.appendChild(listItem);
         });
     } else {
-        where.textContent = 'No scores recorded.';
+        const listItem = document.createElement('li');
+        listItem.textContent = 'No scores recorded.';
+        where.appendChild(listItem);
     }
 }
 
@@ -195,10 +200,9 @@ document.getElementById('index__category-container').addEventListener('click', f
 })
 
 function displayDifficulty() {
-    document.getElementById('index__category-container__nav').classList.add('hidden');
-    document.getElementById('index__category-responsive').classList.add('hidden');
-    document.getElementById('index__category-container__title').classList.add('hidden');
-    document.getElementById('index__difficulty-container').classList.remove('hidden');
+    const elementsToHide = ['index__category-container__nav', 'index__category-responsive', 'index__category-container__title'];
+    const elementsToShow = ['index__difficulty-container'];
+    hideOrShowElement(elementsToHide, elementsToShow);
 }
 
 // listen which difficulty of quiz we want
@@ -218,11 +222,13 @@ document.getElementById('index__difficulty-container').addEventListener('click',
         event.target.classList.remove('select');
         return;
     };
+    // and to add it if not already in
     event.target.classList.add('select');
     alreadySelected[alreadySelectedCount] = categoryName + ', ' + difficulty;
     alreadySelectedCount++;
     getQuiz(`assets/json/${categoryName}.json`);
     colorCategory();
+    // to display validate btn
     document.getElementById('category-validate').classList.remove('hidden');
 })
 
@@ -249,7 +255,6 @@ function runGame() {
     document.getElementById('index__category-container').classList.add('hidden');
     document.getElementById('game').classList.remove('hidden');
     if (questions.length > 0) {
-        mixQuestions(questions);
         makeRound();
         displayQuestion();
         runTimer();
@@ -326,7 +331,7 @@ document.getElementById('game__answer-container').addEventListener('click', func
     round++;
 })
 
-// to listen next btn, hide what have to be hide, remove select class and go to next round
+// to listen game nav btn, hide what have to be hide, remove select class and go to next round
 document.getElementById('game__nav').addEventListener('click', function (event) {
     if (!event.target.classList.contains('game__nav__img')) return;
     if (event.target.id == 'game-end') {

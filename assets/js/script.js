@@ -12,19 +12,20 @@ let playerNames = [];
 
 function savePlayerName() {
     const playerNameIdArray = ['first-player-name', 'second-player-name', 'third-player-name', 'fourth-player-name'];
-    playerNameIdArray.forEach(playerNameId => {
-        const playerName = document.getElementById(playerNameId).value.trim();
+    const maxPlayer = parseInt(document.getElementById('index__player__number').value);
+    for (let i = 0; i < maxPlayer; i++) {
+        const playerName = document.getElementById(playerNameIdArray[i]).value.trim();
         if (playerName !== "" && !playerNames.includes(playerName)) {
-            playerNames.push(playerName);
+            playerNames[i] = playerName;
         }
-    });
+        playerNames.splice(maxPlayer, 3)
+    }
 }
 
 // listen btn-category to reveal categories
 document.getElementById('index__player__btn-category').addEventListener('click', function () {
     savePlayerName();
     displayCategories();
-    window.scroll(0, 0);
 })
 
 // to reset changes if btn pressed in homepage
@@ -35,12 +36,13 @@ document.getElementById('index__player__btn-reset').addEventListener('click', fu
 // function to display categories
 function displayCategories() {
     // here we verify if playernames fields aren't empty, and correspond to number of players
-    if (playerNames.length == 0 || document.getElementById('index__player__number').value != playerNames.length) return;
+    if (playerNames.length === 0 || document.getElementById('index__player__number').value != playerNames.length) return;
     const elementsToHide = ['index__main-title', 'index__img-unicorn', 'index__player', 'index__difficulty-container', 'index__ranking-container', 'index__own-quiz-link'];
     const elementsToShow = ['index__category-container', 'index__category-responsive', 'index__category-container__title', 'index__category-container__nav'];
     hideOrShowElement(elementsToHide, elementsToShow);
     colorCategory();
     removeSelectClassOfDifficultyBtn();
+    window.scroll(0, 0);
 }
 
 // function to color categories in regards of difficulties selected
@@ -89,7 +91,7 @@ function returnToIndex() {
 
 // get best scores data from local storage
 let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
-console.log(scores)
+
 // an array to record each player score
 let playerScores = [];
 
@@ -436,7 +438,9 @@ function fromScratch() {
     const elementsToShow = ['index__main-title', 'index__img-unicorn', 'game__who-play', 'game__question', 'game__timer', 'game__answer-container', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
     displayBestScores(document.getElementById('index__ranking-container__list'));
-    document.getElementById('second-player-name', 'third-player-name', 'fourth-player-name').classList.remove('active'); 
+    document.getElementById('second-player-name').classList.remove('active'); 
+    document.getElementById('third-player-name').classList.remove('active'); 
+    document.getElementById('fourth-player-name').classList.remove('active'); 
     document.getElementById('index__player__number').value = 1;
 }
 

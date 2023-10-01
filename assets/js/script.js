@@ -87,7 +87,7 @@ function returnToIndex() {
 
 // get best scores data from local storage
 let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
-
+console.log(scores)
 // an array to record each player score
 let playerScores = [];
 
@@ -102,7 +102,13 @@ function saveBestScores() {
         };
         scores.push(player);
     }
-    scores.sort((a, b) => b.score - a.score);
+    scores.sort((a, b) => {
+        if (b.score !== a.score) {
+            return b.score - a.score;
+        } else {
+            return b.ratio - a.ratio;
+        }
+    });
     const maxScoresToKeep = 10;
     scores = scores.slice(0, maxScoresToKeep);
     localStorage.setItem('bestScores', JSON.stringify(scores));
@@ -434,7 +440,7 @@ document.getElementById('home-mushroom').addEventListener('click', function (eve
 // backup of bestScores for test of localstorage functions in another computer
 // [{"name":"A","score":500},{"name":"B","score":450},{"name":"C","score":400},{"name":"D","score":350},{"name":"E","score":300},{"name":"F","score":250},{"name":"G","score":200},{"name":"H","score":150},{"name":"I","score":100},{"name":"J","score":50}];
 
-document.getElementById('index__ranking-container__btn-clear').addEventListener('click', function(event) {
+document.getElementById('index__ranking-container__btn-clear').addEventListener('click', function (event) {
     const warningText = "Warning, you're about to clear ranking cache of the game. Are you sure you want to do that ?";
     if (confirm(warningText)) localStorage.removeItem('bestScores');
     window.location.reload();

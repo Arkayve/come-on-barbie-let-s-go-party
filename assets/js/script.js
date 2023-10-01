@@ -320,6 +320,7 @@ document.getElementById('game__answer-container').addEventListener('click', func
             break;
     }
     questionsAnswered++;
+    window.scroll(0, 0);
     // we display anecdote for each question
     document.getElementById('game__anecdote').textContent = anecdote;
     const elementsToHide = ['game__who-play', 'game__question', 'game__timer', 'game__answer-container'];
@@ -342,6 +343,7 @@ document.getElementById('game__answer-container').addEventListener('click', func
 document.getElementById('game__nav').addEventListener('click', function (event) {
     if (!event.target.classList.contains('game__nav__img')) return;
     if (event.target.id == 'game-end') {
+        window.scroll(0, 0);
         if (playerScores[0] >= 0) {
             endGame();
         } else {
@@ -438,6 +440,7 @@ function fromScratch() {
 
 // listen btn go home of ending page
 document.getElementById('home-mushroom').addEventListener('click', function (event) {
+    window.scroll(0, 0);
     fromScratch();
 })
 

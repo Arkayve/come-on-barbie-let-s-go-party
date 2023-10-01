@@ -22,9 +22,9 @@ function savePlayerName() {
 
 // listen btn-category to reveal categories
 document.getElementById('index__player__btn-category').addEventListener('click', function () {
-    window.scroll(0, 0);
     savePlayerName();
     displayCategories();
+    window.scroll(0, 0);
 })
 
 // to reset changes if btn pressed in homepage
@@ -436,6 +436,8 @@ function fromScratch() {
     const elementsToShow = ['index__main-title', 'index__img-unicorn', 'game__who-play', 'game__question', 'game__timer', 'game__answer-container', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
     displayBestScores(document.getElementById('index__ranking-container__list'));
+    document.getElementById('second-player-name', 'third-player-name', 'fourth-player-name').classList.remove('active'); 
+    document.getElementById('index__player__number').value = 1;
 }
 
 // listen btn go home of ending page

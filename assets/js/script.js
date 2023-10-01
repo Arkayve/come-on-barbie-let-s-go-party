@@ -72,6 +72,7 @@ let questionsAnswered = 0;
 document.getElementById('index__category-container__nav').addEventListener('click', function (event) {
     if (!event.target.classList.contains('index__category-container__nav__img')) return;
     if (event.target.id === 'category-back') {
+        playerNames = [];
         returnToIndex();
     }
     if (event.target.id === 'category-validate') {

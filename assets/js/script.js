@@ -63,6 +63,8 @@ function colorCategory() {
     }
 }
 
+let questionsAnswered = 0;
+
 // listen validate / go back buttons of categories
 document.getElementById('index__category-container__nav').addEventListener('click', function (event) {
     if (!event.target.classList.contains('index__category-container__nav__img')) return;
@@ -91,19 +93,14 @@ let playerScores = [];
 
 // to record names and scores of ten best players
 function saveBestScores() {
-    if (playerNames === 1) {
+    questionsAnswered = questionsAnswered / playerNames.length;
+    for (const i in playerNames) {
         let player = {
-            name: playerNames[0],
-            score: playerScores[0]
+            name: playerNames[i],
+            score: playerScores[i],
+            ratio: playerScores[i] / questionsAnswered
         };
         scores.push(player);
-    } else if (playerNames > 1) {
-        playerNames.forEach(i => {
-            let player = {};
-            player["name"] = playerNames[i];
-            player["score"] = playerScores[i];
-            scores.push(player);
-        })
     }
     scores.sort((a, b) => b.score - a.score);
     const maxScoresToKeep = 10;
@@ -117,7 +114,7 @@ function displayBestScores(where) {
         where.innerHTML = '';
         scores.forEach((score, index) => {
             const rank = index + 1;
-            const playerInfo = `${rank}. ${score.name} - Score: ${score.score}`;
+            const playerInfo = `${rank}. ${score.name} - Score: ${score.score} - Ratio: ${score.ratio}`;
             const listItem = document.createElement('li');
             listItem.textContent = playerInfo;
             where.appendChild(listItem);
@@ -313,6 +310,7 @@ document.getElementById('game__answer-container').addEventListener('click', func
             loopAnswerBtn(3);
             break;
     }
+    questionsAnswered++;
     // we display anecdote for each question
     document.getElementById('game__anecdote').textContent = anecdote;
     const elementsToHide = ['game__who-play', 'game__question', 'game__timer', 'game__answer-container'];
@@ -359,10 +357,10 @@ function endGame() {
     document.getElementById('endgame').classList.remove('hidden');
     // here we make an array of object with names and scores
     for (const i in playerNames) {
-        let player = {};
-        player["name"] = playerNames[i];
-        player["score"] = playerScores[i];
-        bestPlayer.push(player);
+        let playerOfParty = {};
+        playerOfParty["name"] = playerNames[i];
+        playerOfParty["score"] = playerScores[i];
+        bestPlayer.push(playerOfParty);
     }
     // here we sort players by scores
     bestPlayer.sort((a, b) => b.score - a.score);
@@ -382,10 +380,6 @@ function endGame() {
         listItem.textContent = playerInfo;
         document.getElementById('endgame__stats').appendChild(listItem);
     }
-    // here we add players of the party to best scores, function saveBestScores will keep ten best of all of them
-    bestPlayer.forEach(player => {
-        scores.push(player);
-    })
     saveBestScores();
 }
 
@@ -409,7 +403,8 @@ function fromScratch() {
     alreadySelected = [];
     alreadySelectedCount = 0;
     questions = [];
-    categoryName = '';
+    questionsAnswered = 0;
+    categoryName = undefined;
     difficulty = '';
     anecdote = '';
     answer = '';
@@ -440,7 +435,7 @@ document.getElementById('home-mushroom').addEventListener('click', function (eve
 // [{"name":"A","score":500},{"name":"B","score":450},{"name":"C","score":400},{"name":"D","score":350},{"name":"E","score":300},{"name":"F","score":250},{"name":"G","score":200},{"name":"H","score":150},{"name":"I","score":100},{"name":"J","score":50}];
 
 document.getElementById('index__ranking-container__btn-clear').addEventListener('click', function(event) {
-    const warningText = "Warning, you're about to clear cache of the game. You won't have any scores store after. Are you sure you want to do that ?";
+    const warningText = "Warning, you're about to clear ranking cache of the game. Are you sure you want to do that ?";
     if (confirm(warningText)) localStorage.removeItem('bestScores');
     window.location.reload();
 })

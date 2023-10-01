@@ -120,7 +120,7 @@ function displayBestScores(where) {
         where.innerHTML = '';
         scores.forEach((score, index) => {
             const rank = index + 1;
-            const playerInfo = `${rank}. ${score.name} - Score: ${score.score} - Ratio: ${score.ratio}`;
+            const playerInfo = `${rank}. ${score.name} - Score: ${score.score}`;
             const listItem = document.createElement('li');
             listItem.textContent = playerInfo;
             where.appendChild(listItem);

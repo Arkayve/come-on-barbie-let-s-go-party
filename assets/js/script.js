@@ -22,6 +22,7 @@ function savePlayerName() {
 
 // listen btn-category to reveal categories
 document.getElementById('index__player__btn-category').addEventListener('click', function () {
+    window.scroll(0, 0);
     savePlayerName();
     displayCategories();
 })
@@ -73,6 +74,7 @@ document.getElementById('index__category-container__nav').addEventListener('clic
     }
     if (event.target.id === 'category-validate') {
         mixQuestions(questions);
+        window.scroll(0, 0);
         runGame();
     }
 })
@@ -211,6 +213,7 @@ function displayDifficulty() {
 // listen which difficulty of quiz we want
 document.getElementById('index__difficulty-container').addEventListener('click', function (event) {
     if (event.target.dataset.value === 'back') {
+        window.scroll(0, 0);
         displayCategories();
     }
     if (!event.target.classList.contains('index__difficulty-container__btn')) return;
@@ -258,7 +261,6 @@ function runGame() {
     document.getElementById('index__category-container').classList.add('hidden');
     document.getElementById('game').classList.remove('hidden');
     if (questions.length > 0) {
-        window.scroll(0, 0);
         makeRound();
         displayQuestion();
         runTimer();
@@ -353,6 +355,7 @@ document.getElementById('game__nav').addEventListener('click', function (event) 
         document.querySelectorAll('.game__answer-container__btn').forEach(btn => {
             btn.classList.remove('select');
         })
+        window.scroll(0, 0);
         runGame();
     }
 })

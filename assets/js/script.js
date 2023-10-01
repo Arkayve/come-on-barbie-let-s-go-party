@@ -72,6 +72,7 @@ let questionsAnswered = 0;
 document.getElementById('index__category-container__nav').addEventListener('click', function (event) {
     if (!event.target.classList.contains('index__category-container__nav__img')) return;
     if (event.target.id === 'category-back') {
+        window.scroll(0, 0);
         playerNames = [];
         returnToIndex();
     }
@@ -216,7 +217,6 @@ function displayDifficulty() {
 // listen which difficulty of quiz we want
 document.getElementById('index__difficulty-container').addEventListener('click', function (event) {
     if (event.target.dataset.value === 'back') {
-        window.scroll(0, 0);
         displayCategories();
     }
     if (!event.target.classList.contains('index__difficulty-container__btn')) return;

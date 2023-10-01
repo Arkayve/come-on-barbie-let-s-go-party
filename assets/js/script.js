@@ -47,14 +47,18 @@ function colorCategory() {
         if (categoryName === category.split(', ')[0]) {
             categoryCount++
         }
-        if (categoryCount < 3) {
-            document.querySelector(`[data-category-name="${categoryName}"]`).classList.remove('full-select');
-            document.querySelector(`[data-category-name="${categoryName}"]`).classList.add('partially-select');
-        } else if (categoryCount === 3) {
-            document.querySelector(`[data-category-name="${categoryName}"]`).classList.remove('partially-select');
-            document.querySelector(`[data-category-name="${categoryName}"]`).classList.add('full-select');
-        }
     })
+    if (categoryCount == 0 && categoryName !== undefined) {
+        document.querySelector(`[data-category-name="${categoryName}"]`).classList.remove('full-select');
+        document.querySelector(`[data-category-name="${categoryName}"]`).classList.remove('partially-select');
+
+    } else if (categoryCount < 3 && categoryName !== undefined) {
+        document.querySelector(`[data-category-name="${categoryName}"]`).classList.remove('full-select');
+        document.querySelector(`[data-category-name="${categoryName}"]`).classList.add('partially-select');
+    } else if (categoryCount === 3) {
+        document.querySelector(`[data-category-name="${categoryName}"]`).classList.remove('partially-select');
+        document.querySelector(`[data-category-name="${categoryName}"]`).classList.add('full-select');
+    }
 }
 
 // listen validate / go back buttons of categories
@@ -151,7 +155,6 @@ function getQuiz(json) {
         .then(data => {
             questions[count] = data.quizz.fr[difficulty];
             count++;
-            console.log(questions)
         })
         .catch(error => {
             console.error("Error :", error);
@@ -168,6 +171,7 @@ function mixQuestions(array) {
 
 // to know each quiz already selected
 let alreadySelected = [];
+let alreadySelectedCount = 0;
 // to have a variable with all questions
 let questions = [];
 // here is two variables to select which quiz we want regarding to difficulty
@@ -204,11 +208,19 @@ document.getElementById('index__difficulty-container').addEventListener('click',
     }
     if (!event.target.classList.contains('index__difficulty-container__btn')) return;
     if (!categoryName) return;
-    event.target.classList.add('select');
     difficulty = event.target.getAttribute('id');
-    // to prevent adding more than one time each quiz
-    if (alreadySelected.includes(categoryName + ', ' + difficulty)) return;
-    alreadySelected.push(categoryName + ', ' + difficulty);
+    // to remove a quiz if already selected
+    if (alreadySelected.includes(categoryName + ', ' + difficulty)) {
+        const index = alreadySelected.indexOf(categoryName + ', ' + difficulty);
+        alreadySelected.splice(index, 1);
+        colorCategory();
+        questions.splice(index, 1);
+        event.target.classList.remove('select');
+        return;
+    };
+    event.target.classList.add('select');
+    alreadySelected[alreadySelectedCount] = categoryName + ', ' + difficulty;
+    alreadySelectedCount++;
     getQuiz(`assets/json/${categoryName}.json`);
     colorCategory();
     document.getElementById('category-validate').classList.remove('hidden');
@@ -238,7 +250,6 @@ function runGame() {
     document.getElementById('game').classList.remove('hidden');
     if (questions.length > 0) {
         mixQuestions(questions);
-        console.log(questions);
         makeRound();
         displayQuestion();
         runTimer();
@@ -391,6 +402,7 @@ function fromScratch() {
     playerScores = [];
     count = 0;
     alreadySelected = [];
+    alreadySelectedCount = 0;
     questions = [];
     categoryName = '';
     difficulty = '';
@@ -402,6 +414,7 @@ function fromScratch() {
     document.querySelectorAll('.game__answer-container__btn').forEach(btn => {
         btn.classList.remove('select');
     })
+    removeSelectClassOfDifficultyBtn();
     document.getElementById('first-player-name').value = '';
     document.getElementById('second-player-name').value = '';
     document.getElementById('third-player-name').value = '';

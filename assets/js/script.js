@@ -258,6 +258,7 @@ function runGame() {
     document.getElementById('index__category-container').classList.add('hidden');
     document.getElementById('game').classList.remove('hidden');
     if (questions.length > 0) {
+        window.scroll(0, 0);
         makeRound();
         displayQuestion();
         runTimer();

@@ -1,9 +1,11 @@
 :root {
+    
     /* FONTS */
     --primary-font: 'lobster';
     --secondary-font: 'mooli-regular';
 
     /* COLORS */
+[data-theme='light'] {
     --pink: pink;
     --pink-light: rgb(255, 230, 234);
     --blue-light: rgb(172, 193, 255);
@@ -14,6 +16,19 @@
     --grey-light: #EDEDED;
     --black: black;
     --white: white;
+};
+[data-theme='dark'] {
+    --pink: rgb(41, 38, 50);
+    --pink-light: rgb(58, 75, 90);
+    --blue-light: rgb(54, 95, 118);
+    --yellow-light: rgb(220, 182, 58);
+    --green-light: rgb(55, 119, 55);
+    --red-light: rgb(156, 55, 72);
+    --orange-light: rgb(208, 141, 66);
+    --grey-light: rgb(131, 145, 149);
+    --black: white;
+    --white: white;
+};
 }
 
 @font-face {
@@ -61,6 +76,7 @@ body {
     background-color: var(--pink);
     font-family: var(--secondary-font);
     text-align: center;
+    color: var(--black);
 }
 
 .unicorn {

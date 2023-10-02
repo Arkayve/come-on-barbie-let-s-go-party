@@ -489,6 +489,15 @@ function colorElementForMode() {
 
 // to save actual mode
 let modeToDisplay = localStorage.getItem('barbie-display-mode');
+if (modeToDisplay === 'light') {
+    document.querySelector(':root').style.setProperty('--opacityThemeDisplay', 1);
+    document.querySelector(':root').style.setProperty('--opacityThemeHide', 0);
+}
+else if (modeToDisplay === 'dark') {
+    document.querySelector(':root').style.setProperty('--opacityThemeDisplay', 0);
+    document.querySelector(':root').style.setProperty('--opacityThemeHide', 1);
+    document.querySelector('.moon-logo').style.setProperty('transform', 'translateY(0%) rotateZ(0deg)');
+}
 
 const lightOrDark = [
     {

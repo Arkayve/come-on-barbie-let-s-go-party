@@ -470,37 +470,52 @@ document.getElementById("index__switch-mode-container").addEventListener("click"
 // change game theme
 function switchMode() {
     if (document.querySelector('body').dataset.theme === 'light') {
-        document.querySelector('body').dataset.theme = 'dark';
-        document.getElementById('index__category-container__btn-back').setAttribute('src', 'assets/img/go-back-btn-dark.png');
-        document.getElementById('index__category-container__btn-validate').setAttribute('src', 'assets/img/validate-btn-dark.png');
-        document.getElementById('index__difficulty-container__btn-back').setAttribute('src', 'assets/img/go-back-btn-dark.png');
-        document.getElementById('game-end').setAttribute('src', 'assets/img/end-party-btn-dark.png');
-        document.getElementById('game-next').setAttribute('src', 'assets/img/validate-btn-dark.png');
-        localStorage.setItem('barbie-display-mode', document.querySelector('body').dataset.theme);
+        modeToDisplay = 'dark';
+        colorElementForMode();
     }
     else if (document.querySelector('body').dataset.theme === 'dark') {
-        document.querySelector('body').dataset.theme = 'light';
-        document.getElementById('index__category-container__btn-back').setAttribute('src', 'assets/img/go-back-btn-light.png');
-        document.getElementById('index__category-container__btn-validate').setAttribute('src', 'assets/img/validate-btn-light.png');
-        document.getElementById('index__difficulty-container__btn-back').setAttribute('src', 'assets/img/go-back-btn-light.png');
-        document.getElementById('game-end').setAttribute('src', 'assets/img/end-party-btn-light.png');
-        document.getElementById('game-next').setAttribute('src', 'assets/img/validate-btn-light.png');
-        localStorage.setItem('barbie-display-mode', document.querySelector('body').dataset.theme);
+        modeToDisplay = 'light';
+        colorElementForMode();
     }
+}
+
+function colorElementForMode() {
+    document.querySelector('body').dataset.theme = modeToDisplay;
+    lightOrDark.forEach(i => {
+        document.getElementById(i.id).setAttribute('src', i.src);
+    })
+    localStorage.setItem('barbie-display-mode', modeToDisplay);
 }
 
 // to save actual mode
-if (localStorage.getItem('barbie-display-mode')) {
-    let modeToDisplay = localStorage.getItem('barbie-display-mode');
-    // modeToDisplay === 'light' ? 
-    document.querySelector('body').dataset.theme = modeToDisplay;
-    document.getElementById('index__category-container__btn-back').setAttribute('src', `assets/img/go-back-btn-${modeToDisplay}.png`);
-    document.getElementById('index__category-container__btn-validate').setAttribute('src', `assets/img/validate-btn-${modeToDisplay}.png`);
-    document.getElementById('index__difficulty-container__btn-back').setAttribute('src', `assets/img/go-back-btn-${modeToDisplay}.png`);
-    document.getElementById('game-end').setAttribute('src', `assets/img/end-party-btn-${modeToDisplay}.png`);
-    document.getElementById('game-next').setAttribute('src', `assets/img/validate-btn-${modeToDisplay}.png`);
-}
+let modeToDisplay = localStorage.getItem('barbie-display-mode');
 
+const lightOrDark = [
+    {
+        id: 'index__category-container__btn-back',
+        src: `assets/img/go-back-btn-${modeToDisplay}.png`
+    },
+    {
+        id: 'index__category-container__btn-validate',
+        src: `assets/img/validate-btn-${modeToDisplay}.png`
+    },
+    {
+        id: 'index__difficulty-container__btn-back',
+        src: `assets/img/go-back-btn-${modeToDisplay}.png`
+    },
+    {
+        id: 'game-end',
+        src: `assets/img/end-party-btn-${modeToDisplay}.png`
+    },
+    {
+        id: 'game-next',
+        src: `assets/img/validate-btn-${modeToDisplay}.png`
+    }
+]
+
+if (localStorage.getItem('barbie-display-mode')) {
+    colorElementForMode();
+}
 
 // to move unicorn when we want
 document.getElementById('index__img-unicorn').addEventListener('click', function () {

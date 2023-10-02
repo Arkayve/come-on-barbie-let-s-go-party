@@ -439,9 +439,9 @@ function fromScratch() {
     const elementsToShow = ['index__main-title', 'index__switch-mode-container', 'index__img-unicorn', 'game__who-play', 'game__question', 'game__timer', 'game__answer-container', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
     displayBestScores(document.getElementById('index__ranking-container__list'));
-    document.getElementById('second-player-name').classList.remove('active'); 
-    document.getElementById('third-player-name').classList.remove('active'); 
-    document.getElementById('fourth-player-name').classList.remove('active'); 
+    document.getElementById('second-player-name').classList.remove('active');
+    document.getElementById('third-player-name').classList.remove('active');
+    document.getElementById('fourth-player-name').classList.remove('active');
     document.getElementById('index__player__number').value = 1;
 }
 
@@ -469,26 +469,40 @@ document.getElementById("index__switch-mode-container").addEventListener("click"
 
 // change game theme
 function switchMode() {
-    let body = document.querySelector('body');
-    if (body.dataset.theme === 'light') {
-        body.dataset.theme = 'dark';
+    if (document.querySelector('body').dataset.theme === 'light') {
+        document.querySelector('body').dataset.theme = 'dark';
         document.getElementById('index__category-container__btn-back').setAttribute('src', 'assets/img/go-back-btn-dark.png');
         document.getElementById('index__category-container__btn-validate').setAttribute('src', 'assets/img/validate-btn-dark.png');
         document.getElementById('index__difficulty-container__btn-back').setAttribute('src', 'assets/img/go-back-btn-dark.png');
         document.getElementById('game-end').setAttribute('src', 'assets/img/end-party-btn-dark.png');
         document.getElementById('game-next').setAttribute('src', 'assets/img/validate-btn-dark.png');
+        localStorage.setItem('barbie-display-mode', document.querySelector('body').dataset.theme);
     }
-    else if (body.dataset.theme === 'dark') {
-        body.dataset.theme = 'light';
+    else if (document.querySelector('body').dataset.theme === 'dark') {
+        document.querySelector('body').dataset.theme = 'light';
         document.getElementById('index__category-container__btn-back').setAttribute('src', 'assets/img/go-back-btn-light.png');
         document.getElementById('index__category-container__btn-validate').setAttribute('src', 'assets/img/validate-btn-light.png');
         document.getElementById('index__difficulty-container__btn-back').setAttribute('src', 'assets/img/go-back-btn-light.png');
         document.getElementById('game-end').setAttribute('src', 'assets/img/end-party-btn-light.png');
         document.getElementById('game-next').setAttribute('src', 'assets/img/validate-btn-light.png');
+        localStorage.setItem('barbie-display-mode', document.querySelector('body').dataset.theme);
     }
-  }
-  
-//   to move unicorn when we want
-document.getElementById('index__img-unicorn').addEventListener('click', function(event) {
+}
+
+// to save actual mode
+if (localStorage.getItem('barbie-display-mode')) {
+    let modeToDisplay = localStorage.getItem('barbie-display-mode');
+    // modeToDisplay === 'light' ? 
+    document.querySelector('body').dataset.theme = modeToDisplay;
+    document.getElementById('index__category-container__btn-back').setAttribute('src', `assets/img/go-back-btn-${modeToDisplay}.png`);
+    document.getElementById('index__category-container__btn-validate').setAttribute('src', `assets/img/validate-btn-${modeToDisplay}.png`);
+    document.getElementById('index__difficulty-container__btn-back').setAttribute('src', `assets/img/go-back-btn-${modeToDisplay}.png`);
+    document.getElementById('game-end').setAttribute('src', `assets/img/end-party-btn-${modeToDisplay}.png`);
+    document.getElementById('game-next').setAttribute('src', `assets/img/validate-btn-${modeToDisplay}.png`);
+}
+
+
+// to move unicorn when we want
+document.getElementById('index__img-unicorn').addEventListener('click', function () {
     document.getElementById('index__img-unicorn').classList.toggle('shakeIt');
 })

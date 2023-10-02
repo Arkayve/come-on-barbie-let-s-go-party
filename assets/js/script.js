@@ -487,3 +487,8 @@ function switchMode() {
         document.getElementById('game-next').setAttribute('src', 'assets/img/validate-btn-light.png');
     }
   }
+  
+//   to move unicorn when we want
+document.getElementById('index__img-unicorn').addEventListener('click', function(event) {
+    document.getElementById('index__img-unicorn').classList.toggle('shakeIt');
+})

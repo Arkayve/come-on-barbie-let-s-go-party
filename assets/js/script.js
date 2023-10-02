@@ -37,7 +37,7 @@ document.getElementById('index__player__btn-reset').addEventListener('click', fu
 function displayCategories() {
     // here we verify if playernames fields aren't empty, and correspond to number of players
     if (playerNames.length === 0 || document.getElementById('index__player__number').value != playerNames.length) return;
-    const elementsToHide = ['index__main-title', 'index__img-unicorn', 'index__player', 'index__difficulty-container', 'index__ranking-container', 'index__own-quiz-link'];
+    const elementsToHide = ['index__main-title', 'index__switch-mode-container', 'index__img-unicorn', 'index__player', 'index__difficulty-container', 'index__ranking-container', 'index__own-quiz-link'];
     const elementsToShow = ['index__category-container', 'index__category-responsive', 'index__category-container__title', 'index__category-container__nav'];
     hideOrShowElement(elementsToHide, elementsToShow);
     colorCategory();
@@ -71,12 +71,12 @@ let questionsAnswered = 0;
 // listen validate / go back buttons of categories
 document.getElementById('index__category-container__nav').addEventListener('click', function (event) {
     if (!event.target.classList.contains('index__category-container__nav__img')) return;
-    if (event.target.id === 'category-back') {
+    if (event.target.id === 'index__category-container__btn-back') {
         window.scroll(0, 0);
         playerNames = [];
         returnToIndex();
     }
-    if (event.target.id === 'category-validate') {
+    if (event.target.id === 'index__category-container__btn-validate') {
         mixQuestions(questions);
         window.scroll(0, 0);
         runGame();
@@ -86,7 +86,7 @@ document.getElementById('index__category-container__nav').addEventListener('clic
 // a function to go back to homepage
 function returnToIndex() {
     const elementsToHide = ['index__category-container'];
-    const elementsToShow = ['index__main-title', 'index__img-unicorn', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
+    const elementsToShow = ['index__main-title', 'index__switch-mode-container', 'index__img-unicorn', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
     document.getElementById('index__difficulty-container__title').textContent = '';
 }
@@ -238,7 +238,7 @@ document.getElementById('index__difficulty-container').addEventListener('click',
     getQuiz(`assets/json/${categoryName}.json`);
     colorCategory();
     // to display validate btn
-    document.getElementById('category-validate').classList.remove('hidden');
+    document.getElementById('index__category-container__btn-validate').classList.remove('hidden');
 })
 
 // function to add select class by category if already clicked
@@ -435,8 +435,8 @@ function fromScratch() {
     document.getElementById('third-player-name').value = '';
     document.getElementById('fourth-player-name').value = '';
     document.getElementById('index__difficulty-container__title').textContent = '';
-    const elementsToHide = ['endgame', 'game', 'game__comments', 'cat-unicorn', 'game__anecdote', 'game__nav', 'index__category-container', 'index__difficulty-container', 'category-validate'];
-    const elementsToShow = ['index__main-title', 'index__img-unicorn', 'game__who-play', 'game__question', 'game__timer', 'game__answer-container', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
+    const elementsToHide = ['endgame', 'game', 'game__comments', 'cat-unicorn', 'game__anecdote', 'game__nav', 'index__category-container', 'index__difficulty-container', 'index__category-container__btn-validate'];
+    const elementsToShow = ['index__main-title', 'index__switch-mode-container', 'index__img-unicorn', 'game__who-play', 'game__question', 'game__timer', 'game__answer-container', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
     displayBestScores(document.getElementById('index__ranking-container__list'));
     document.getElementById('second-player-name').classList.remove('active'); 
@@ -459,3 +459,31 @@ document.getElementById('index__ranking-container__btn-clear').addEventListener(
     if (confirm(warningText)) localStorage.removeItem('bestScores');
     window.location.reload();
 })
+
+// listen switch mode btn
+document.getElementById("index__switch-mode-container").addEventListener("click", () => {
+    document.querySelector(".sun-logo").classList.toggle("animate-sun");
+    document.querySelector(".moon-logo").classList.toggle("animate-moon");
+    switchMode()
+})
+
+// change game theme
+function switchMode() {
+    let body = document.querySelector('body');
+    if (body.dataset.theme === 'light') {
+        body.dataset.theme = 'dark';
+        document.getElementById('index__category-container__btn-back').setAttribute('src', 'assets/img/go-back-btn-dark.png');
+        document.getElementById('index__category-container__btn-validate').setAttribute('src', 'assets/img/validate-btn-dark.png');
+        document.getElementById('index__difficulty-container__btn-back').setAttribute('src', 'assets/img/go-back-btn-dark.png');
+        document.getElementById('game-end').setAttribute('src', 'assets/img/end-party-btn-dark.png');
+        document.getElementById('game-next').setAttribute('src', 'assets/img/validate-btn-dark.png');
+    }
+    else if (body.dataset.theme === 'dark') {
+        body.dataset.theme = 'light';
+        document.getElementById('index__category-container__btn-back').setAttribute('src', 'assets/img/go-back-btn-light.png');
+        document.getElementById('index__category-container__btn-validate').setAttribute('src', 'assets/img/validate-btn-light.png');
+        document.getElementById('index__difficulty-container__btn-back').setAttribute('src', 'assets/img/go-back-btn-light.png');
+        document.getElementById('game-end').setAttribute('src', 'assets/img/end-party-btn-light.png');
+        document.getElementById('game-next').setAttribute('src', 'assets/img/validate-btn-light.png');
+    }
+  }

@@ -16,6 +16,7 @@
     --grey-light: #EDEDED;
     --black: black;
     --white: white;
+    --grey: grey;
 };
 [data-theme='dark'] {
     --pink: rgb(41, 38, 50);
@@ -28,6 +29,7 @@
     --grey-light: rgb(131, 145, 149);
     --black: white;
     --white: white;
+    --grey: white;
 };
 }
 
@@ -77,11 +79,16 @@ body {
     font-family: var(--secondary-font);
     text-align: center;
     color: var(--black);
+    transition: 1s ease-in-out;
 }
 
 .unicorn {
     width: 100%;
     max-width: 450px;
+}
+
+.index__main-title-container {
+    display: flex;
 }
 
 h1 {
@@ -117,11 +124,12 @@ h3 {
     font-family: var(--secondary-font);
     font-size: 2rem;
     background-color: var(--green-light);
-    border: solid black 2px;
+    border: solid var(--black) 2px;
     border-radius: 40px;
     padding: 10px 40px;
     margin-bottom: 15px;
     color: var(--black);
+    transition: 1s ease-in-out;
 }
 
 /* INPUT NAMES */
@@ -130,12 +138,19 @@ h3 {
     font-size: 1.5rem;
     text-align: center;
     background-color: var(--grey-light);
-    border: solid black 2px;
+    border: solid var(--black) 2px;
     border-radius: 40px;
     width: 70%;
     max-width: 460px;
     padding: 10px 20px;
     margin: 15px;
+    transition: 1s ease-in-out;
+    color: var(--black);
+}
+
+.index__player__name::placeholder {
+    color: var(--grey);
+    transition: 1s ease-in-out;
 }
 
 /* BTN SELECT CATEGORY */
@@ -150,6 +165,7 @@ h3 {
     padding: 10px 20px;
     margin: 15px;
     color: var(--black);
+    transition: 1s ease-in-out;
 }
 
 /* BTN RESET CHANGES */
@@ -164,6 +180,7 @@ h3 {
     border-radius: 40px;
     border: solid 1px var(--black);
     color: var(--black);
+    transition: 1s ease-in-out;
 }
 
 .index__ranking-container__list {
@@ -178,6 +195,7 @@ h3 {
     border-radius: 50px;
     list-style-type: none;
     opacity: 70%;
+    transition: 1s ease-in-out;
 }
 
 .index__own-quiz-link {
@@ -186,6 +204,7 @@ h3 {
     color: var(--black);
     display: block;
     padding: 30px;
+    transition: 1s ease-in-out;
 }
 
 /* CHOICE OF CATEGORY */
@@ -203,6 +222,7 @@ h3 {
     padding: 10px 20px;
     margin: 15px;
     color: var(--black);
+    border: solid 1px var(--black);
 }
 
 .index__category-container__nav {
@@ -233,6 +253,7 @@ h3 {
     margin: 15px;
     border-radius: 40px;
     color: var(--black);
+    border: solid 1px var(--black);
 }
 
 .easy {
@@ -295,6 +316,7 @@ h3 {
     padding: 10px 20px;
     margin: 15px;
     color: var(--black);
+    border: solid 1px var(--black);
 }
 
 /* ANSWER */
@@ -443,4 +465,54 @@ h3 {
         padding: 20px 30px;
     }
 
+}
+
+/* SWITCH MODE */
+.index__switch-mode-container{
+    position: absolute;
+    right: 10%;
+    top: 10%;
+}
+
+.sun, .moon{
+    font-size: 10rem;
+    width: fit-content;
+    height: fit-content;
+}
+
+.moon{
+    position: absolute;
+    inset: 0;
+}
+
+.moon-logo{
+    opacity: 0;
+    transform: translateY(20%) rotateZ(50deg);
+    transition: all 1s ease-out;
+}
+
+.sun-logo{
+    opacity: 1;
+    transform: translateY(0) rotateZ(0deg);
+    transition: all 1s ease-out;
+    fill: var(--red-light);
+}
+
+.animate-sun{
+    opacity: 0;
+    transform: translateY(20%) rotateZ(100deg);
+}
+
+.animate-moon{
+    opacity: 1;
+    transform: translateY(0%) rotateZ(0deg);
+    fill: var(--blue-light);
+}
+
+.animate-moon path{
+  fill: var(--blue-light);
+}
+
+.animate-sun path{
+  fill: var(--red-light);
 }

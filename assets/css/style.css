@@ -159,6 +159,7 @@ h3 {
 
 .index__player__name::placeholder {
     color: var(--grey);
+    font-size: 1.3rem;
     transition: 1s ease-in-out;
 }
 
@@ -193,7 +194,7 @@ h3 {
 }
 
 .index__ranking-container__list {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     background-color: var(--pink-light);
     width: 80%;
     max-width: 500px;
@@ -399,13 +400,21 @@ h3 {
     /* INDEX PAGE */
     .index__responsive-container {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         width: 80%;
         margin: auto;
     }
 
+    .index__switch-mode-container {
+        right: 30% !important;
+    }
+
     .index__ranking-container__title {
         margin-top: 30px;
+    }
+
+    .index__ranking-container__list {
+        width: 100% !important;
     }
 
     .index__category-container__title {

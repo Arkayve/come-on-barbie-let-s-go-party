@@ -97,7 +97,7 @@ let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
 // an array to record each player score
 let playerScores = [];
 
-// to record names and scores of ten best players
+// to save scores of each players in an object
 function saveBestScores() {
     questionsAnswered = questionsAnswered / playerNames.length;
     for (const i in playerNames) {
@@ -108,13 +108,23 @@ function saveBestScores() {
         };
         scores.push(player);
     }
+    sortPlayerScores();
+    saveInLocalStorage();
+}
+
+// to sort players scores
+function sortPlayerScores() {
     scores.sort((a, b) => {
         if (b.score !== a.score) {
             return b.score - a.score;
         } else {
             return b.ratio - a.ratio;
         }
-    });
+    })
+}
+
+// to save scores in local storage
+function saveInLocalStorage() {
     const maxScoresToKeep = 10;
     scores = scores.slice(0, maxScoresToKeep);
     localStorage.setItem('bestScores', JSON.stringify(scores));
@@ -180,7 +190,7 @@ function getQuiz(json) {
 // .flat to have unidimensional array ; first .map to add order value which is randomize, and item to store precedent state of object
 // .sort to randomize element in array by using order value, then second .map to get back precedent state of each object after randomize them
 function mixQuestions(array) {
-    questions = array.flat().map(item => ({ item, order: Math.random() })).sort((a, b) => a.order - b.order).map(item => item.item)
+    questions = array.flat().map(item => ({ item, order: Math.random() })).sort((a, b) => a.order - b.order).map(item => item.item);
 }
 
 // to know each quiz already selected

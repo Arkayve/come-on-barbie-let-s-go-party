@@ -464,13 +464,14 @@ document.getElementById('home-mushroom').addEventListener('click', function (eve
 // backup of bestScores for test of localstorage functions in another computer
 // [{"name":"A","score":500},{"name":"B","score":450},{"name":"C","score":400},{"name":"D","score":350},{"name":"E","score":300},{"name":"F","score":250},{"name":"G","score":200},{"name":"H","score":150},{"name":"I","score":100},{"name":"J","score":50}];
 
+// clear ranking
 document.getElementById('index__ranking-container__btn-clear').addEventListener('click', function (event) {
     const warningText = "Warning, you're about to clear ranking cache of the game. Are you sure you want to do that ?";
     if (confirm(warningText)) localStorage.removeItem('bestScores');
     window.location.reload();
 })
 
-// listen switch mode btn
+// listen switch theme btn
 document.getElementById("index__switch-mode-container").addEventListener("click", () => {
     document.querySelector(".sun-logo").classList.toggle("animate-sun");
     document.querySelector(".moon-logo").classList.toggle("animate-moon");
@@ -497,7 +498,7 @@ function colorElementForMode() {
     localStorage.setItem('barbie-display-mode', modeToDisplay);
 }
 
-// to save actual mode
+// to save actual theme
 let modeToDisplay = localStorage.getItem('barbie-display-mode');
 if (modeToDisplay === 'light') {
     document.querySelector(':root').style.setProperty('--opacityThemeDisplay', 1);
@@ -509,7 +510,7 @@ else if (modeToDisplay === 'dark') {
     document.querySelector('.moon-logo').style.setProperty('transform', 'translateY(0%) rotateZ(0deg)');
 }
 
-const lightOrDark = [
+let lightOrDark = [
     {
         id: 'index__category-container__btn-back',
         src: `assets/img/go-back-btn-${modeToDisplay}.png`

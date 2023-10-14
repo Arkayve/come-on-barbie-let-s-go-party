@@ -214,6 +214,9 @@
     <footer>
     </footer>
 
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/functions.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 

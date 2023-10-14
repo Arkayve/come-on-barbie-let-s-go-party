@@ -53,7 +53,7 @@ let round = 0;
 
 // to display actual theme
 if (localStorage.getItem('barbie-display-mode')) {
-    colorElementForMode();
+    changeModeImg();
 };
 if (modeToDisplay === 'light') {
     document.querySelector(':root').style.setProperty('--opacityThemeDisplay', 1);

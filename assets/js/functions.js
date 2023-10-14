@@ -1,8 +1,14 @@
-function colorElementForMode() {
+// from lightOrDark array, choose whitch img to display
+function changeModeImg() {
     document.querySelector('body').dataset.theme = modeToDisplay;
     lightOrDark.forEach(i => {
         document.getElementById(i.id).setAttribute('src', i.src);
     })
+    saveActualMode ();
+}
+
+// save actual mode in local storage
+function saveActualMode () {
     localStorage.setItem('barbie-display-mode', modeToDisplay);
 }
 
@@ -10,15 +16,15 @@ function colorElementForMode() {
 function switchMode() {
     if (document.querySelector('body').dataset.theme === 'light') {
         modeToDisplay = 'dark';
-        colorElementForMode();
+        changeModeImg();
     }
     else if (document.querySelector('body').dataset.theme === 'dark') {
         modeToDisplay = 'light';
-        colorElementForMode();
+        changeModeImg();
     }
 }
 
-// function to manage hidden class more easily
+// function to add or remove hidden class from arrays
 function hideOrShowElement(arrayToHide, arrayToShow) {
     arrayToHide.forEach(elementId => {
         const element = document.getElementById(elementId);
@@ -30,7 +36,7 @@ function hideOrShowElement(arrayToHide, arrayToShow) {
     });
 }
 
-// display best scores on index.html
+// display best scores, take location in parameter
 function displayBestScores(where) {
     if (scores.length > 0) {
         where.innerHTML = '';
@@ -48,6 +54,7 @@ function displayBestScores(where) {
     }
 }
 
+// save each player name in array playerNames
 function savePlayerName() {
     const playerNameIdArray = ['first-player-name', 'second-player-name', 'third-player-name', 'fourth-player-name'];
     const maxPlayer = parseInt(document.getElementById('index__player__number').value);
@@ -93,6 +100,7 @@ function displayCategories() {
     window.scroll(0, 0);
 }
 
+// to display difficulties on mobile, need to manage hidden class on many div
 function displayDifficulty() {
     const elementsToHide = ['index__category-container__nav', 'index__category-responsive', 'index__category-container__title'];
     const elementsToShow = ['index__difficulty-container'];
@@ -125,7 +133,7 @@ function returnToIndex() {
     document.getElementById('index__difficulty-container__title').textContent = '';
 }
 
-// here we go !
+// run game, start timer, count round, and display question
 function runGame() {
     document.getElementById('index__category-container').classList.add('hidden');
     document.getElementById('game').classList.remove('hidden');
@@ -161,6 +169,7 @@ function displayQuestion() {
     }
 }
 
+// start new timer
 function runTimer() {
     let ms = 10;
     s = 19;
@@ -172,11 +181,13 @@ function runTimer() {
     }, 100)
 }
 
+// end timer
 function endTimer() {
     clearInterval(timer);
     endTime = Math.round(s);
 }
 
+// function to add or remove select class from answer buttons
 function loopAnswerBtn(target) {
     for (let i = 0; i < 4; i++) {
         const element = document.getElementById('btn-answer-' + i);
@@ -188,7 +199,7 @@ function loopAnswerBtn(target) {
     }
 }
 
-// here we make magic to display cool infos for players
+// when game ending, sort scores, display who wins, makes personal sentences for players, call saveBestScores
 function endGame() {
     const bestPlayer = [];
     document.getElementById('game').classList.add('hidden');
@@ -221,7 +232,7 @@ function endGame() {
     saveBestScores();
 }
 
-// here we reset all previous game values
+// here we reset all game values, all variables
 function fromScratch() {
     playerNames = [];
     playerScores = [];

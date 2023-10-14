@@ -1,3 +1,53 @@
+function colorElementForMode() {
+    document.querySelector('body').dataset.theme = modeToDisplay;
+    lightOrDark.forEach(i => {
+        document.getElementById(i.id).setAttribute('src', i.src);
+    })
+    localStorage.setItem('barbie-display-mode', modeToDisplay);
+}
+
+// change game theme
+function switchMode() {
+    if (document.querySelector('body').dataset.theme === 'light') {
+        modeToDisplay = 'dark';
+        colorElementForMode();
+    }
+    else if (document.querySelector('body').dataset.theme === 'dark') {
+        modeToDisplay = 'light';
+        colorElementForMode();
+    }
+}
+
+// function to manage hidden class more easily
+function hideOrShowElement(arrayToHide, arrayToShow) {
+    arrayToHide.forEach(elementId => {
+        const element = document.getElementById(elementId);
+        element.classList.add('hidden');
+    });
+    arrayToShow.forEach(elementId => {
+        const element = document.getElementById(elementId);
+        element.classList.remove('hidden');
+    });
+}
+
+// display best scores on index.html
+function displayBestScores(where) {
+    if (scores.length > 0) {
+        where.innerHTML = '';
+        scores.forEach((score, index) => {
+            const rank = index + 1;
+            const playerInfo = `${rank}. ${score.name} - Score: ${score.score}`;
+            const listItem = document.createElement('li');
+            listItem.textContent = playerInfo;
+            where.appendChild(listItem);
+        });
+    } else {
+        const listItem = document.createElement('li');
+        listItem.textContent = 'No score recorded.';
+        where.appendChild(listItem);
+    }
+}
+
 function savePlayerName() {
     const playerNameIdArray = ['first-player-name', 'second-player-name', 'third-player-name', 'fourth-player-name'];
     const maxPlayer = parseInt(document.getElementById('index__player__number').value);
@@ -8,18 +58,6 @@ function savePlayerName() {
         }
         playerNames.splice(maxPlayer, 3)
     }
-}
-
-// function to display categories
-function displayCategories() {
-    // here we verify if playernames fields aren't empty, and correspond to number of players
-    if (playerNames.length === 0 || document.getElementById('index__player__number').value != playerNames.length) return;
-    const elementsToHide = ['index__main-title', 'index__switch-mode-container', 'index__img-unicorn', 'index__player', 'index__difficulty-container', 'index__ranking-container', 'index__own-quiz-link'];
-    const elementsToShow = ['index__category-container', 'index__category-responsive', 'index__category-container__title', 'index__category-container__nav'];
-    hideOrShowElement(elementsToHide, elementsToShow);
-    colorCategory();
-    removeSelectClassOfDifficultyBtn();
-    window.scroll(0, 0);
 }
 
 // function to color categories in regards of difficulties selected
@@ -43,53 +81,16 @@ function colorCategory() {
     }
 }
 
-// a function to go back to homepage
-function returnToIndex() {
-    const elementsToHide = ['index__category-container'];
-    const elementsToShow = ['index__main-title', 'index__switch-mode-container', 'index__img-unicorn', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
+// function to display categories
+function displayCategories() {
+    // here we verify if playernames fields aren't empty, and correspond to number of players
+    if (playerNames.length === 0 || document.getElementById('index__player__number').value != playerNames.length) return;
+    const elementsToHide = ['index__main-title', 'index__switch-mode-container', 'index__img-unicorn', 'index__player', 'index__difficulty-container', 'index__ranking-container', 'index__own-quiz-link'];
+    const elementsToShow = ['index__category-container', 'index__category-responsive', 'index__category-container__title', 'index__category-container__nav'];
     hideOrShowElement(elementsToHide, elementsToShow);
-    document.getElementById('index__difficulty-container__title').textContent = '';
-}
-
-// display best scores on index.html
-function displayBestScores(where) {
-    if (scores.length > 0) {
-        where.innerHTML = '';
-        scores.forEach((score, index) => {
-            const rank = index + 1;
-            const playerInfo = `${rank}. ${score.name} - Score: ${score.score}`;
-            const listItem = document.createElement('li');
-            listItem.textContent = playerInfo;
-            where.appendChild(listItem);
-        });
-    } else {
-        const listItem = document.createElement('li');
-        listItem.textContent = 'No score recorded.';
-        where.appendChild(listItem);
-    }
-}
-
-function runTimer() {
-    let ms = 10;
-    s = 19;
-    timer = setInterval(function () {
-        ms -= 1;
-        if (s === 0 && ms === 0) endTimer();
-        else if (ms === 0) { ms = 10; s--; }
-        document.getElementById('game__timer').textContent = (s < 10 ? '0' + s : s) + ' : ' + (ms < 10 ? '0' + ms : ms);
-    }, 100)
-}
-
-function endTimer() {
-    clearInterval(timer);
-    endTime = Math.round(s);
-}
-
-// function to flat all item and random questions order
-// .flat to have unidimensional array ; first .map to add order value which is randomize, and item to store precedent state of object
-// .sort to randomize element in array by using order value, then second .map to get back precedent state of each object after randomize them
-function mixQuestions(array) {
-    questions = array.flat().map(item => ({ item, order: Math.random() })).sort((a, b) => a.order - b.order).map(item => item.item);
+    colorCategory();
+    removeSelectClassOfDifficultyBtn();
+    window.scroll(0, 0);
 }
 
 function displayDifficulty() {
@@ -116,6 +117,14 @@ function removeSelectClassOfDifficultyBtn() {
     })
 }
 
+// a function to go back to homepage
+function returnToIndex() {
+    const elementsToHide = ['index__category-container'];
+    const elementsToShow = ['index__main-title', 'index__switch-mode-container', 'index__img-unicorn', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
+    hideOrShowElement(elementsToHide, elementsToShow);
+    document.getElementById('index__difficulty-container__title').textContent = '';
+}
+
 // here we go !
 function runGame() {
     document.getElementById('index__category-container').classList.add('hidden');
@@ -129,6 +138,18 @@ function runGame() {
     }
 }
 
+function makeRound() {
+    if (round === playerNames.length) round = 0;
+    document.getElementById('game__who-play').textContent = `Hey ${playerNames[round]}, it's your turn. ${questions.length} question${questions.length > 1 ? 's' : ''} left.`;
+}
+
+// function to flat all item and random questions order
+// .flat to have unidimensional array ; first .map to add order value which is randomize, and item to store precedent state of object
+// .sort to randomize element in array by using order value, then second .map to get back precedent state of each object after randomize them
+function mixQuestions(array) {
+    questions = array.flat().map(item => ({ item, order: Math.random() })).sort((a, b) => a.order - b.order).map(item => item.item);
+}
+
 function displayQuestion() {
     const newQuestion = questions.shift();
     anecdote = newQuestion.anecdote;
@@ -140,9 +161,20 @@ function displayQuestion() {
     }
 }
 
-function makeRound() {
-    if (round === playerNames.length) round = 0;
-    document.getElementById('game__who-play').textContent = `Hey ${playerNames[round]}, it's your turn. ${questions.length} question${questions.length > 1 ? 's' : ''} left.`;
+function runTimer() {
+    let ms = 10;
+    s = 19;
+    timer = setInterval(function () {
+        ms -= 1;
+        if (s === 0 && ms === 0) endTimer();
+        else if (ms === 0) { ms = 10; s--; }
+        document.getElementById('game__timer').textContent = (s < 10 ? '0' + s : s) + ' : ' + (ms < 10 ? '0' + ms : ms);
+    }, 100)
+}
+
+function endTimer() {
+    clearInterval(timer);
+    endTime = Math.round(s);
 }
 
 function loopAnswerBtn(target) {
@@ -189,18 +221,6 @@ function endGame() {
     saveBestScores();
 }
 
-// function to manage hidden class more easily
-function hideOrShowElement(arrayToHide, arrayToShow) {
-    arrayToHide.forEach(elementId => {
-        const element = document.getElementById(elementId);
-        element.classList.add('hidden');
-    });
-    arrayToShow.forEach(elementId => {
-        const element = document.getElementById(elementId);
-        element.classList.remove('hidden');
-    });
-}
-
 // here we reset all previous game values
 function fromScratch() {
     playerNames = [];
@@ -235,24 +255,3 @@ function fromScratch() {
     document.getElementById('fourth-player-name').classList.remove('active');
     document.getElementById('index__player__number').value = 1;
 }
-
-// change game theme
-function switchMode() {
-    if (document.querySelector('body').dataset.theme === 'light') {
-        modeToDisplay = 'dark';
-        colorElementForMode();
-    }
-    else if (document.querySelector('body').dataset.theme === 'dark') {
-        modeToDisplay = 'light';
-        colorElementForMode();
-    }
-}
-
-function colorElementForMode() {
-    document.querySelector('body').dataset.theme = modeToDisplay;
-    lightOrDark.forEach(i => {
-        document.getElementById(i.id).setAttribute('src', i.src);
-    })
-    localStorage.setItem('barbie-display-mode', modeToDisplay);
-}
-

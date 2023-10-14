@@ -1,4 +1,4 @@
-// to save scores of each players in an object
+// to save scores of each players in scores array
 function saveBestScores() {
     questionsAnswered = questionsAnswered / playerNames.length;
     for (const i in playerNames) {
@@ -13,7 +13,7 @@ function saveBestScores() {
     saveInLocalStorage();
 }
 
-// to sort players scores
+// to sort scores by score, or ratio if same score
 function sortPlayerScores() {
     scores.sort((a, b) => {
         if (b.score !== a.score) {

@@ -1,4 +1,86 @@
-// here i display or hide input name in regards of number of players selected
+// get best scores data from local storage
+let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
+// get theme to display from local storaga
+let modeToDisplay = localStorage.getItem('barbie-display-mode') || 'light';
+// to change img in regards of theme
+let lightOrDark = [
+    {
+        id: 'index__category-container__btn-back',
+        src: `assets/img/go-back-btn-${modeToDisplay}.png`
+    },
+    {
+        id: 'index__category-container__btn-validate',
+        src: `assets/img/validate-btn-${modeToDisplay}.png`
+    },
+    {
+        id: 'index__difficulty-container__btn-back',
+        src: `assets/img/go-back-btn-${modeToDisplay}.png`
+    },
+    {
+        id: 'game-end',
+        src: `assets/img/end-party-btn-${modeToDisplay}.png`
+    },
+    {
+        id: 'game-next',
+        src: `assets/img/validate-btn-${modeToDisplay}.png`
+    }
+];
+// to record name of each player
+let playerNames = [];
+// to record score of each player
+let playerScores = [];
+// to make ratio
+let questionsAnswered = 0;
+// to have a timer in the game
+let endTime;
+let s;
+// possibility to store as many quiz as you wish
+let count = 0;
+// to know each quiz already selected
+let alreadySelected = [];
+let alreadySelectedCount = 0;
+// to have a variable with all questions
+let questions = [];
+// here is two variables to select which quiz we want regarding to difficulty
+let categoryName;
+let difficulty;
+// to display answer and anecdote
+let anecdote;
+let answer;
+// to know which player has to play
+let round = 0;
+
+
+// to display actual theme
+if (localStorage.getItem('barbie-display-mode')) {
+    colorElementForMode();
+};
+if (modeToDisplay === 'light') {
+    document.querySelector(':root').style.setProperty('--opacityThemeDisplay', 1);
+    document.querySelector(':root').style.setProperty('--opacityThemeHide', 0);
+}
+else if (modeToDisplay === 'dark') {
+    document.querySelector(':root').style.setProperty('--opacityThemeDisplay', 0);
+    document.querySelector(':root').style.setProperty('--opacityThemeHide', 1);
+    document.querySelector('.moon-logo').style.setProperty('transform', 'translateY(0%) rotateZ(0deg)');
+};
+
+// display scores if exist, or small sentences if not
+displayBestScores(document.getElementById('index__ranking-container__list'));
+
+// listen switch theme btn
+document.getElementById("index__switch-mode-container").addEventListener("click", () => {
+    document.querySelector(".sun-logo").classList.toggle("animate-sun");
+    document.querySelector(".moon-logo").classList.toggle("animate-moon");
+    switchMode()
+});
+
+// to animate unicorn on click
+document.getElementById('index__img-unicorn').addEventListener('click', function () {
+    document.getElementById('index__img-unicorn').classList.toggle('shakeIt');
+});
+
+// here we displayed right number of input name element
 document.getElementById('index__player__number').addEventListener("change", function () {
     const maxPlayer = parseInt(document.getElementById('index__player__number').value);
     for (let i = 1; i < 4; i++) {
@@ -7,21 +89,23 @@ document.getElementById('index__player__number').addEventListener("change", func
     }
 });
 
-// to record name of each player of party in an array
-let playerNames = [];
-
 // listen btn-category to reveal categories
 document.getElementById('index__player__btn-category').addEventListener('click', function () {
     savePlayerName();
     displayCategories();
-})
+});
 
 // to reset changes if btn pressed in homepage
 document.getElementById('index__player__btn-reset').addEventListener('click', function (event) {
     fromScratch();
-})
+});
 
-let questionsAnswered = 0;
+// clear ranking
+document.getElementById('index__ranking-container__btn-clear').addEventListener('click', function (event) {
+    const warningText = "Warning, you're about to clear ranking cache of the game. Are you sure you want to do that ?";
+    if (confirm(warningText)) localStorage.removeItem('bestScores');
+    window.location.reload();
+});
 
 // listen validate / go back buttons of categories
 document.getElementById('index__category-container__nav').addEventListener('click', function (event) {
@@ -36,32 +120,7 @@ document.getElementById('index__category-container__nav').addEventListener('clic
         window.scroll(0, 0);
         runGame();
     }
-})
-
-// get best scores data from local storage
-let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
-
-// an array to record each player score
-let playerScores = [];
-
-displayBestScores(document.getElementById('index__ranking-container__list'));
-
-// to have a timer in the game
-let endTime;
-let s;
-
-// function to save question following the difficulty in a variable
-// possibility to store as many quiz as you wish
-let count = 0;
-
-// to know each quiz already selected
-let alreadySelected = [];
-let alreadySelectedCount = 0;
-// to have a variable with all questions
-let questions = [];
-// here is two variables to select which quiz we want regarding to difficulty
-let categoryName;
-let difficulty;
+});
 
 // listen which category of quiz we want
 document.getElementById('index__category-container').addEventListener('click', function (event) {
@@ -77,7 +136,7 @@ document.getElementById('index__category-container').addEventListener('click', f
     displayDifficulty();
     // add select class if difficulty already added in questions for this category
     addSelectClassIfAlreadyClick();
-})
+});
 
 // listen which difficulty of quiz we want
 document.getElementById('index__difficulty-container').addEventListener('click', function (event) {
@@ -104,14 +163,9 @@ document.getElementById('index__difficulty-container').addEventListener('click',
     colorCategory();
     // to display validate btn
     document.getElementById('index__category-container__btn-validate').classList.remove('hidden');
-})
+});
 
-// function to display question and answer-btn from questions array
-let anecdote;
-let answer;
-let round = 0;
-
-// hey that's a block isn't it ?? her we listen which button (answer) we choose
+// here we listen which button is pressed
 document.getElementById('game__answer-container').addEventListener('click', function (event) {
     if (!event.target.classList.contains('game__answer-container__btn')) return;
     switch (event.target.id) {
@@ -129,7 +183,9 @@ document.getElementById('game__answer-container').addEventListener('click', func
             loopAnswerBtn(3);
             break;
     }
+    // increment this var to calculate ratio
     questionsAnswered++;
+    // to replace window on top
     window.scroll(0, 0);
     // we display anecdote for each question
     document.getElementById('game__anecdote').textContent = anecdote;
@@ -137,7 +193,7 @@ document.getElementById('game__answer-container').addEventListener('click', func
     const elementsToShow = ['game__comments', 'cat-unicorn', 'game__anecdote', 'game__nav'];
     hideOrShowElement(elementsToHide, elementsToShow);
     endTimer();
-    // and here we know if you are a potatoe
+    // and here we display personal sentence for each player
     if (event.target.textContent === answer) {
         !playerScores[round] ? playerScores[round] = 50 : playerScores[round] += 50;
         playerScores[round] += endTime;
@@ -147,7 +203,7 @@ document.getElementById('game__answer-container').addEventListener('click', func
         document.getElementById('game__comments').textContent = `Soz, maybe next time, ${playerNames[round]}. Your actual score is ${playerScores[round]}.`;
     }
     round++;
-})
+});
 
 // to listen game nav btn, hide what have to be hide, remove select class and go to next round
 document.getElementById('game__nav').addEventListener('click', function (event) {
@@ -170,71 +226,10 @@ document.getElementById('game__nav').addEventListener('click', function (event) 
         window.scroll(0, 0);
         runGame();
     }
-})
+});
 
 // listen btn go home of ending page
 document.getElementById('home-mushroom').addEventListener('click', function (event) {
     window.scroll(0, 0);
     fromScratch();
-})
-
-// backup of bestScores for test of localstorage functions in another computer
-// [{"name":"A","score":500},{"name":"B","score":450},{"name":"C","score":400},{"name":"D","score":350},{"name":"E","score":300},{"name":"F","score":250},{"name":"G","score":200},{"name":"H","score":150},{"name":"I","score":100},{"name":"J","score":50}];
-
-// clear ranking
-document.getElementById('index__ranking-container__btn-clear').addEventListener('click', function (event) {
-    const warningText = "Warning, you're about to clear ranking cache of the game. Are you sure you want to do that ?";
-    if (confirm(warningText)) localStorage.removeItem('bestScores');
-    window.location.reload();
-})
-
-// listen switch theme btn
-document.getElementById("index__switch-mode-container").addEventListener("click", () => {
-    document.querySelector(".sun-logo").classList.toggle("animate-sun");
-    document.querySelector(".moon-logo").classList.toggle("animate-moon");
-    switchMode()
-})
-
-// to save actual theme
-let modeToDisplay = localStorage.getItem('barbie-display-mode');
-if (modeToDisplay === 'light') {
-    document.querySelector(':root').style.setProperty('--opacityThemeDisplay', 1);
-    document.querySelector(':root').style.setProperty('--opacityThemeHide', 0);
-}
-else if (modeToDisplay === 'dark') {
-    document.querySelector(':root').style.setProperty('--opacityThemeDisplay', 0);
-    document.querySelector(':root').style.setProperty('--opacityThemeHide', 1);
-    document.querySelector('.moon-logo').style.setProperty('transform', 'translateY(0%) rotateZ(0deg)');
-}
-
-let lightOrDark = [
-    {
-        id: 'index__category-container__btn-back',
-        src: `assets/img/go-back-btn-${modeToDisplay}.png`
-    },
-    {
-        id: 'index__category-container__btn-validate',
-        src: `assets/img/validate-btn-${modeToDisplay}.png`
-    },
-    {
-        id: 'index__difficulty-container__btn-back',
-        src: `assets/img/go-back-btn-${modeToDisplay}.png`
-    },
-    {
-        id: 'game-end',
-        src: `assets/img/end-party-btn-${modeToDisplay}.png`
-    },
-    {
-        id: 'game-next',
-        src: `assets/img/validate-btn-${modeToDisplay}.png`
-    }
-]
-
-if (localStorage.getItem('barbie-display-mode')) {
-    colorElementForMode();
-}
-
-// to move unicorn when we want
-document.getElementById('index__img-unicorn').addEventListener('click', function () {
-    document.getElementById('index__img-unicorn').classList.toggle('shakeIt');
-})
+});

@@ -1,3 +1,4 @@
+// to get proper array from json file
 function getQuiz(json) {
     fetch(json)
         .then(response => response.json())

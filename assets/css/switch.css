@@ -1,0 +1,50 @@
+/* SWITCH MODE */
+.index__switch-mode-container{
+    position: absolute;
+    right: 10%;
+    top: 10%;
+}
+
+.sun, .moon{
+    font-size: 10rem;
+    width: fit-content;
+    height: fit-content;
+}
+
+.moon{
+    position: absolute;
+    inset: 0;
+    fill: var(--blue-light);
+}
+
+.moon-logo{
+    opacity: var(--opacityThemeHide);
+    transform: translateY(20%) rotateZ(50deg);
+    transition: all 1s ease-out;
+}
+
+.sun-logo{
+    opacity: var(--opacityThemeDisplay);
+    transform: translateY(0) rotateZ(0deg);
+    transition: all 1s ease-out;
+    fill: var(--red-light);
+}
+
+.animate-sun{
+    opacity: var(--opacityThemeHide);
+    transform: translateY(20%) rotateZ(100deg);
+}
+
+.animate-moon{
+    opacity: var(--opacityThemeDisplay);
+    transform: translateY(0%) rotateZ(0deg);
+    fill: var(--blue-light);
+}
+
+.animate-moon path{
+  fill: var(--blue-light);
+}
+
+.animate-sun path{
+  fill: var(--red-light);
+}

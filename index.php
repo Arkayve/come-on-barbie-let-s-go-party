@@ -17,7 +17,7 @@
 
     <main>
         <section id="index">
-            <div class="index__main-title-container">
+            <div class="index__main-title-container flex">
                 <h1 id="index__main-title">Come on Barbie let's go party !</h1>
                 <div id="index__switch-mode-container" class="index__switch-mode-container">
                     <div class="sun sun-logo">
@@ -34,8 +34,8 @@
                     </div>
                 </div>
             </div>
-            <img id="index__img-unicorn" class="unicorn" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
-            <div class="index__responsive-container">
+            <img id="index__img-unicorn" class="unicorn w-90 max-w-500" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
+            <div class="index__responsive-container justify-center w-90 m-auto">
                 <div id="index__player" class="flex column align-center">
                     <h2>How many players are you ?</h2>
                     <select id="index__player__number" class="btn index__player__number">
@@ -45,15 +45,15 @@
                         <option value="4">4</option>
                     </select>
                     <input id="first-player-name" type="text" placeholder="First player name ?"
-                        class="btn index__player__name active">
+                        class="btn index__player__name max-w-500 active">
                     <input id="second-player-name" type="text" placeholder="Second player name ?"
-                        class="btn index__player__name">
+                        class="btn index__player__name max-w-500">
                     <input id="third-player-name" type="text" placeholder="Third player name ?"
-                        class="btn index__player__name">
+                        class="btn index__player__name max-w-500">
                     <input id="fourth-player-name" type="text" placeholder="Fourth player name ?"
-                        class="btn index__player__name">
+                        class="btn index__player__name max-w-500">
                     <button type="button" id="index__player__btn-category"
-                        class="btn index__player__btn-category">Select
+                        class="btn index__player__btn-category w-90 max-w-500">Select
                         category</button>
                     <button type="button" id="index__player__btn-reset" class="btn index__player__btn-reset">Reset
                         changes</button>
@@ -62,7 +62,7 @@
                     <h3 id="index__ranking-container__title" class="index__ranking-container__title">They're simply the
                         best
                         :</h3>
-                    <ol id="index__ranking-container__list" class="btn index__ranking-container__list"></ol>
+                    <ol id="index__ranking-container__list" class="btn index__ranking-container__list w-90 max-w-500 m-auto"></ol>
                     <a id="index__own-quiz-link" class="index__own-quiz-link" href="#">Wanna make your own quiz ?</a>
                     <button type="button" id="index__ranking-container__btn-clear"
                         class="btn index__ranking-container__btn-clear">Clear ranking</button>
@@ -75,62 +75,62 @@
 
                 <div id="index__category-responsive"
                     class="index__category-responsive flex align-center justify-center column">
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="bieres_belges">Bières belges</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="covid_19">COVID-19</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="culture_en_vrac">Culture en
                         vrac</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="dessins_animes">Dessins
                         animés</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="faits_de_societe">Faits de
                         société</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="grands_monuments">Grands
                         monuments</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="heros_de_kaamelott">Héros de
                         Kaamelott</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="marques_et_slogans">Marques et
                         slogans</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="mont_saint_michel">Mont
                         Saint-Michel</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="mythes_et_legendes">Mythes et
                         légendes</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="paris_de_nos_jours">Paris de nos
                         jours</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="series_americaines">Séries
                         américaines</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="star_trek">Star Trek</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="stats_internet_2018">Stats internet
                         2018</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center"
+                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
                         data-category-name="x_files">X-Files</button>
                 </div>
 
                 <div id="index__difficulty-container"
                     class="index__difficulty-container flex column align-center justify-around hidden">
                     <h2 id="index__difficulty-container__title"></h2>
-                    <div class="index__difficulty-responsive">
+                    <div class="index__difficulty-responsive justify-around">
                         <img src="assets/img/panfa-kawai.png" alt="panda kawai"
                             class="index__difficulty-responsive__img">
                         <div class="index__difficulty-responsive__btn">
                             <button id="débutant" type="button"
-                                class="btn index__difficulty-container__btn easy">Easy</button>
+                                class="btn index__difficulty-container__btn easy w-90 max-w-500">Easy</button>
                             <button id="confirmé" type="button"
-                                class="btn index__difficulty-container__btn medium">Medium</button>
+                                class="btn index__difficulty-container__btn medium w-90 max-w-500">Medium</button>
                             <button id="expert" type="button"
-                                class="btn index__difficulty-container__btn hard">Hard</button>
+                                class="btn index__difficulty-container__btn hard w-90 max-w-500">Hard</button>
                         </div>
                         <img src="assets/img/unicorn-star.png" alt="unicorn with a star"
                             class="index__difficulty-responsive__img">
@@ -152,20 +152,20 @@
         <section id="game" class="game hidden">
 
             <h2 id="game__who-play" class="game__who-play"></h2>
-            <h4 id="game__question" class="btn game__question"></h4>
+            <h4 id="game__question" class="btn game__question max-w-500 m-auto"></h4>
             <p id="game__timer" class="btn game__timer"></p>
 
             <div id="game__answer-container" class="game__answer-container flex column align-center">
-                <button type="button" id="btn-answer-0" class="btn game__answer-container__btn"></button>
-                <button type="button" id="btn-answer-1" class="btn game__answer-container__btn"></button>
-                <button type="button" id="btn-answer-2" class="btn game__answer-container__btn"></button>
-                <button type="button" id="btn-answer-3" class="btn game__answer-container__btn"></button>
+                <button type="button" id="btn-answer-0" class="btn game__answer-container__btn w-90"></button>
+                <button type="button" id="btn-answer-1" class="btn game__answer-container__btn w-90"></button>
+                <button type="button" id="btn-answer-2" class="btn game__answer-container__btn w-90"></button>
+                <button type="button" id="btn-answer-3" class="btn game__answer-container__btn w-90"></button>
             </div>
 
-            <p id="game__comments" class="btn game__comments hidden"></p>
+            <p id="game__comments" class="btn game__comments max-w-500 hidden"></p>
             <img src="assets/img/cat-unicorn.png" alt="cat with unicorn costum" id="cat-unicorn"
                 class="cat-unicorn hidden">
-            <p id="game__anecdote" class="game__anecdote hidden"></p>
+            <p id="game__anecdote" class="game__anecdote w-90 max-w-500 hidden"></p>
             <div id="game__nav" class="game__nav flex justify-around hidden">
                 <img src="assets/img/end-party-btn-light.png" alt="icon arrow left" id="game-end" class="img game__nav__img">
                 <img src="assets/img/validate-btn-light.png" alt="icon validate" id="game-next" class="img game__nav__img">
@@ -175,8 +175,8 @@
 
         <section id="endgame" class="endgame hidden flex column align-center">
             <h2>Here are your game stats !</h2>
-            <p id="endgame__stats" class="endgame__stats"></p>
-            <img src="assets/img/unicorn-ftw.png" alt="glory unicorn" class="glory-unicorn">
+            <p id="endgame__stats" class="endgame__stats w-90 max-w-500"></p>
+            <img src="assets/img/unicorn-ftw.png" alt="glory unicorn" class="glory-unicorn w-90 max-w-500">
             <img src="assets/img/home-mushroom.png" alt="home mushroom" id="home-mushroom" class="img home-mushroom">
         </section>
 

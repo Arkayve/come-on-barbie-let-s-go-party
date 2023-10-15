@@ -80,6 +80,18 @@
     background-color: var(--orange-light) !important;
 }
 
+.w-90 {
+    width: 90%;
+}
+
+.max-w-500 {
+    max-width: 500px;
+}
+
+.m-auto {
+    margin: auto;
+}
+
 /* ELEMENTS */
 body {
     background-color: var(--pink);
@@ -90,8 +102,6 @@ body {
 }
 
 .unicorn {
-    width: 100%;
-    max-width: 450px;
     animation: flip;
     animation-duration: 1.5s;
 }
@@ -101,26 +111,22 @@ body {
     animation-duration: 2s;
 }
 
-.index__main-title-container {
-    display: flex;
-}
-
 h1 {
     font-family: var(--primary-font);
     font-size: 3rem;
-    margin: 40px auto;
+    margin-top: 40px;
     max-width: 400px;
 }
 
 h2 {
     font-size: 2rem;
-    margin: 30px 40px 40px 40px;
+    margin: 30px 40px;
 }
 
 h3 {
     font-size: 1.8rem;
     font-weight: 500;
-    margin: 20px auto 10px auto;
+    margin: 20px auto;
     width: 60%;
 }
 
@@ -207,7 +213,6 @@ h3 {
     font-size: 1.5rem;
     background-color: var(--grey-light);
     width: 70%;
-    max-width: 460px;
     margin: 15px;
     text-align: center;
 }
@@ -222,8 +227,6 @@ h3 {
 .index__player__btn-category {
     background-color: var(--green-light);
     font-size: 1.8rem;
-    width: 80%;
-    max-width: 500px;
     margin: 15px;
 }
 
@@ -239,9 +242,6 @@ h3 {
 .index__ranking-container__list {
     font-size: 1.3rem;
     background-color: var(--pink-light);
-    width: 80%;
-    max-width: 500px;
-    margin: auto;
     margin-top: 30px;
     list-style-type: none;
     opacity: 70%;
@@ -264,7 +264,6 @@ h3 {
 .index__category-container__btn {
     font-size: 1.8rem;
     background-color: var(--grey-light);
-    width: 90%;
     max-width: 370px;
     margin: 15px;
     transition: none;
@@ -285,8 +284,6 @@ h3 {
 
 .index__difficulty-container__btn {
     font-size: 1.8rem;
-    width: 90%;
-    max-width: 500px;
     margin: 15px;
     transition: none;
 }
@@ -314,10 +311,9 @@ h3 {
 
 .game__question {
     font-size: 1.8rem;
-    width: 80%;
-    max-width: 500px;
     background-color: var(--pink-light);
-    margin: auto auto 40px auto;
+    margin-bottom: 40px;
+    width: 80%;
 }
 
 .game__timer {
@@ -325,14 +321,13 @@ h3 {
     background-color: var(--yellow-light);
     width: 30%;
     max-width: 150px;
-    margin: 30px auto 30px auto;
+    margin: 30px auto;
     font-weight: 600;
 }
 
 .game__answer-container__btn {
     font-size: 1.8rem;
     background-color: var(--grey-light);
-    width: 90%;
     max-width: 400px;
     margin: 15px;
 }
@@ -342,7 +337,6 @@ h3 {
     font-size: 1.8rem;
     font-weight: 400;
     width: 70%;
-    max-width: 500px;
     background-color: var(--pink-light);
     margin: 30px auto 10px auto;
 }
@@ -354,8 +348,6 @@ h3 {
 
 .game__anecdote {
     font-size: 1.8rem;
-    width: 90%;
-    max-width: 500px;
     margin: 20px auto;
 }
 
@@ -372,16 +364,9 @@ h3 {
 }
 
 .endgame__stats {
-    width: 90%;
-    max-width: 500px;
     margin: 30px auto;
     font-size: 1.8rem;
     list-style-type: none;
-}
-
-.glory-unicorn {
-    width: 90%;
-    max-width: 500px;
 }
 
 .home-mushroom {
@@ -397,9 +382,6 @@ h3 {
     /* INDEX PAGE */
     .index__responsive-container {
         display: flex;
-        justify-content: center;
-        width: 80%;
-        margin: auto;
     }
 
     .index__switch-mode-container {
@@ -410,18 +392,14 @@ h3 {
         margin-top: 30px;
     }
 
-    .index__ranking-container__list {
-        width: 100% !important;
-    }
-
     .index__category-container__title {
         display: block !important;
     }
 
     .index__category-responsive {
+        display: flex !important;
         flex-direction: row;
         flex-wrap: wrap;
-        display: flex !important;
     }
 
     .index__difficulty-container__nav__img {
@@ -454,7 +432,6 @@ h3 {
 
     .index__difficulty-responsive {
         display: flex;
-        justify-content: space-around;
         margin-top: -50px;
     }
 

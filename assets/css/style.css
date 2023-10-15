@@ -58,6 +58,10 @@
     justify-content: center;
 }
 
+.justify-around {
+    justify-content: space-around;
+}
+
 .align-center {
     align-items: center;
 }
@@ -76,6 +80,7 @@
     background-color: var(--orange-light) !important;
 }
 
+/* ELEMENTS */
 body {
     background-color: var(--pink);
     font-family: var(--secondary-font);
@@ -121,6 +126,68 @@ h3 {
 
 .btn {
     font-family: var(--secondary-font);
+    color: var(--black);
+    padding: 10px 20px;
+    border: solid var(--black) 2px;
+    border-radius: 40px;
+    transition: 1s ease-in-out;
+}
+
+.img {
+    width: 25%;
+    max-width: 125px;
+    margin-top: 30px;
+}
+
+/* SWITCH MODE */
+.index__switch-mode-container{
+    position: absolute;
+    right: 10%;
+    top: 10%;
+}
+
+.sun, .moon{
+    font-size: 10rem;
+    width: fit-content;
+    height: fit-content;
+}
+
+.moon{
+    position: absolute;
+    inset: 0;
+    fill: var(--blue-light);
+}
+
+.moon-logo{
+    opacity: var(--opacityThemeHide);
+    transform: translateY(20%) rotateZ(50deg);
+    transition: all 1s ease-out;
+}
+
+.sun-logo{
+    opacity: var(--opacityThemeDisplay);
+    transform: translateY(0) rotateZ(0deg);
+    transition: all 1s ease-out;
+    fill: var(--red-light);
+}
+
+.animate-sun{
+    opacity: var(--opacityThemeHide);
+    transform: translateY(20%) rotateZ(100deg);
+}
+
+.animate-moon{
+    opacity: var(--opacityThemeDisplay);
+    transform: translateY(0%) rotateZ(0deg);
+    fill: var(--blue-light);
+}
+
+.animate-moon path{
+  fill: var(--blue-light);
+}
+
+.animate-sun path{
+  fill: var(--red-light);
 }
 
 /* NUMBER OF PLAYER */
@@ -130,31 +197,19 @@ h3 {
 }
 
 .index__player__number {
-    font-family: var(--secondary-font);
     font-size: 2rem;
     background-color: var(--green-light);
-    border: solid var(--black) 2px;
-    border-radius: 40px;
-    padding: 10px 40px;
     margin-bottom: 15px;
-    color: var(--black);
-    transition: 1s ease-in-out;
 }
 
 /* INPUT NAMES */
 .index__player__name {
-    font-family: var(--secondary-font);
     font-size: 1.5rem;
-    text-align: center;
     background-color: var(--grey-light);
-    border: solid var(--black) 2px;
-    border-radius: 40px;
     width: 70%;
     max-width: 460px;
-    padding: 10px 20px;
     margin: 15px;
-    transition: 1s ease-in-out;
-    color: var(--black);
+    text-align: center;
 }
 
 .index__player__name::placeholder {
@@ -166,31 +221,19 @@ h3 {
 /* BTN SELECT CATEGORY */
 .index__player__btn-category {
     background-color: var(--green-light);
-    text-align: center;
     font-size: 1.8rem;
-    border-radius: 40px;
-    border: solid 1px var(--black);
     width: 80%;
     max-width: 500px;
-    padding: 10px 20px;
     margin: 15px;
-    color: var(--black);
-    transition: 1s ease-in-out;
 }
 
 /* BTN RESET CHANGES */
 .index__ranking-container__btn-clear,
 .index__player__btn-reset {
     background-color: var(--red-light);
-    text-align: center;
     font-size: 1.5rem;
-    padding: 10px 20px;
     margin: 15px;
     width: 35%;
-    border-radius: 40px;
-    border: solid 1px var(--black);
-    color: var(--black);
-    transition: 1s ease-in-out;
 }
 
 .index__ranking-container__list {
@@ -199,13 +242,9 @@ h3 {
     width: 80%;
     max-width: 500px;
     margin: auto;
-    padding: 20px;
     margin-top: 30px;
-    border: solid var(--black) 1px;
-    border-radius: 50px;
     list-style-type: none;
     opacity: 70%;
-    transition: 1s ease-in-out;
 }
 
 .index__own-quiz-link {
@@ -223,31 +262,21 @@ h3 {
 }
 
 .index__category-container__btn {
-    text-align: center;
     font-size: 1.8rem;
     background-color: var(--grey-light);
-    border-radius: 40px;
     width: 90%;
     max-width: 370px;
-    padding: 10px 20px;
     margin: 15px;
-    color: var(--black);
-    border: solid 1px var(--black);
+    transition: none;
 }
 
 .index__category-container__nav {
-    justify-content: space-around;
     margin: 20px auto;
-}
-
-.index__category-container__nav__img {
-    width: 30%;
 }
 
 /* CHOICE OF DIFFICULTY */
 .index__difficulty-container {
     height: 700px;
-    justify-content: space-around;
 }
 
 .index__difficulty-container h2 {
@@ -256,14 +285,10 @@ h3 {
 
 .index__difficulty-container__btn {
     font-size: 1.8rem;
-    background-color: var(--grey-light);
     width: 90%;
     max-width: 500px;
-    padding: 10px 20px;
     margin: 15px;
-    border-radius: 40px;
-    color: var(--black);
-    border: solid 1px var(--black);
+    transition: none;
 }
 
 .easy {
@@ -276,12 +301,6 @@ h3 {
 
 .hard {
     background-color: var(--red-light);
-}
-
-.index__difficulty-container__nav__img {
-    width: 25%;
-    max-width: 125px;
-    margin-top: 30px;
 }
 
 .index__difficulty-responsive__img {
@@ -299,34 +318,23 @@ h3 {
     max-width: 500px;
     background-color: var(--pink-light);
     margin: auto auto 40px auto;
-    padding: 20px 10px;
-    border: solid var(--black) 1px;
-    border-radius: 50px;
 }
 
 .game__timer {
     font-size: 1.8rem;
-    border: solid 1px var(--black);
-    border-radius: 40px;
     background-color: var(--yellow-light);
     width: 30%;
     max-width: 150px;
     margin: 30px auto 30px auto;
-    padding: 20px 10px;
     font-weight: 600;
 }
 
 .game__answer-container__btn {
-    text-align: center;
     font-size: 1.8rem;
     background-color: var(--grey-light);
-    border-radius: 40px;
     width: 90%;
     max-width: 400px;
-    padding: 10px 20px;
     margin: 15px;
-    color: var(--black);
-    border: solid 1px var(--black);
 }
 
 /* ANSWER */
@@ -337,9 +345,6 @@ h3 {
     max-width: 500px;
     background-color: var(--pink-light);
     margin: 30px auto 10px auto;
-    padding: 20px 10px;
-    border: solid var(--black) 1px;
-    border-radius: 50px;
 }
 
 .cat-unicorn {
@@ -355,14 +360,8 @@ h3 {
 }
 
 .game__nav {
-    justify-content: space-around;
     margin: 40px auto;
     max-width: 400px;
-}
-
-.game__nav__img {
-    width: 30%;
-    max-width: 125px;
 }
 
 /* ENDGAME */
@@ -386,10 +385,151 @@ h3 {
 }
 
 .home-mushroom {
-    width: 25%;
-    max-width: 120px;
     margin-top: -50px;
     margin-bottom: 30px;
     border-radius: 100px;
     box-shadow: 5px 5px 5px var(--black);
 }
+
+/* RESPONSIVE */
+@media screen and (min-width: 800px) {
+
+    /* INDEX PAGE */
+    .index__responsive-container {
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        margin: auto;
+    }
+
+    .index__switch-mode-container {
+        right: 30% !important;
+    }
+
+    .index__ranking-container__title {
+        margin-top: 30px;
+    }
+
+    .index__ranking-container__list {
+        width: 100% !important;
+    }
+
+    .index__category-container__title {
+        display: block !important;
+    }
+
+    .index__category-responsive {
+        flex-direction: row;
+        flex-wrap: wrap;
+        display: flex !important;
+    }
+
+    .index__difficulty-container__nav__img {
+        display: none;
+    }
+
+    .index__difficulty-container {
+        display: flex !important;
+        height: 500px;
+    }
+
+    .index__category-container__nav {
+        display: flex !important;
+        width: 40%;
+        margin: 0px auto;
+    }
+
+    .index__difficulty-container__title {
+        display: block;
+    }
+
+    .index__difficulty-container__btn {
+        max-width: 300px;
+    }
+
+    .index__difficulty-responsive__img {
+        display: inline;
+        height: 400px;
+    }
+
+    .index__difficulty-responsive {
+        display: flex;
+        justify-content: space-around;
+        margin-top: -50px;
+    }
+
+    .index__difficulty-responsive__btn {
+        margin-top: 70px;
+    }
+
+    /* GAME */
+    .game__who-play {
+        margin: 80px;
+    }
+
+    .game__question {
+        padding: 50px 100px;
+    }
+
+    .game__answer-container {
+        flex-wrap: wrap;
+        height: 300px
+    }
+
+    .game__answer-container__btn {
+        padding: 20px 30px;
+    }
+}
+
+/* ANIMATIONS */
+@keyframes flip {
+    from {
+      transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);
+      animation-timing-function: ease-out;
+    }
+  
+    40% {
+      transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)
+        rotate3d(0, 1, 0, -190deg);
+      animation-timing-function: ease-out;
+    }
+  
+    50% {
+      transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)
+        rotate3d(0, 1, 0, -170deg);
+      animation-timing-function: ease-in;
+    }
+  
+    80% {
+      transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0)
+        rotate3d(0, 1, 0, 0deg);
+      animation-timing-function: ease-in;
+    }
+  
+    to {
+      transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);
+      animation-timing-function: ease-in;
+    }
+  }
+
+@keyframes shake {
+    from,
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: translate3d(-10px, 0, 0);
+    }
+  
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: translate3d(10px, 0, 0);
+    }
+  }

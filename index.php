@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/keyframes.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="stylesheet" href="assets/css/switch.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" type="png" href="assets/img/star-icon.png" />
     <title>Come on Barbie let's go party</title>
@@ -41,20 +38,20 @@
             <div class="index__responsive-container">
                 <div id="index__player" class="flex column align-center">
                     <h2>How many players are you ?</h2>
-                    <select id="index__player__number" class="index__player__number">
+                    <select id="index__player__number" class="btn index__player__number">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
                     <input id="first-player-name" type="text" placeholder="First player name ?"
-                        class="index__player__name active">
+                        class="btn index__player__name active">
                     <input id="second-player-name" type="text" placeholder="Second player name ?"
-                        class="index__player__name">
+                        class="btn index__player__name">
                     <input id="third-player-name" type="text" placeholder="Third player name ?"
-                        class="index__player__name">
+                        class="btn index__player__name">
                     <input id="fourth-player-name" type="text" placeholder="Fourth player name ?"
-                        class="index__player__name">
+                        class="btn index__player__name">
                     <button type="button" id="index__player__btn-category"
                         class="btn index__player__btn-category">Select
                         category</button>
@@ -65,7 +62,7 @@
                     <h3 id="index__ranking-container__title" class="index__ranking-container__title">They're simply the
                         best
                         :</h3>
-                    <ol id="index__ranking-container__list" class="index__ranking-container__list"></ol>
+                    <ol id="index__ranking-container__list" class="btn index__ranking-container__list"></ol>
                     <a id="index__own-quiz-link" class="index__own-quiz-link" href="#">Wanna make your own quiz ?</a>
                     <button type="button" id="index__ranking-container__btn-clear"
                         class="btn index__ranking-container__btn-clear">Clear ranking</button>
@@ -122,7 +119,7 @@
                 </div>
 
                 <div id="index__difficulty-container"
-                    class="index__difficulty-container flex column align-center hidden">
+                    class="index__difficulty-container flex column align-center justify-around hidden">
                     <h2 id="index__difficulty-container__title"></h2>
                     <div class="index__difficulty-responsive">
                         <img src="assets/img/panfa-kawai.png" alt="panda kawai"
@@ -139,14 +136,14 @@
                             class="index__difficulty-responsive__img">
                     </div>
                     <img id="index__difficulty-container__btn-back" src="assets/img/go-back-btn-light.png" alt="icon arrow left" data-value="back"
-                        class="index__difficulty-container__nav__img">
+                        class="img index__difficulty-container__nav__img">
                 </div>
 
-                <div id="index__category-container__nav" class="index__category-container__nav flex">
+                <div id="index__category-container__nav" class="index__category-container__nav flex justify-around">
                     <img src="assets/img/go-back-btn-light.png" alt="icon arrow left" id="index__category-container__btn-back"
-                        class="index__category-container__nav__img">
+                        class="img index__category-container__nav__img">
                     <img src="assets/img/validate-btn-light.png" alt="icon validate" id="index__category-container__btn-validate"
-                        class="index__category-container__nav__img hidden">
+                        class="img index__category-container__nav__img hidden">
                 </div>
             </div>
 
@@ -155,8 +152,8 @@
         <section id="game" class="game hidden">
 
             <h2 id="game__who-play" class="game__who-play"></h2>
-            <h4 id="game__question" class="game__question"></h4>
-            <p id="game__timer" class="game__timer"></p>
+            <h4 id="game__question" class="btn game__question"></h4>
+            <p id="game__timer" class="btn game__timer"></p>
 
             <div id="game__answer-container" class="game__answer-container flex column align-center">
                 <button type="button" id="btn-answer-0" class="btn game__answer-container__btn"></button>
@@ -165,13 +162,13 @@
                 <button type="button" id="btn-answer-3" class="btn game__answer-container__btn"></button>
             </div>
 
-            <p id="game__comments" class="game__comments hidden"></p>
+            <p id="game__comments" class="btn game__comments hidden"></p>
             <img src="assets/img/cat-unicorn.png" alt="cat with unicorn costum" id="cat-unicorn"
                 class="cat-unicorn hidden">
             <p id="game__anecdote" class="game__anecdote hidden"></p>
-            <div id="game__nav" class="game__nav flex hidden">
-                <img src="assets/img/end-party-btn-light.png" alt="icon arrow left" id="game-end" class="game__nav__img">
-                <img src="assets/img/validate-btn-light.png" alt="icon validate" id="game-next" class="game__nav__img">
+            <div id="game__nav" class="game__nav flex justify-around hidden">
+                <img src="assets/img/end-party-btn-light.png" alt="icon arrow left" id="game-end" class="img game__nav__img">
+                <img src="assets/img/validate-btn-light.png" alt="icon validate" id="game-next" class="img game__nav__img">
             </div>
 
         </section>
@@ -180,7 +177,7 @@
             <h2>Here are your game stats !</h2>
             <p id="endgame__stats" class="endgame__stats"></p>
             <img src="assets/img/unicorn-ftw.png" alt="glory unicorn" class="glory-unicorn">
-            <img src="assets/img/home-mushroom.png" alt="home mushroom" id="home-mushroom" class="home-mushroom">
+            <img src="assets/img/home-mushroom.png" alt="home mushroom" id="home-mushroom" class="img home-mushroom">
         </section>
 
         <section id="own-quiz" class="own-quiz hidden">

@@ -101,7 +101,7 @@ body {
     transition: 1s ease-in-out;
 }
 
-.unicorn {
+.main__img {
     animation: flip;
     animation-duration: 1.5s;
 }
@@ -114,7 +114,7 @@ body {
 h1 {
     font-family: var(--primary-font);
     font-size: 3rem;
-    margin-top: 40px;
+    margin: 40px auto 0px auto;
     max-width: 400px;
 }
 
@@ -146,70 +146,70 @@ h3 {
 }
 
 /* SWITCH MODE */
-.index__switch-mode-container{
+.main__switch-mode {
     position: absolute;
     right: 10%;
     top: 10%;
 }
 
-.sun, .moon{
+.sun, .moon {
     font-size: 10rem;
     width: fit-content;
     height: fit-content;
 }
 
-.moon{
+.moon {
     position: absolute;
     inset: 0;
     fill: var(--blue-light);
 }
 
-.moon-logo{
+.moon-logo {
     opacity: var(--opacityThemeHide);
     transform: translateY(20%) rotateZ(50deg);
     transition: all 1s ease-out;
 }
 
-.sun-logo{
+.sun-logo {
     opacity: var(--opacityThemeDisplay);
     transform: translateY(0) rotateZ(0deg);
     transition: all 1s ease-out;
     fill: var(--red-light);
 }
 
-.animate-sun{
+.animate-sun {
     opacity: var(--opacityThemeHide);
     transform: translateY(20%) rotateZ(100deg);
 }
 
-.animate-moon{
+.animate-moon {
     opacity: var(--opacityThemeDisplay);
     transform: translateY(0%) rotateZ(0deg);
     fill: var(--blue-light);
 }
 
-.animate-moon path{
+.animate-moon path {
   fill: var(--blue-light);
 }
 
-.animate-sun path{
+.animate-sun path {
   fill: var(--red-light);
 }
 
 /* NUMBER OF PLAYER */
 /* to hide input of other players if not use */
-.index__player__name:not(.active) {
+.player__name:not(.active) {
     display: none;
 }
 
-.index__player__number {
+.player__number {
     font-size: 2rem;
     background-color: var(--green-light);
     margin-bottom: 15px;
 }
 
 /* INPUT NAMES */
-.index__player__name {
+.player__name {
     font-size: 1.5rem;
     background-color: var(--grey-light);
     width: 70%;
@@ -217,29 +217,29 @@ h3 {
     text-align: center;
 }
 
-.index__player__name::placeholder {
+.player__name::placeholder {
     color: var(--grey);
     font-size: 1.3rem;
     transition: 1s ease-in-out;
 }
 
 /* BTN SELECT CATEGORY */
-.index__player__btn-category {
+.player__btn-category {
     background-color: var(--green-light);
     font-size: 1.8rem;
     margin: 15px;
 }
 
 /* BTN RESET CHANGES */
-.index__ranking-container__btn-clear,
-.index__player__btn-reset {
+.ranking__btn-clear,
+.player__btn-reset {
     background-color: var(--red-light);
     font-size: 1.5rem;
     margin: 15px;
     width: 35%;
 }
 
-.index__ranking-container__list {
+.ranking__list {
     font-size: 1.3rem;
     background-color: var(--pink-light);
     margin-top: 30px;
@@ -247,7 +247,7 @@ h3 {
     opacity: 70%;
 }
 
-.index__own-quiz-link {
+.own-quiz-link {
     font-family: var(--primary-font);
     font-size: 1.5rem;
     color: var(--black);
@@ -257,11 +257,11 @@ h3 {
 }
 
 /* CHOICE OF CATEGORY */
-.index__category-container {
+.category {
     padding: 10px 0px;
 }
 
-.index__category-container__btn {
+.category__btn {
     font-size: 1.8rem;
     background-color: var(--grey-light);
     max-width: 370px;
@@ -269,20 +269,20 @@ h3 {
     transition: none;
 }
 
-.index__category-container__nav {
+.category__nav {
     margin: 20px auto;
 }
 
 /* CHOICE OF DIFFICULTY */
-.index__difficulty-container {
+.difficulty {
     height: 700px;
 }
 
-.index__difficulty-container h2 {
+.difficulty h2 {
     margin-top: 50px;
 }
 
-.index__difficulty-container__btn {
+.difficulty__btn {
     font-size: 1.8rem;
     margin: 15px;
     transition: none;
@@ -300,7 +300,7 @@ h3 {
     background-color: var(--red-light);
 }
 
-.index__difficulty-responsive__img {
+.difficulty-responsive__img {
     display: none;
 }
 
@@ -325,7 +325,7 @@ h3 {
     font-weight: 600;
 }
 
-.game__answer-container__btn {
+.game__answer__btn {
     font-size: 1.8rem;
     background-color: var(--grey-light);
     max-width: 400px;
@@ -341,7 +341,7 @@ h3 {
     margin: 30px auto 10px auto;
 }
 
-.cat-unicorn {
+.game__img {
     width: 50%;
     max-width: 300px;
 }
@@ -369,7 +369,7 @@ h3 {
     list-style-type: none;
 }
 
-.home-mushroom {
+.endgame__btn-home {
     margin-top: -50px;
     margin-bottom: 30px;
     border-radius: 100px;
@@ -380,62 +380,62 @@ h3 {
 @media screen and (min-width: 800px) {
 
     /* INDEX PAGE */
-    .index__responsive-container {
+    .player-responsive {
         display: flex;
     }
 
-    .index__switch-mode-container {
+    .main__switch-mode {
         right: 30% !important;
     }
 
-    .index__ranking-container__title {
+    .ranking__title {
         margin-top: 30px;
     }
 
-    .index__category-container__title {
+    .category__title {
         display: block !important;
     }
 
-    .index__category-responsive {
+    .category-responsive {
         display: flex !important;
         flex-direction: row;
         flex-wrap: wrap;
     }
 
-    .index__difficulty-container__nav__img {
+    .difficulty__nav__img {
         display: none;
     }
 
-    .index__difficulty-container {
+    .difficulty {
         display: flex !important;
         height: 500px;
     }
 
-    .index__category-container__nav {
+    .category__nav {
         display: flex !important;
         width: 40%;
         margin: 0px auto;
     }
 
-    .index__difficulty-container__title {
+    .difficulty__title {
         display: block;
     }
 
-    .index__difficulty-container__btn {
+    .difficulty__btn {
         max-width: 300px;
     }
 
-    .index__difficulty-responsive__img {
+    .difficulty-responsive__img {
         display: inline;
         height: 400px;
     }
 
-    .index__difficulty-responsive {
+    .difficulty-responsive {
         display: flex;
         margin-top: -50px;
     }
 
-    .index__difficulty-responsive__btn {
+    .difficulty-responsive__btn {
         margin-top: 70px;
     }
 
@@ -448,12 +448,12 @@ h3 {
         padding: 50px 100px;
     }
 
-    .game__answer-container {
+    .game__answer {
         flex-wrap: wrap;
         height: 300px
     }
 
-    .game__answer-container__btn {
+    .game__answer__btn {
         padding: 20px 30px;
     }
 }

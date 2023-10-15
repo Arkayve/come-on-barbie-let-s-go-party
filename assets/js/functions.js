@@ -57,7 +57,7 @@ function displayBestScores(where) {
 // save each player name in array playerNames
 function savePlayerName() {
     const playerNameIdArray = ['first-player-name', 'second-player-name', 'third-player-name', 'fourth-player-name'];
-    const maxPlayer = parseInt(document.getElementById('index__player__number').value);
+    const maxPlayer = parseInt(document.getElementById('player__number').value);
     for (let i = 0; i < maxPlayer; i++) {
         const playerName = document.getElementById(playerNameIdArray[i]).value.trim();
         if (playerName !== "" && !playerNames.includes(playerName)) {
@@ -91,9 +91,9 @@ function colorCategory() {
 // function to display categories
 function displayCategories() {
     // here we verify if playernames fields aren't empty, and correspond to number of players
-    if (playerNames.length === 0 || document.getElementById('index__player__number').value != playerNames.length) return;
-    const elementsToHide = ['index__main-title', 'index__switch-mode-container', 'index__img-unicorn', 'index__player', 'index__difficulty-container', 'index__ranking-container', 'index__own-quiz-link'];
-    const elementsToShow = ['index__category-container', 'index__category-responsive', 'index__category-container__title', 'index__category-container__nav'];
+    if (playerNames.length === 0 || document.getElementById('player__number').value != playerNames.length) return;
+    const elementsToHide = ['main-title', 'main__switch-mode', 'main__img', 'player', 'difficulty', 'ranking', 'own-quiz-link'];
+    const elementsToShow = ['category', 'category-responsive', 'category__title', 'category__nav'];
     hideOrShowElement(elementsToHide, elementsToShow);
     colorCategory();
     removeSelectClassOfDifficultyBtn();
@@ -102,8 +102,8 @@ function displayCategories() {
 
 // to display difficulties on mobile, need to manage hidden class on many div
 function displayDifficulty() {
-    const elementsToHide = ['index__category-container__nav', 'index__category-responsive', 'index__category-container__title'];
-    const elementsToShow = ['index__difficulty-container'];
+    const elementsToHide = ['category__nav', 'category-responsive', 'category__title'];
+    const elementsToShow = ['difficulty'];
     hideOrShowElement(elementsToHide, elementsToShow);
 }
 
@@ -111,7 +111,7 @@ function displayDifficulty() {
 function addSelectClassIfAlreadyClick() {
     alreadySelected.forEach(category => {
         if (categoryName === category.split(', ')[0]) {
-            document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
+            document.querySelectorAll('.difficulty__btn').forEach(btn => {
                 if (btn.id === category.split(', ')[1]) btn.classList.add('select');
             })
         }
@@ -120,22 +120,22 @@ function addSelectClassIfAlreadyClick() {
 
 // function to remove select class of difficulty buttons
 function removeSelectClassOfDifficultyBtn() {
-    document.querySelectorAll('.index__difficulty-container__btn').forEach(btn => {
+    document.querySelectorAll('.difficulty__btn').forEach(btn => {
         btn.classList.remove('select');
     })
 }
 
 // a function to go back to homepage
 function returnToIndex() {
-    const elementsToHide = ['index__category-container'];
-    const elementsToShow = ['index__main-title', 'index__switch-mode-container', 'index__img-unicorn', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
+    const elementsToHide = ['category'];
+    const elementsToShow = ['main-title', 'main__switch-mode', 'main__img', 'player', 'ranking', 'own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
-    document.getElementById('index__difficulty-container__title').textContent = '';
+    document.getElementById('difficulty__title').textContent = '';
 }
 
 // run game, start timer, count round, and display question
 function runGame() {
-    document.getElementById('index__category-container').classList.add('hidden');
+    document.getElementById('category').classList.add('hidden');
     document.getElementById('game').classList.remove('hidden');
     if (questions.length > 0) {
         makeRound();
@@ -245,10 +245,10 @@ function fromScratch() {
     difficulty = '';
     anecdote = '';
     answer = '';
-    document.querySelectorAll('.index__category-container__btn').forEach(btn => {
+    document.querySelectorAll('.category__btn').forEach(btn => {
         btn.classList.remove('partially-select', 'full-select');
     })
-    document.querySelectorAll('.game__answer-container__btn').forEach(btn => {
+    document.querySelectorAll('.game__answer__btn').forEach(btn => {
         btn.classList.remove('select');
     })
     removeSelectClassOfDifficultyBtn();
@@ -256,13 +256,13 @@ function fromScratch() {
     document.getElementById('second-player-name').value = '';
     document.getElementById('third-player-name').value = '';
     document.getElementById('fourth-player-name').value = '';
-    document.getElementById('index__difficulty-container__title').textContent = '';
-    const elementsToHide = ['endgame', 'game', 'game__comments', 'cat-unicorn', 'game__anecdote', 'game__nav', 'index__category-container', 'index__difficulty-container', 'index__category-container__btn-validate'];
-    const elementsToShow = ['index__main-title', 'index__switch-mode-container', 'index__img-unicorn', 'game__who-play', 'game__question', 'game__timer', 'game__answer-container', 'index__player', 'index__ranking-container', 'index__own-quiz-link'];
+    document.getElementById('difficulty__title').textContent = '';
+    const elementsToHide = ['endgame', 'game', 'game__comments', 'game__img', 'game__anecdote', 'game__nav', 'category', 'difficulty', 'category__nav__btn-validate'];
+    const elementsToShow = ['main-title', 'main__switch-mode', 'main__img', 'game__who-play', 'game__question', 'game__timer', 'game__answer', 'player', 'ranking', 'own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
-    displayBestScores(document.getElementById('index__ranking-container__list'));
+    displayBestScores(document.getElementById('ranking__list'));
     document.getElementById('second-player-name').classList.remove('active');
     document.getElementById('third-player-name').classList.remove('active');
     document.getElementById('fourth-player-name').classList.remove('active');
-    document.getElementById('index__player__number').value = 1;
+    document.getElementById('player__number').value = 1;
 }

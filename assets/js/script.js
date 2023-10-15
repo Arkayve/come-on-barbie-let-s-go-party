@@ -5,23 +5,23 @@ let modeToDisplay = localStorage.getItem('barbie-display-mode') || 'light';
 // to change img in regards of theme
 let lightOrDark = [
     {
-        id: 'index__category-container__btn-back',
+        id: 'category__nav__btn-back',
         src: `assets/img/go-back-btn-${modeToDisplay}.png`
     },
     {
-        id: 'index__category-container__btn-validate',
+        id: 'category__nav__btn-validate',
         src: `assets/img/validate-btn-${modeToDisplay}.png`
     },
     {
-        id: 'index__difficulty-container__btn-back',
+        id: 'difficulty__btn-back',
         src: `assets/img/go-back-btn-${modeToDisplay}.png`
     },
     {
-        id: 'game-end',
+        id: 'game__nav__btn-end',
         src: `assets/img/end-party-btn-${modeToDisplay}.png`
     },
     {
-        id: 'game-next',
+        id: 'game__nav__btn-next',
         src: `assets/img/validate-btn-${modeToDisplay}.png`
     }
 ];
@@ -66,23 +66,23 @@ else if (modeToDisplay === 'dark') {
 };
 
 // display scores if exist, or small sentences if not
-displayBestScores(document.getElementById('index__ranking-container__list'));
+displayBestScores(document.getElementById('ranking__list'));
 
 // listen switch theme btn
-document.getElementById("index__switch-mode-container").addEventListener("click", () => {
+document.getElementById("main__switch-mode").addEventListener("click", () => {
     document.querySelector(".sun-logo").classList.toggle("animate-sun");
     document.querySelector(".moon-logo").classList.toggle("animate-moon");
     switchMode()
 });
 
 // to animate unicorn on click
-document.getElementById('index__img-unicorn').addEventListener('click', function () {
-    document.getElementById('index__img-unicorn').classList.toggle('shakeIt');
+document.getElementById('main__img').addEventListener('click', function () {
+    document.getElementById('main__img').classList.toggle('shakeIt');
 });
 
 // here we displayed right number of input name element
-document.getElementById('index__player__number').addEventListener("change", function () {
-    const maxPlayer = parseInt(document.getElementById('index__player__number').value);
+document.getElementById('player__number').addEventListener("change", function () {
+    const maxPlayer = parseInt(document.getElementById('player__number').value);
     for (let i = 1; i < 4; i++) {
         const player = document.getElementById(i === 1 ? 'second-player-name' : i === 2 ? 'third-player-name' : 'fourth-player-name');
         player.classList.toggle('active', i < maxPlayer);
@@ -90,32 +90,32 @@ document.getElementById('index__player__number').addEventListener("change", func
 });
 
 // listen btn-category to reveal categories
-document.getElementById('index__player__btn-category').addEventListener('click', function () {
+document.getElementById('player__btn-category').addEventListener('click', function () {
     savePlayerName();
     displayCategories();
 });
 
 // to reset changes if btn pressed in homepage
-document.getElementById('index__player__btn-reset').addEventListener('click', function (event) {
+document.getElementById('player__btn-reset').addEventListener('click', function (event) {
     fromScratch();
 });
 
 // clear ranking
-document.getElementById('index__ranking-container__btn-clear').addEventListener('click', function (event) {
+document.getElementById('ranking__btn-clear').addEventListener('click', function (event) {
     const warningText = "Warning, you're about to clear ranking cache of the game. Are you sure you want to do that ?";
     if (confirm(warningText)) localStorage.removeItem('bestScores');
     window.location.reload();
 });
 
 // listen validate / go back buttons of categories
-document.getElementById('index__category-container__nav').addEventListener('click', function (event) {
-    if (!event.target.classList.contains('index__category-container__nav__img')) return;
-    if (event.target.id === 'index__category-container__btn-back') {
+document.getElementById('category__nav').addEventListener('click', function (event) {
+    if (!event.target.classList.contains('category__nav__img')) return;
+    if (event.target.id === 'category__nav__btn-back') {
         window.scroll(0, 0);
         playerNames = [];
         returnToIndex();
     }
-    if (event.target.id === 'index__category-container__btn-validate') {
+    if (event.target.id === 'category__nav__btn-validate') {
         mixQuestions(questions);
         window.scroll(0, 0);
         runGame();
@@ -123,27 +123,27 @@ document.getElementById('index__category-container__nav').addEventListener('clic
 });
 
 // listen which category of quiz we want
-document.getElementById('index__category-container').addEventListener('click', function (event) {
-    if (!event.target.classList.contains('index__category-container__btn')) return;
+document.getElementById('category').addEventListener('click', function (event) {
+    if (!event.target.classList.contains('category__btn')) return;
     removeSelectClassOfDifficultyBtn();
     // removing select class for all category
-    document.querySelectorAll('.index__category-container__btn').forEach(btn => {
+    document.querySelectorAll('.category__btn').forEach(btn => {
         btn.classList.remove('select');
     })
     // get category in a var
     categoryName = event.target.dataset.categoryName;
-    document.getElementById('index__difficulty-container__title').textContent = `Select difficulty for ${event.target.textContent}:`
+    document.getElementById('difficulty__title').textContent = `Select difficulty for ${event.target.textContent}:`
     displayDifficulty();
     // add select class if difficulty already added in questions for this category
     addSelectClassIfAlreadyClick();
 });
 
 // listen which difficulty of quiz we want
-document.getElementById('index__difficulty-container').addEventListener('click', function (event) {
+document.getElementById('difficulty').addEventListener('click', function (event) {
     if (event.target.dataset.value === 'back') {
         displayCategories();
     }
-    if (!event.target.classList.contains('index__difficulty-container__btn')) return;
+    if (!event.target.classList.contains('difficulty__btn')) return;
     if (!categoryName) return;
     difficulty = event.target.getAttribute('id');
     // to remove a quiz if already selected
@@ -162,12 +162,12 @@ document.getElementById('index__difficulty-container').addEventListener('click',
     getQuiz(`assets/json/${categoryName}.json`);
     colorCategory();
     // to display validate btn
-    document.getElementById('index__category-container__btn-validate').classList.remove('hidden');
+    document.getElementById('category__nav__btn-validate').classList.remove('hidden');
 });
 
 // here we listen which button is pressed
-document.getElementById('game__answer-container').addEventListener('click', function (event) {
-    if (!event.target.classList.contains('game__answer-container__btn')) return;
+document.getElementById('game__answer').addEventListener('click', function (event) {
+    if (!event.target.classList.contains('game__answer__btn')) return;
     switch (event.target.id) {
         case 'btn-answer-0':
             // and make it appears glorious
@@ -189,8 +189,8 @@ document.getElementById('game__answer-container').addEventListener('click', func
     window.scroll(0, 0);
     // we display anecdote for each question
     document.getElementById('game__anecdote').textContent = anecdote;
-    const elementsToHide = ['game__who-play', 'game__question', 'game__timer', 'game__answer-container'];
-    const elementsToShow = ['game__comments', 'cat-unicorn', 'game__anecdote', 'game__nav'];
+    const elementsToHide = ['game__who-play', 'game__question', 'game__timer', 'game__answer'];
+    const elementsToShow = ['game__comments', 'game__img', 'game__anecdote', 'game__nav'];
     hideOrShowElement(elementsToHide, elementsToShow);
     endTimer();
     // and here we display personal sentence for each player
@@ -208,7 +208,7 @@ document.getElementById('game__answer-container').addEventListener('click', func
 // to listen game nav btn, hide what have to be hide, remove select class and go to next round
 document.getElementById('game__nav').addEventListener('click', function (event) {
     if (!event.target.classList.contains('game__nav__img')) return;
-    if (event.target.id == 'game-end') {
+    if (event.target.id == 'game__nav__btn-end') {
         window.scroll(0, 0);
         if (playerScores[0] >= 0) {
             endGame();
@@ -216,11 +216,11 @@ document.getElementById('game__nav').addEventListener('click', function (event) 
             fromScratch();
         }
     }
-    if (event.target.id == 'game-next') {
-        const elementsToHide = ['game__comments', 'cat-unicorn', 'game__anecdote', 'game__nav'];
-        const elementsToShow = ['game__who-play', 'game__question', 'game__timer', 'game__answer-container'];
+    if (event.target.id == 'game__nav__btn-next') {
+        const elementsToHide = ['game__comments', 'game__img', 'game__anecdote', 'game__nav'];
+        const elementsToShow = ['game__who-play', 'game__question', 'game__timer', 'game__answer'];
         hideOrShowElement(elementsToHide, elementsToShow);
-        document.querySelectorAll('.game__answer-container__btn').forEach(btn => {
+        document.querySelectorAll('.game__answer__btn').forEach(btn => {
             btn.classList.remove('select');
         })
         window.scroll(0, 0);
@@ -229,7 +229,7 @@ document.getElementById('game__nav').addEventListener('click', function (event) 
 });
 
 // listen btn go home of ending page
-document.getElementById('home-mushroom').addEventListener('click', function (event) {
+document.getElementById('endgame__btn-home').addEventListener('click', function (event) {
     window.scroll(0, 0);
     fromScratch();
 });

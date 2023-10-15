@@ -17,9 +17,9 @@
 
     <main>
         <section id="index">
-            <div class="index__main-title-container flex">
-                <h1 id="index__main-title">Come on Barbie let's go party !</h1>
-                <div id="index__switch-mode-container" class="index__switch-mode-container">
+            <div class="main flex">
+                <h1 id="main__title">Come on Barbie let's go party !</h1>
+                <div id="main__switch-mode" class="main__switch-mode">
                     <div class="sun sun-logo">
                         <svg viewBox="0 0 512 512" width="50" title="sun">
                             <path
@@ -34,116 +34,116 @@
                     </div>
                 </div>
             </div>
-            <img id="index__img-unicorn" class="unicorn w-90 max-w-500" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
-            <div class="index__responsive-container justify-center w-90 m-auto">
-                <div id="index__player" class="flex column align-center">
+            <img id="main__img" class="main__img w-90 max-w-500" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
+            <div class="player-responsive justify-center w-90 m-auto">
+                <div id="player" class="flex column align-center">
                     <h2>How many players are you ?</h2>
-                    <select id="index__player__number" class="btn index__player__number">
+                    <select id="player__number" class="btn player__number">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
                     <input id="first-player-name" type="text" placeholder="First player name ?"
-                        class="btn index__player__name max-w-500 active">
+                        class="btn player__name max-w-500 active">
                     <input id="second-player-name" type="text" placeholder="Second player name ?"
-                        class="btn index__player__name max-w-500">
+                        class="btn player__name max-w-500">
                     <input id="third-player-name" type="text" placeholder="Third player name ?"
-                        class="btn index__player__name max-w-500">
+                        class="btn player__name max-w-500">
                     <input id="fourth-player-name" type="text" placeholder="Fourth player name ?"
-                        class="btn index__player__name max-w-500">
-                    <button type="button" id="index__player__btn-category"
-                        class="btn index__player__btn-category w-90 max-w-500">Select
+                        class="btn player__name max-w-500">
+                    <button type="button" id="player__btn-category"
+                        class="btn player__btn-category w-90 max-w-500">Select
                         category</button>
-                    <button type="button" id="index__player__btn-reset" class="btn index__player__btn-reset">Reset
+                    <button type="button" id="player__btn-reset" class="btn player__btn-reset">Reset
                         changes</button>
                 </div>
-                <div id="index__ranking-container">
-                    <h3 id="index__ranking-container__title" class="index__ranking-container__title">They're simply the
+                <div id="ranking">
+                    <h3 id="ranking__title" class="ranking__title">They're simply the
                         best
                         :</h3>
-                    <ol id="index__ranking-container__list" class="btn index__ranking-container__list w-90 max-w-500 m-auto"></ol>
-                    <a id="index__own-quiz-link" class="index__own-quiz-link" href="#">Wanna make your own quiz ?</a>
-                    <button type="button" id="index__ranking-container__btn-clear"
-                        class="btn index__ranking-container__btn-clear">Clear ranking</button>
+                    <ol id="ranking__list" class="btn ranking__list w-90 max-w-500 m-auto"></ol>
+                    <a id="own-quiz-link" class="own-quiz-link" href="#">Wanna make your own quiz ?</a>
+                    <button type="button" id="ranking__btn-clear"
+                        class="btn ranking__btn-clear">Clear ranking</button>
                 </div>
             </div>
-            <div id="index__category-container" class="index__category-container hidden">
+            <div id="category" class="category hidden">
 
-                <h2 id="index__category-container__title" class="index__category-container__title">Select category :
+                <h2 id="category__title" class="category__title">Select category :
                 </h2>
 
-                <div id="index__category-responsive"
-                    class="index__category-responsive flex align-center justify-center column">
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                <div id="category-responsive"
+                    class="category-responsive flex align-center justify-center column">
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="bieres_belges">Bières belges</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="covid_19">COVID-19</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="culture_en_vrac">Culture en
                         vrac</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="dessins_animes">Dessins
                         animés</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="faits_de_societe">Faits de
                         société</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="grands_monuments">Grands
                         monuments</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="heros_de_kaamelott">Héros de
                         Kaamelott</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="marques_et_slogans">Marques et
                         slogans</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="mont_saint_michel">Mont
                         Saint-Michel</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="mythes_et_legendes">Mythes et
                         légendes</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="paris_de_nos_jours">Paris de nos
                         jours</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="series_americaines">Séries
                         américaines</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="star_trek">Star Trek</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="stats_internet_2018">Stats internet
                         2018</button>
-                    <button type="button" class="btn index__category-container__btn flex justify-center w-90"
+                    <button type="button" class="btn category__btn flex justify-center w-90"
                         data-category-name="x_files">X-Files</button>
                 </div>
 
-                <div id="index__difficulty-container"
-                    class="index__difficulty-container flex column align-center justify-around hidden">
-                    <h2 id="index__difficulty-container__title"></h2>
-                    <div class="index__difficulty-responsive justify-around">
+                <div id="difficulty"
+                    class="difficulty flex column align-center justify-around hidden">
+                    <h2 id="difficulty__title"></h2>
+                    <div class="difficulty-responsive justify-around">
                         <img src="assets/img/panfa-kawai.png" alt="panda kawai"
-                            class="index__difficulty-responsive__img">
-                        <div class="index__difficulty-responsive__btn">
+                            class="difficulty-responsive__img">
+                        <div class="difficulty-responsive__btn">
                             <button id="débutant" type="button"
-                                class="btn index__difficulty-container__btn easy w-90 max-w-500">Easy</button>
+                                class="btn difficulty__btn easy w-90 max-w-500">Easy</button>
                             <button id="confirmé" type="button"
-                                class="btn index__difficulty-container__btn medium w-90 max-w-500">Medium</button>
+                                class="btn difficulty__btn medium w-90 max-w-500">Medium</button>
                             <button id="expert" type="button"
-                                class="btn index__difficulty-container__btn hard w-90 max-w-500">Hard</button>
+                                class="btn difficulty__btn hard w-90 max-w-500">Hard</button>
                         </div>
                         <img src="assets/img/unicorn-star.png" alt="unicorn with a star"
-                            class="index__difficulty-responsive__img">
+                            class="difficulty-responsive__img">
                     </div>
-                    <img id="index__difficulty-container__btn-back" src="assets/img/go-back-btn-light.png" alt="icon arrow left" data-value="back"
-                        class="img index__difficulty-container__nav__img">
+                    <img id="difficulty__btn-back" src="assets/img/go-back-btn-light.png" alt="icon arrow left" data-value="back"
+                        class="img difficulty__nav__img">
                 </div>
 
-                <div id="index__category-container__nav" class="index__category-container__nav flex justify-around">
-                    <img src="assets/img/go-back-btn-light.png" alt="icon arrow left" id="index__category-container__btn-back"
-                        class="img index__category-container__nav__img">
-                    <img src="assets/img/validate-btn-light.png" alt="icon validate" id="index__category-container__btn-validate"
-                        class="img index__category-container__nav__img hidden">
+                <div id="category__nav" class="category__nav flex justify-around">
+                    <img src="assets/img/go-back-btn-light.png" alt="icon arrow left" id="category__nav__btn-back"
+                        class="img category__nav__img">
+                    <img src="assets/img/validate-btn-light.png" alt="icon validate" id="category__nav__btn-validate"
+                        class="img category__nav__img hidden">
                 </div>
             </div>
 
@@ -155,20 +155,20 @@
             <h4 id="game__question" class="btn game__question max-w-500 m-auto"></h4>
             <p id="game__timer" class="btn game__timer"></p>
 
-            <div id="game__answer-container" class="game__answer-container flex column align-center">
-                <button type="button" id="btn-answer-0" class="btn game__answer-container__btn w-90"></button>
-                <button type="button" id="btn-answer-1" class="btn game__answer-container__btn w-90"></button>
-                <button type="button" id="btn-answer-2" class="btn game__answer-container__btn w-90"></button>
-                <button type="button" id="btn-answer-3" class="btn game__answer-container__btn w-90"></button>
+            <div id="game__answer" class="game__answer flex column align-center">
+                <button type="button" id="btn-answer-0" class="btn game__answer__btn w-90"></button>
+                <button type="button" id="btn-answer-1" class="btn game__answer__btn w-90"></button>
+                <button type="button" id="btn-answer-2" class="btn game__answer__btn w-90"></button>
+                <button type="button" id="btn-answer-3" class="btn game__answer__btn w-90"></button>
             </div>
 
             <p id="game__comments" class="btn game__comments max-w-500 hidden"></p>
-            <img src="assets/img/cat-unicorn.png" alt="cat with unicorn costum" id="cat-unicorn"
-                class="cat-unicorn hidden">
+            <img src="assets/img/cat-unicorn.png" alt="cat with unicorn costum" id="game__img"
+                class="game__img hidden">
             <p id="game__anecdote" class="game__anecdote w-90 max-w-500 hidden"></p>
             <div id="game__nav" class="game__nav flex justify-around hidden">
-                <img src="assets/img/end-party-btn-light.png" alt="icon arrow left" id="game-end" class="img game__nav__img">
-                <img src="assets/img/validate-btn-light.png" alt="icon validate" id="game-next" class="img game__nav__img">
+                <img src="assets/img/end-party-btn-light.png" alt="icon arrow left" id="game__nav__btn-end" class="img game__nav__img">
+                <img src="assets/img/validate-btn-light.png" alt="icon validate" id="game__nav__btn-next" class="img game__nav__img">
             </div>
 
         </section>
@@ -176,8 +176,8 @@
         <section id="endgame" class="endgame hidden flex column align-center">
             <h2>Here are your game stats !</h2>
             <p id="endgame__stats" class="endgame__stats w-90 max-w-500"></p>
-            <img src="assets/img/unicorn-ftw.png" alt="glory unicorn" class="glory-unicorn w-90 max-w-500">
-            <img src="assets/img/home-mushroom.png" alt="home mushroom" id="home-mushroom" class="img home-mushroom">
+            <img src="assets/img/unicorn-ftw.png" alt="glory unicorn" class="endgame__img w-90 max-w-500">
+            <img src="assets/img/home-mushroom.png" alt="home mushroom" id="endgame__btn-home" class="img endgame__btn-home">
         </section>
 
         <section id="own-quiz" class="own-quiz hidden">
@@ -190,20 +190,20 @@
             <input id="own-quiz__fourth-answer" class="own-quiz__answer" type="text" placeholder="Fourth proposition.">
             <h3>We have to know which is the good answer : </h3>
             <div>
-                <input id="own-quiz__first-answer__radio" type="radio" value="1">
-                <label for="own-quiz__first-answer__radio">First proposition</label>
+                <input id="own-quiz__first-radio" type="radio" value="1">
+                <label for="own-quiz__first-radio">First proposition</label>
             </div>
             <div>
-                <input id="own-quiz__second-answer__radio" type="radio" value="2">
-                <label for="own-quiz__second-answer__radio">Second proposition</label>
+                <input id="own-quiz__second-radio" type="radio" value="2">
+                <label for="own-quiz__second-radio">Second proposition</label>
             </div>
             <div>
-                <input id="own-quiz__third-answer__radio" type="radio" value="3">
-                <label for="own-quiz__third-answer__radio">Third proposition</label>
+                <input id="own-quiz__third-radio" type="radio" value="3">
+                <label for="own-quiz__third-radio">Third proposition</label>
             </div>
             <div>
-                <input id="own-quiz__fourth-answer__radio" type="radio" value="4">
-                <label for="own-quiz__fourth-answer__radio">Fourth proposition</label>
+                <input id="own-quiz__fourth-radio" type="radio" value="4">
+                <label for="own-quiz__fourth-radio">Fourth proposition</label>
             </div>
             <h3>Everyone likes anecdote. Please let us know something about your question.</h3>
             <textarea id="own-quiz__anecdote" class="own-quiz__anecdote" placeholder="Type your text here."></textarea>

@@ -69,7 +69,7 @@ else if (modeToDisplay === 'dark') {
 displayBestScores(document.getElementById('ranking__list'));
 
 // listen switch theme btn
-document.getElementById("main__switch-mode").addEventListener("click", () => {
+document.getElementById("switch-mode").addEventListener("click", () => {
     document.querySelector(".sun-logo").classList.toggle("animate-sun");
     document.querySelector(".moon-logo").classList.toggle("animate-moon");
     switchMode()

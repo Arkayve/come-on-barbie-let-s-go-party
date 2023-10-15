@@ -92,7 +92,7 @@ function colorCategory() {
 function displayCategories() {
     // here we verify if playernames fields aren't empty, and correspond to number of players
     if (playerNames.length === 0 || document.getElementById('player__number').value != playerNames.length) return;
-    const elementsToHide = ['main-title', 'main__switch-mode', 'main__img', 'player', 'difficulty', 'ranking', 'own-quiz-link'];
+    const elementsToHide = ['main__title', 'switch-mode', 'main__img', 'player', 'difficulty', 'ranking', 'own-quiz-link'];
     const elementsToShow = ['category', 'category-responsive', 'category__title', 'category__nav'];
     hideOrShowElement(elementsToHide, elementsToShow);
     colorCategory();
@@ -128,7 +128,7 @@ function removeSelectClassOfDifficultyBtn() {
 // a function to go back to homepage
 function returnToIndex() {
     const elementsToHide = ['category'];
-    const elementsToShow = ['main-title', 'main__switch-mode', 'main__img', 'player', 'ranking', 'own-quiz-link'];
+    const elementsToShow = ['main__title', 'switch-mode', 'main__img', 'player', 'ranking', 'own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
     document.getElementById('difficulty__title').textContent = '';
 }
@@ -258,7 +258,7 @@ function fromScratch() {
     document.getElementById('fourth-player-name').value = '';
     document.getElementById('difficulty__title').textContent = '';
     const elementsToHide = ['endgame', 'game', 'game__comments', 'game__img', 'game__anecdote', 'game__nav', 'category', 'difficulty', 'category__nav__btn-validate'];
-    const elementsToShow = ['main-title', 'main__switch-mode', 'main__img', 'game__who-play', 'game__question', 'game__timer', 'game__answer', 'player', 'ranking', 'own-quiz-link'];
+    const elementsToShow = ['main__title', 'switch-mode', 'main__img', 'game__who-play', 'game__question', 'game__timer', 'game__answer', 'player', 'ranking', 'own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
     displayBestScores(document.getElementById('ranking__list'));
     document.getElementById('second-player-name').classList.remove('active');

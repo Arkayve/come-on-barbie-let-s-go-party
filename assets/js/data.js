@@ -5,7 +5,6 @@ function getQuiz(json) {
         .then(data => {
             questions[count] = data.quizz.en[difficulty];
             count++;
-            console.log(questions);
         })
         .catch(error => {
             console.error("Error :", error);

@@ -1,3 +1,7 @@
+<?php
+include_once 'assets/includes/_config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

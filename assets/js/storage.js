@@ -7,8 +7,10 @@ function saveBestScores() {
             score: playerScores[i],
             ratio: playerScores[i] / questionsAnswered
         };
+        if (player.score !== 0) {
         scores.push(player);
-    }
+        };
+    };
     sortPlayerScores();
     saveInLocalStorage();
 }

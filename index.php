@@ -41,75 +41,39 @@ include_once 'assets/includes/_config.php';
             <img id="main__img" class="main__img w-90 max-w-500" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
             <div class="player-responsive justify-center w-90 m-auto">
                 <div id="player" class="flex column align-center">
-                    <h2>How many players are you ?</h2>
+                    <h2><?=$data['playerNumber'][$count]?></h2>
                     <select id="player__number" class="btn player__number">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
-                    <input id="first-player-name" type="text" placeholder="First player name ?"
-                        class="btn player__name max-w-500 active">
-                    <input id="second-player-name" type="text" placeholder="Second player name ?"
-                        class="btn player__name max-w-500">
-                    <input id="third-player-name" type="text" placeholder="Third player name ?"
-                        class="btn player__name max-w-500">
-                    <input id="fourth-player-name" type="text" placeholder="Fourth player name ?"
-                        class="btn player__name max-w-500">
-                    <button type="button" id="player__btn-category"
-                        class="btn player__btn-category w-90 max-w-500">Select
-                        category</button>
-                    <button type="button" id="player__btn-reset" class="btn player__btn-reset">Reset
-                        changes</button>
+                    <input id="first-player-name" type="text" placeholder="<?=$data['firstPlayerName'][$count]?>" class="btn player__name max-w-500 active">
+                    <input id="second-player-name" type="text" placeholder="<?=$data['secondPlayerName'][$count]?>" class="btn player__name max-w-500">
+                    <input id="third-player-name" type="text" placeholder="<?=$data['thirdPlayerName'][$count]?>" class="btn player__name max-w-500">
+                    <input id="fourth-player-name" type="text" placeholder="<?=$data['fourthPlayerName'][$count]?>" class="btn player__name max-w-500">
+                    <button type="button" id="player__btn-category" class="btn player__btn-category w-90 max-w-500"><?=$data['playerBtnCategory'][$count]?></button>
+                    <button type="button" id="player__btn-reset" class="btn player__btn-reset"><?=$data['playerBtnReset'][$count]?></button>
                 </div>
                 <div id="ranking">
-                    <h3 id="ranking__title" class="ranking__title">They're simply the
-                        best
-                        :</h3>
+                    <h3 id="ranking__title" class="ranking__title"><?=$data['rankingTitle'][$count]?></h3>
                     <ol id="ranking__list" class="btn ranking__list w-90 max-w-500 m-auto"></ol>
-                    <a id="own-quiz-link" class="own-quiz-link" href="#">Wanna make your own quiz ?</a>
+                    <a id="own-quiz-link" class="own-quiz-link" href="#"><?=$data['ownQuizLink'][$count]?></a>
                     <button type="button" id="ranking__btn-clear"
-                        class="btn ranking__btn-clear">Clear ranking</button>
+                        class="btn ranking__btn-clear"><?=$data['rankingBtnClear'][$count]?></button>
                 </div>
             </div>
             <div id="category" class="category hidden">
 
-                <h2 id="category__title" class="category__title">Select category :
-                </h2>
+                <h2 id="category__title" class="category__title"><?=$data['categoryTitle'][$count]?></h2>
 
-                <div id="category-responsive"
-                    class="category-responsive flex align-center justify-center column">
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="belgian_beers">Belgian beers</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="covid_19">COVID-19</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="bulk_cultivation">Bulk cultivation</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="cartoons">Cartoons</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="company_facts">Company Facts</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="great_monuments">Great Monuments</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="heroes_of_kaamelott">Heroes of Kaamelott</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="trademarks_and_slogans">Trademarks and slogans</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="mont_saint_michel">Mont
-                        Saint-Michel</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="myths_and_legends">Myths and legends</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="paris_today">Paris today</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="american_series">American series</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="startrek">StarTrek</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="internet_statistics_2018">Internet statistics 2018</button>
-                    <button type="button" class="btn category__btn flex justify-center w-90"
-                        data-category-name="x_files">X-Files</button>
+                <div id="category-responsive" class="category-responsive flex align-center justify-center column">
+                    <?php
+                        foreach ($quiz as $theme) {
+                            $file = substr($theme['file'], 0, -5);
+                            echo "<button type='button' class='btn category__btn flex justify-center w-90' data-category-name='{$file}'>{$theme['name'][$count]}</button>";
+                        };
+                    ?>
                 </div>
 
                 <div id="difficulty"
@@ -120,11 +84,11 @@ include_once 'assets/includes/_config.php';
                             class="difficulty-responsive__img">
                         <div class="difficulty-responsive__btn">
                             <button id="débutant" type="button"
-                                class="btn difficulty__btn easy w-90 max-w-500">Easy</button>
+                                class="btn difficulty__btn easy w-90 max-w-500"><?=$data['easy'][$count]?></button>
                             <button id="confirmé" type="button"
-                                class="btn difficulty__btn medium w-90 max-w-500">Medium</button>
+                                class="btn difficulty__btn medium w-90 max-w-500"><?=$data['medium'][$count]?></button>
                             <button id="expert" type="button"
-                                class="btn difficulty__btn hard w-90 max-w-500">Hard</button>
+                                class="btn difficulty__btn hard w-90 max-w-500"><?=$data['hard'][$count]?></button>
                         </div>
                         <img src="assets/img/unicorn-star.png" alt="unicorn with a star"
                             class="difficulty-responsive__img">
@@ -168,39 +132,39 @@ include_once 'assets/includes/_config.php';
         </section>
 
         <section id="endgame" class="endgame hidden flex column align-center">
-            <h2>Here are your game stats !</h2>
+            <h2><?=$data['endgameTitle'][$count]?></h2>
             <p id="endgame__stats" class="endgame__stats w-90 max-w-500"></p>
             <img src="assets/img/unicorn-ftw.png" alt="glory unicorn" class="endgame__img w-90 max-w-500">
             <img src="assets/img/home-mushroom.png" alt="home mushroom" id="endgame__btn-home" class="img endgame__btn-home">
         </section>
 
         <section id="own-quiz" class="own-quiz hidden">
-            <h2>Here you can make your own quiz.</h2>
-            <input id="own-quiz__name" class="own-quiz__name" type="text" placeholder="What is the name of your quiz ?">
-            <h3>You must give four possible answers.</h3>
-            <input id="own-quiz__first-answer" class="own-quiz__answer" type="text" placeholder="First proposition.">
-            <input id="own-quiz__second-answer" class="own-quiz__answer" type="text" placeholder="Second proposition.">
-            <input id="own-quiz__third-answer" class="own-quiz__answer" type="text" placeholder="Third proposition.">
-            <input id="own-quiz__fourth-answer" class="own-quiz__answer" type="text" placeholder="Fourth proposition.">
-            <h3>We have to know which is the good answer : </h3>
+            <h2><?=$data['ownQuizTitle'][$count]?></h2>
+            <input id="own-quiz__name" class="own-quiz__name" type="text" placeholder="<?=$data['ownQuizName'][$count]?>">
+            <h3><?=$data['ownQuizPrecision'][$count]?></h3>
+            <input id="own-quiz__first-answer" class="own-quiz__answer" type="text" placeholder="<?=$data['firstProposition'][$count]?>">
+            <input id="own-quiz__second-answer" class="own-quiz__answer" type="text" placeholder="<?=$data['secondProposition'][$count]?>">
+            <input id="own-quiz__third-answer" class="own-quiz__answer" type="text" placeholder="<?=$data['thirdProposition'][$count]?>">
+            <input id="own-quiz__fourth-answer" class="own-quiz__answer" type="text" placeholder="<?=$data['fourthProposition'][$count]?>">
+            <h3><?=$data['goodAnswerIs'][$count]?></h3>
             <div>
                 <input id="own-quiz__first-radio" type="radio" value="1">
-                <label for="own-quiz__first-radio">First proposition</label>
+                <label for="own-quiz__first-radio"><?=$data['firstProposition'][$count]?></label>
             </div>
             <div>
                 <input id="own-quiz__second-radio" type="radio" value="2">
-                <label for="own-quiz__second-radio">Second proposition</label>
+                <label for="own-quiz__second-radio"><?=$data['secondProposition'][$count]?></label>
             </div>
             <div>
                 <input id="own-quiz__third-radio" type="radio" value="3">
-                <label for="own-quiz__third-radio">Third proposition</label>
+                <label for="own-quiz__third-radio"><?=$data['thirdProposition'][$count]?></label>
             </div>
             <div>
                 <input id="own-quiz__fourth-radio" type="radio" value="4">
-                <label for="own-quiz__fourth-radio">Fourth proposition</label>
+                <label for="own-quiz__fourth-radio"><?=$data['fourthProposition'][$count]?></label>
             </div>
-            <h3>Everyone likes anecdote. Please let us know something about your question.</h3>
-            <textarea id="own-quiz__anecdote" class="own-quiz__anecdote" placeholder="Type your text here."></textarea>
+            <h3><?=$data['anecdoteTitle'][$count]?></h3>
+            <textarea id="own-quiz__anecdote" class="own-quiz__anecdote" placeholder="<?=$data['anecdoteText'][$count]?>"></textarea>
         </section>
 
     </main>

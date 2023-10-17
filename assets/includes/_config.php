@@ -1,6 +1,6 @@
 <?php
 
-$count = 1;
+$count = 0;
 
 $data = [
     'playerNumber' => ['How many players are you ?', 'Combien de joueurs êtes-vous ?'],

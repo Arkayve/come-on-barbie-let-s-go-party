@@ -37,6 +37,10 @@ include_once 'assets/includes/_config.php';
                         </svg>
                     </div>
                 </div>
+                <div id="flags" class="flags">
+                    <img id="us" class="img flag" src="assets/img/usa.png" alt="usa flag">
+                    <img id="fr" class="img flag hidden" src="assets/img/france.png" alt="france flag">
+                </div>
             </div>
             <img id="main__img" class="main__img w-90 max-w-500" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
             <div class="player-responsive justify-center w-90 m-auto">

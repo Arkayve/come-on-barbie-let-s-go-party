@@ -196,6 +196,11 @@ h3 {
   fill: var(--red-light);
 }
 
+/* FLAGS */
+.flags {
+    position: absolute;
+}
+
 /* NUMBER OF PLAYER */
 /* to hide input of other players if not use */
 .player__name:not(.active) {

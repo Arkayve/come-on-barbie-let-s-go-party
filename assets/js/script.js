@@ -50,7 +50,6 @@ let answer;
 // to know which player has to play
 let round = 0;
 
-
 // to display actual theme
 if (localStorage.getItem('barbie-display-mode')) {
     changeModeImg();

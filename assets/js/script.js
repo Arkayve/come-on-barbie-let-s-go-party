@@ -50,6 +50,18 @@ let answer;
 // to know which player has to play
 let round = 0;
 
+// have the correct flag display at start
+if (document.location.href === 'http://localhost/come-on-barbie-let-s-go-party/#?lang=us') {
+    document.getElementById('us').classList.add('hidden');
+    document.getElementById('fr').classList.remove('hidden');
+}
+
+// to switch languages
+document.getElementById('flags').addEventListener('click', () => {
+    document.getElementById('us').classList.toggle('hidden');
+    document.getElementById('fr').classList.toggle('hidden');
+});
+
 // to display actual theme
 if (localStorage.getItem('barbie-display-mode')) {
     changeModeImg();

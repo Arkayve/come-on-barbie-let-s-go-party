@@ -140,8 +140,24 @@ document.getElementById('player__number').addEventListener("change", function ()
 
 // listen btn-category to reveal categories
 document.getElementById('player__btn-category').addEventListener('click', function () {
-    savePlayerName();
-    displayCategories();
+    document.getElementById('category-responsive').innerHTML = "";
+    fetch('api.php?category')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(i => {
+                const newCategory = document.createElement('button');
+                newCategory.setAttribute('type', 'button');
+                newCategory.setAttribute('data-category-name', i['name']);
+                newCategory.classList.add('btn', 'category__btn', 'flex', 'justify-center', 'w-90');
+                newCategory.textContent = i['name'];
+                document.getElementById('category-responsive').appendChild(newCategory);
+            })     
+            savePlayerName();
+            displayCategories();
+        })
+        .catch(error => {
+            console.error("Error :", error);
+        });
 });
 
 // to reset changes if btn pressed in homepage
@@ -181,7 +197,7 @@ document.getElementById('category').addEventListener('click', function (event) {
     })
     // get category in a var
     categoryName = event.target.dataset.categoryName;
-    document.getElementById('difficulty__title').textContent = `Select difficulty for ${event.target.textContent}:`
+    // document.getElementById('difficulty__title').textContent = `Select difficulty for ${event.target.textContent}:`
     displayDifficulty();
     // add select class if difficulty already added in questions for this category
     addSelectClassIfAlreadyClick();

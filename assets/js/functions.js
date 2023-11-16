@@ -284,17 +284,14 @@ function displayLang(object) {
     document.querySelector('[data-text="13"]').textContent = object[13]['description'];
     document.querySelector('[data-text="14"]').textContent = object[14]['description'];
     document.querySelector('[data-text="15"]').textContent = object[15]['description'];
-    document.querySelector('[data-text="16"]').placeholder = object[16]['description'];
-    document.querySelector('[data-text="17"]').textContent = object[17]['description'];
-    document.querySelector('[data-text="18"]').placeholder = object[18]['description'];
+    document.querySelector('[data-text="16"]').textContent = object[16]['description'];
+    document.querySelector('[data-text="17"]').placeholder = object[17]['description'];
+    document.querySelector('[data-text="18"]').textContent = object[18]['description'];
     document.querySelector('[data-text="19"]').placeholder = object[19]['description'];
     document.querySelector('[data-text="20"]').placeholder = object[20]['description'];
     document.querySelector('[data-text="21"]').placeholder = object[21]['description'];
     document.querySelector('[data-text="22"]').placeholder = object[22]['description'];
-    document.querySelector('[data-text="23"]').textContent = object[23]['description'];
+    document.querySelector('[data-text="23"]').placeholder = object[23]['description'];
     document.querySelector('[data-text="24"]').textContent = object[24]['description'];
-    // document.querySelector('[data-text="25"]').textContent = object[25]['description'];
-    // document.querySelector('[data-text="26"]').textContent = object[26]['description'];
-    // document.querySelector('[data-text="27"]').textContent = object[27]['description'];
-    // document.querySelector('[data-text="28"]').placeholder = object[28]['description'];
+    document.querySelector('[data-text="25"]').textContent = object[25]['description'];
 }

@@ -1,5 +1,25 @@
 <?php
-include_once 'assets/includes/_config.php';
+require './vendor/autoload.php';
+include_once './includes/_db.php';
+include_once './includes/_function.php';
+// session_start();
+// getToken();
+if (isset($_GET['lang'])) {
+    $lang = $_GET['lang'];
+}
+else {
+    $lang = 'us';
+};
+$query = $dbCo->prepare("SELECT id_language FROM languages WHERE name = :name");
+$query->execute([
+    'name' => strip_tags($lang)
+]);
+$idLang = $query->fetch();
+$query = $dbCo->prepare("SELECT * FROM text WHERE id_language = :id_lang");
+$query->execute([
+    'id_lang' => intval(strip_tags($idLang['id_language']))
+]);
+$result = $query->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -38,45 +58,45 @@ include_once 'assets/includes/_config.php';
                     </div>
                 </div>
                 <div id="flags" class="flags">
-                    <a href="#?lang=us"><img id="us" class="img flag" src="assets/img/usa.png" alt="usa flag"></a>
-                    <a href="#?lang=fr"><img id="fr" class="img flag hidden" src="assets/img/france.png" alt="france flag"></a>
+                    <a href="?lang=fr"><img id="us" class="img flag" src="assets/img/usa.png" alt="usa flag"></a>
+                    <a href="?lang=us"><img id="fr" class="img flag hidden" src="assets/img/france.png" alt="france flag"></a>
                 </div>
             </div>
             <img id="main__img" class="main__img w-90 max-w-500" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
             <div class="player-responsive justify-center w-90 m-auto">
                 <div id="player" class="flex column align-center">
-                    <h2><?=$data['playerNumber'][$count]?></h2>
+                    <h2><?=$result[0]['description']?></h2>
                     <select id="player__number" class="btn player__number">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
-                    <input id="first-player-name" type="text" placeholder="<?=$data['firstPlayerName'][$count]?>" class="btn player__name max-w-500 active">
-                    <input id="second-player-name" type="text" placeholder="<?=$data['secondPlayerName'][$count]?>" class="btn player__name max-w-500">
-                    <input id="third-player-name" type="text" placeholder="<?=$data['thirdPlayerName'][$count]?>" class="btn player__name max-w-500">
-                    <input id="fourth-player-name" type="text" placeholder="<?=$data['fourthPlayerName'][$count]?>" class="btn player__name max-w-500">
-                    <button type="button" id="player__btn-category" class="btn player__btn-category w-90 max-w-500"><?=$data['playerBtnCategory'][$count]?></button>
-                    <button type="button" id="player__btn-reset" class="btn player__btn-reset"><?=$data['playerBtnReset'][$count]?></button>
+                    <input id="first-player-name" type="text" placeholder="<?=$result[1]['description']?>" class="btn player__name max-w-500 active">
+                    <input id="second-player-name" type="text" placeholder="<?=$result[2]['description']?>" class="btn player__name max-w-500">
+                    <input id="third-player-name" type="text" placeholder="<?=$result[3]['description']?>" class="btn player__name max-w-500">
+                    <input id="fourth-player-name" type="text" placeholder="<?=$result[4]['description']?>" class="btn player__name max-w-500">
+                    <button type="button" id="player__btn-category" class="btn player__btn-category w-90 max-w-500"><?=$result[5]['description']?></button>
+                    <button type="button" id="player__btn-reset" class="btn player__btn-reset"><?=$result[6]['description']?></button>
                 </div>
                 <div id="ranking">
-                    <h3 id="ranking__title" class="ranking__title"><?=$data['rankingTitle'][$count]?></h3>
+                    <h3 id="ranking__title" class="ranking__title"><?=$result[7]['description']?></h3>
                     <ol id="ranking__list" class="btn ranking__list w-90 max-w-500 m-auto"></ol>
-                    <a id="own-quiz-link" class="own-quiz-link" href="#"><?=$data['ownQuizLink'][$count]?></a>
+                    <a id="own-quiz-link" class="own-quiz-link" href="#"><?=$result[8]['description']?></a>
                     <button type="button" id="ranking__btn-clear"
-                        class="btn ranking__btn-clear"><?=$data['rankingBtnClear'][$count]?></button>
+                        class="btn ranking__btn-clear"><?=$result[9]['description']?></button>
                 </div>
             </div>
             <div id="category" class="category hidden">
 
-                <h2 id="category__title" class="category__title"><?=$data['categoryTitle'][$count]?></h2>
+                <h2 id="category__title" class="category__title"><?=$result[10]['description']?></h2>
 
                 <div id="category-responsive" class="category-responsive flex align-center justify-center column">
                     <?php
-                        foreach ($quiz as $theme) {
-                            $file = substr($theme['file'], 0, -5);
-                            echo "<button type='button' class='btn category__btn flex justify-center w-90' data-category-name='{$file}'>{$theme['name'][$count]}</button>";
-                        };
+                        // foreach ($quiz as $theme) {
+                        //     $file = substr($theme['file'], 0, -5);
+                        //     echo "<button type='button' class='btn category__btn flex justify-center w-90' data-category-name='{$file}'>{$theme['name'][$count]}</button>";
+                        // };
                     ?>
                 </div>
 
@@ -88,11 +108,11 @@ include_once 'assets/includes/_config.php';
                             class="difficulty-responsive__img">
                         <div class="difficulty-responsive__btn">
                             <button id="débutant" type="button"
-                                class="btn difficulty__btn easy w-90 max-w-500"><?=$data['easy'][$count]?></button>
+                                class="btn difficulty__btn easy w-90 max-w-500"><?=$result[11]['description']?></button>
                             <button id="confirmé" type="button"
-                                class="btn difficulty__btn medium w-90 max-w-500"><?=$data['medium'][$count]?></button>
+                                class="btn difficulty__btn medium w-90 max-w-500"><?=$result[12]['description']?></button>
                             <button id="expert" type="button"
-                                class="btn difficulty__btn hard w-90 max-w-500"><?=$data['hard'][$count]?></button>
+                                class="btn difficulty__btn hard w-90 max-w-500"><?=$result[13]['description']?></button>
                         </div>
                         <img src="assets/img/unicorn-star.png" alt="unicorn with a star"
                             class="difficulty-responsive__img">
@@ -136,39 +156,39 @@ include_once 'assets/includes/_config.php';
         </section>
 
         <section id="endgame" class="endgame hidden flex column align-center">
-            <h2><?=$data['endgameTitle'][$count]?></h2>
+            <h2><?=$result[14]['description']?></h2>
             <p id="endgame__stats" class="endgame__stats w-90 max-w-500"></p>
             <img src="assets/img/unicorn-ftw.png" alt="glory unicorn" class="endgame__img w-90 max-w-500">
             <img src="assets/img/home-mushroom.png" alt="home mushroom" id="endgame__btn-home" class="img endgame__btn-home">
         </section>
 
         <section id="own-quiz" class="own-quiz hidden">
-            <h2><?=$data['ownQuizTitle'][$count]?></h2>
-            <input id="own-quiz__name" class="own-quiz__name" type="text" placeholder="<?=$data['ownQuizName'][$count]?>">
-            <h3><?=$data['ownQuizPrecision'][$count]?></h3>
-            <input id="own-quiz__first-answer" class="own-quiz__answer" type="text" placeholder="<?=$data['firstProposition'][$count]?>">
-            <input id="own-quiz__second-answer" class="own-quiz__answer" type="text" placeholder="<?=$data['secondProposition'][$count]?>">
-            <input id="own-quiz__third-answer" class="own-quiz__answer" type="text" placeholder="<?=$data['thirdProposition'][$count]?>">
-            <input id="own-quiz__fourth-answer" class="own-quiz__answer" type="text" placeholder="<?=$data['fourthProposition'][$count]?>">
-            <h3><?=$data['goodAnswerIs'][$count]?></h3>
+            <h2><?=$result[15]['description']?></h2>
+            <input id="own-quiz__name" class="own-quiz__name" type="text" placeholder="<?=$result[16]['description']?>">
+            <h3><?=$result[17]['description']?></h3>
+            <input id="own-quiz__first-answer" class="own-quiz__answer" type="text" placeholder="<?=$result[18]['description']?>">
+            <input id="own-quiz__second-answer" class="own-quiz__answer" type="text" placeholder="<?=$result[19]['description']?>">
+            <input id="own-quiz__third-answer" class="own-quiz__answer" type="text" placeholder="<?=$result[20]['description']?>">
+            <input id="own-quiz__fourth-answer" class="own-quiz__answer" type="text" placeholder="<?=$result[21]['description']?>">
+            <h3><?=$result[22]['description']?></h3>
             <div>
                 <input id="own-quiz__first-radio" type="radio" value="1">
-                <label for="own-quiz__first-radio"><?=$data['firstProposition'][$count]?></label>
+                <label for="own-quiz__first-radio"><?=$result[23]['description']?></label>
             </div>
             <div>
                 <input id="own-quiz__second-radio" type="radio" value="2">
-                <label for="own-quiz__second-radio"><?=$data['secondProposition'][$count]?></label>
+                <label for="own-quiz__second-radio"><?=$result[24]['description']?></label>
             </div>
             <div>
                 <input id="own-quiz__third-radio" type="radio" value="3">
-                <label for="own-quiz__third-radio"><?=$data['thirdProposition'][$count]?></label>
+                <label for="own-quiz__third-radio"><?=$result[25]['description']?></label>
             </div>
             <div>
                 <input id="own-quiz__fourth-radio" type="radio" value="4">
-                <label for="own-quiz__fourth-radio"><?=$data['fourthProposition'][$count]?></label>
+                <label for="own-quiz__fourth-radio"><?=$result[26]['description']?></label>
             </div>
-            <h3><?=$data['anecdoteTitle'][$count]?></h3>
-            <textarea id="own-quiz__anecdote" class="own-quiz__anecdote" placeholder="<?=$data['anecdoteText'][$count]?>"></textarea>
+            <h3><?=$result[27]['description']?></h3>
+            <textarea id="own-quiz__anecdote" class="own-quiz__anecdote" placeholder="<?=$result[28]['description']?>"></textarea>
         </section>
 
     </main>

@@ -51,15 +51,16 @@ let answer;
 let round = 0;
 
 // have the correct flag display at start
-if (document.location.href === 'http://localhost/come-on-barbie-let-s-go-party/#?lang=us') {
+if (document.location.href === 'http://localhost/come-on-barbie-let-s-go-party/?lang=fr') {
     document.getElementById('us').classList.add('hidden');
     document.getElementById('fr').classList.remove('hidden');
 }
 
-// to switch languages
-document.getElementById('flags').addEventListener('click', () => {
+// to switch languages and store it in localstorage
+document.getElementById('flags').addEventListener('click', (event) => {
     document.getElementById('us').classList.toggle('hidden');
     document.getElementById('fr').classList.toggle('hidden');
+    saveActualLanguage(event);
 });
 
 // to display actual theme

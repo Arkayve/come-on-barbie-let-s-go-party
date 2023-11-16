@@ -32,13 +32,3 @@ function saveInLocalStorage() {
     scores = scores.slice(0, maxScoresToKeep);
     localStorage.setItem('bestScores', JSON.stringify(scores));
 }
-
-// Need to listen click on flags. Store actual language in localstorage
-function saveActualLanguage(event) {
-    if (event.target.id === 'us') {
-        localStorage.setItem('barbie-lang', 'fr');
-    }
-    else {
-        localStorage.setItem('barbie-lang', 'us');
-    }
-}

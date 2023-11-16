@@ -4,22 +4,6 @@ include_once './includes/_db.php';
 include_once './includes/_function.php';
 // session_start();
 // getToken();
-if (isset($_GET['lang'])) {
-    $lang = $_GET['lang'];
-}
-else {
-    $lang = 'us';
-};
-$query = $dbCo->prepare("SELECT id_language FROM languages WHERE name = :name");
-$query->execute([
-    'name' => strip_tags($lang)
-]);
-$idLang = $query->fetch();
-$query = $dbCo->prepare("SELECT * FROM text WHERE id_language = :id_lang");
-$query->execute([
-    'id_lang' => intval(strip_tags($idLang['id_language']))
-]);
-$result = $query->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -58,38 +42,38 @@ $result = $query->fetchAll();
                     </div>
                 </div>
                 <div id="flags" class="flags">
-                    <a href="?lang=fr"><img id="us" class="img flag" src="assets/img/usa.png" alt="usa flag"></a>
-                    <a href="?lang=us"><img id="fr" class="img flag hidden" src="assets/img/france.png" alt="france flag"></a>
+                    <img id="us" class="img flag" src="assets/img/usa.png" alt="usa flag">
+                    <img id="fr" class="img flag hidden" src="assets/img/france.png" alt="france flag">
                 </div>
             </div>
             <img id="main__img" class="main__img w-90 max-w-500" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
             <div class="player-responsive justify-center w-90 m-auto">
                 <div id="player" class="flex column align-center">
-                    <h2><?=$result[0]['description']?></h2>
+                    <h2 data-text="0"></h2>
                     <select id="player__number" class="btn player__number">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
-                    <input id="first-player-name" type="text" placeholder="<?=$result[1]['description']?>" class="btn player__name max-w-500 active">
-                    <input id="second-player-name" type="text" placeholder="<?=$result[2]['description']?>" class="btn player__name max-w-500">
-                    <input id="third-player-name" type="text" placeholder="<?=$result[3]['description']?>" class="btn player__name max-w-500">
-                    <input id="fourth-player-name" type="text" placeholder="<?=$result[4]['description']?>" class="btn player__name max-w-500">
-                    <button type="button" id="player__btn-category" class="btn player__btn-category w-90 max-w-500"><?=$result[5]['description']?></button>
-                    <button type="button" id="player__btn-reset" class="btn player__btn-reset"><?=$result[6]['description']?></button>
+                    <input id="first-player-name" type="text" data-text="1" placeholder="" class="btn player__name max-w-500 active">
+                    <input id="second-player-name" type="text" data-text="2" placeholder="" class="btn player__name max-w-500">
+                    <input id="third-player-name" type="text" data-text="3" placeholder="" class="btn player__name max-w-500">
+                    <input id="fourth-player-name" type="text" data-text="4" placeholder="" class="btn player__name max-w-500">
+                    <button type="button" id="player__btn-category" class="btn player__btn-category w-90 max-w-500" data-text="5"></button>
+                    <button type="button" id="player__btn-reset" class="btn player__btn-reset" data-text="6"></button>
                 </div>
                 <div id="ranking">
-                    <h3 id="ranking__title" class="ranking__title"><?=$result[7]['description']?></h3>
+                    <h3 id="ranking__title" class="ranking__title" data-text="7"></h3>
                     <ol id="ranking__list" class="btn ranking__list w-90 max-w-500 m-auto"></ol>
-                    <a id="own-quiz-link" class="own-quiz-link" href="#"><?=$result[8]['description']?></a>
+                    <a id="own-quiz-link" class="own-quiz-link" href="#" data-text="8"></a>
                     <button type="button" id="ranking__btn-clear"
-                        class="btn ranking__btn-clear"><?=$result[9]['description']?></button>
+                        class="btn ranking__btn-clear" data-text="9"></button>
                 </div>
             </div>
             <div id="category" class="category hidden">
 
-                <h2 id="category__title" class="category__title"><?=$result[10]['description']?></h2>
+                <h2 id="category__title" class="category__title" data-text="10"></h2>
 
                 <div id="category-responsive" class="category-responsive flex align-center justify-center column">
                     <?php
@@ -108,11 +92,11 @@ $result = $query->fetchAll();
                             class="difficulty-responsive__img">
                         <div class="difficulty-responsive__btn">
                             <button id="débutant" type="button"
-                                class="btn difficulty__btn easy w-90 max-w-500"><?=$result[11]['description']?></button>
+                                class="btn difficulty__btn easy w-90 max-w-500" data-text="11"></button>
                             <button id="confirmé" type="button"
-                                class="btn difficulty__btn medium w-90 max-w-500"><?=$result[12]['description']?></button>
+                                class="btn difficulty__btn medium w-90 max-w-500" data-text="12"></button>
                             <button id="expert" type="button"
-                                class="btn difficulty__btn hard w-90 max-w-500"><?=$result[13]['description']?></button>
+                                class="btn difficulty__btn hard w-90 max-w-500" data-text="13"></button>
                         </div>
                         <img src="assets/img/unicorn-star.png" alt="unicorn with a star"
                             class="difficulty-responsive__img">
@@ -156,39 +140,39 @@ $result = $query->fetchAll();
         </section>
 
         <section id="endgame" class="endgame hidden flex column align-center">
-            <h2><?=$result[14]['description']?></h2>
+            <h2 data-text="14"></h2>
             <p id="endgame__stats" class="endgame__stats w-90 max-w-500"></p>
             <img src="assets/img/unicorn-ftw.png" alt="glory unicorn" class="endgame__img w-90 max-w-500">
             <img src="assets/img/home-mushroom.png" alt="home mushroom" id="endgame__btn-home" class="img endgame__btn-home">
         </section>
 
         <section id="own-quiz" class="own-quiz hidden">
-            <h2><?=$result[15]['description']?></h2>
-            <input id="own-quiz__name" class="own-quiz__name" type="text" placeholder="<?=$result[16]['description']?>">
-            <h3><?=$result[17]['description']?></h3>
-            <input id="own-quiz__first-answer" class="own-quiz__answer" type="text" placeholder="<?=$result[18]['description']?>">
-            <input id="own-quiz__second-answer" class="own-quiz__answer" type="text" placeholder="<?=$result[19]['description']?>">
-            <input id="own-quiz__third-answer" class="own-quiz__answer" type="text" placeholder="<?=$result[20]['description']?>">
-            <input id="own-quiz__fourth-answer" class="own-quiz__answer" type="text" placeholder="<?=$result[21]['description']?>">
-            <h3><?=$result[22]['description']?></h3>
+            <h2 data-text="15"></h2>
+            <input id="own-quiz__name" class="own-quiz__name" type="text" data-text="16" placeholder="">
+            <h3 data-text="17"></h3>
+            <input id="own-quiz__first-answer" class="own-quiz__answer" type="text" data-text="18" placeholder="">
+            <input id="own-quiz__second-answer" class="own-quiz__answer" type="text" data-text="19" placeholder="">
+            <input id="own-quiz__third-answer" class="own-quiz__answer" type="text" data-text="20" placeholder="">
+            <input id="own-quiz__fourth-answer" class="own-quiz__answer" type="text" data-text="21" placeholder="">
+            <h3 data-text="22"></h3>
             <div>
                 <input id="own-quiz__first-radio" type="radio" value="1">
-                <label for="own-quiz__first-radio"><?=$result[23]['description']?></label>
+                <label for="own-quiz__first-radio" data-text="23"></label>
             </div>
             <div>
                 <input id="own-quiz__second-radio" type="radio" value="2">
-                <label for="own-quiz__second-radio"><?=$result[24]['description']?></label>
+                <label for="own-quiz__second-radio" data-text="24"></label>
             </div>
             <div>
                 <input id="own-quiz__third-radio" type="radio" value="3">
-                <label for="own-quiz__third-radio"><?=$result[25]['description']?></label>
+                <label for="own-quiz__third-radio" data-text="25"></label>
             </div>
             <div>
                 <input id="own-quiz__fourth-radio" type="radio" value="4">
-                <label for="own-quiz__fourth-radio"><?=$result[26]['description']?></label>
+                <label for="own-quiz__fourth-radio" data-text="26"></label>
             </div>
-            <h3><?=$result[27]['description']?></h3>
-            <textarea id="own-quiz__anecdote" class="own-quiz__anecdote" placeholder="<?=$result[28]['description']?>"></textarea>
+            <h3 data-text="27"></h3>
+            <textarea id="own-quiz__anecdote" class="own-quiz__anecdote" data-text="28" placeholder=""></textarea>
         </section>
 
     </main>
@@ -196,7 +180,6 @@ $result = $query->fetchAll();
     <footer>
     </footer>
 
-    <script src="assets/js/data.js"></script>
     <script src="assets/js/storage.js"></script>
     <script src="assets/js/functions.js"></script>
     <script src="assets/js/script.js"></script>

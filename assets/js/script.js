@@ -51,16 +51,53 @@ let answer;
 let round = 0;
 
 // have the correct flag display at start
-if (document.location.href === 'http://localhost/come-on-barbie-let-s-go-party/?lang=fr') {
+if (localStorage.getItem('barbie-lang') === 'fr') {
     document.getElementById('us').classList.add('hidden');
     document.getElementById('fr').classList.remove('hidden');
+};
+
+// To display correct language at start
+if (!localStorage.getItem('barbie-lang')) {
+    fetch('api.php?lang=us')
+        .then(response => response.json())
+        .then(data => {
+            displayLang(data);          
+        })
+        .catch(error => {
+            console.error("Error :", error);
+        });
 }
+else if (localStorage.getItem('barbie-lang')) {
+    fetch('api.php?lang=' + localStorage.getItem('barbie-lang'))
+        .then(response => response.json())
+        .then(data => {
+            displayLang(data);           
+        })
+        .catch(error => {
+            console.error("Error :", error);
+        });
+};
 
 // to switch languages and store it in localstorage
+let lang;
 document.getElementById('flags').addEventListener('click', (event) => {
     document.getElementById('us').classList.toggle('hidden');
     document.getElementById('fr').classList.toggle('hidden');
-    saveActualLanguage(event);
+    if (event.target.id === 'us') {
+        lang = 'fr';
+    }
+    else {
+        lang = 'us';
+    }
+    localStorage.setItem('barbie-lang', lang);
+    fetch('api.php?lang=' + lang)
+        .then(response => response.json())
+        .then(data => {
+            displayLang(data);           
+        })
+        .catch(error => {
+            console.error("Error :", error);
+        });
 });
 
 // to display actual theme

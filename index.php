@@ -85,11 +85,11 @@ include_once './includes/_function.php';
                         <img src="assets/img/panfa-kawai.png" alt="panda kawai"
                             class="difficulty-responsive__img">
                         <div class="difficulty-responsive__btn">
-                            <button id="débutant" type="button"
+                            <button id="easy" type="button" data-level="1"
                                 class="btn difficulty__btn easy w-90 max-w-500" data-text="12"></button>
-                            <button id="confirmé" type="button"
+                            <button id="medium" type="button" data-level="2"
                                 class="btn difficulty__btn medium w-90 max-w-500" data-text="13"></button>
-                            <button id="expert" type="button"
+                            <button id="hard" type="button" data-level="3"
                                 class="btn difficulty__btn hard w-90 max-w-500" data-text="14"></button>
                         </div>
                         <img src="assets/img/unicorn-star.png" alt="unicorn with a star"
@@ -174,7 +174,6 @@ include_once './includes/_function.php';
     <footer>
     </footer>
 
-    <script src="assets/js/storage.js"></script>
     <script src="assets/js/functions.js"></script>
     <script src="assets/js/script.js"></script>
 </body>

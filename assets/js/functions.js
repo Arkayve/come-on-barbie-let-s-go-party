@@ -36,11 +36,11 @@ function hideOrShowElement(arrayToHide, arrayToShow) {
     });
 }
 
-// display best scores, take location in parameter
-function displayBestScores(where) {
-    if (scores.length > 0) {
+// display best scores, take array of best scores and location in parameter
+function displayBestScores(array, where) {
+    if (array.length > 0) {
         where.innerHTML = '';
-        scores.forEach((score, index) => {
+        array.forEach((score, index) => {
             const rank = index + 1;
             const playerInfo = `${rank}. ${score.name} - Score: ${score.score}`;
             const listItem = document.createElement('li');
@@ -92,7 +92,7 @@ function colorCategory() {
 function displayCategories() {
     // here we verify if playernames fields aren't empty, and correspond to number of players
     if (playerNames.length === 0 || document.getElementById('player__number').value != playerNames.length) return;
-    const elementsToHide = ['main__title', 'switch-mode', 'main__img', 'player', 'difficulty', 'ranking', 'own-quiz-link'];
+    const elementsToHide = ['flags', 'main__title', 'switch-mode', 'main__img', 'player', 'difficulty', 'ranking', 'own-quiz-link'];
     const elementsToShow = ['category', 'category-responsive', 'category__title', 'category__nav'];
     hideOrShowElement(elementsToHide, elementsToShow);
     colorCategory();
@@ -128,7 +128,7 @@ function removeSelectClassOfDifficultyBtn() {
 // a function to go back to homepage
 function returnToIndex() {
     const elementsToHide = ['category'];
-    const elementsToShow = ['main__title', 'switch-mode', 'main__img', 'player', 'ranking', 'own-quiz-link'];
+    const elementsToShow = ['flags', 'main__title', 'switch-mode', 'main__img', 'player', 'ranking', 'own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
     document.getElementById('difficulty__title').textContent = '';
 }
@@ -161,11 +161,11 @@ function mixQuestions(array) {
 function displayQuestion() {
     const newQuestion = questions.shift();
     anecdote = newQuestion.anecdote;
-    answer = newQuestion.réponse;
+    answer = newQuestion.reponse;
     document.getElementById('game__question').textContent = newQuestion.question;
     for (let i = 0; i < 4; i++) {
         const answerBtn = document.getElementById('btn-answer-' + i);
-        answerBtn.textContent = newQuestion.propositions[i];
+        answerBtn.textContent = newQuestion['prop' + (i + 1)];
     }
 }
 
@@ -258,7 +258,7 @@ function fromScratch() {
     document.getElementById('fourth-player-name').value = '';
     document.getElementById('difficulty__title').textContent = '';
     const elementsToHide = ['endgame', 'game', 'game__comments', 'game__img', 'game__anecdote', 'game__nav', 'category', 'difficulty', 'category__nav__btn-validate'];
-    const elementsToShow = ['main__title', 'switch-mode', 'main__img', 'game__who-play', 'game__question', 'game__timer', 'game__answer', 'player', 'ranking', 'own-quiz-link'];
+    const elementsToShow = ['flags', 'main__title', 'switch-mode', 'main__img', 'game__who-play', 'game__question', 'game__timer', 'game__answer', 'player', 'ranking', 'own-quiz-link'];
     hideOrShowElement(elementsToHide, elementsToShow);
     displayBestScores(document.getElementById('ranking__list'));
     document.getElementById('second-player-name').classList.remove('active');
@@ -295,3 +295,24 @@ function displayLang(object) {
     document.querySelector('[data-text="24"]').textContent = object[24]['description'];
     document.querySelector('[data-text="25"]').textContent = object[25]['description'];
 }
+
+// to save scores of each players in scores array
+function saveBestScores() {
+    questionsAnswered = questionsAnswered / playerNames.length;
+    for (const i in playerNames) {
+        let player = {
+            name: playerNames[i],
+            score: playerScores[i],
+            ratio: playerScores[i] / questionsAnswered
+        };
+        if (player.score !== 0) {
+        scores.push(player);
+        };
+    };
+    // saveInLocalStorage();
+}
+
+// to save scores in local storage
+// function saveInLocalStorage() {
+    
+// }

@@ -1,5 +1,14 @@
-// get best scores data from local storage
-let scores = JSON.parse(localStorage.getItem('bestScores')) || [];
+
+// get best scores data and display it
+fetch('api.php?score=request')
+    .then(response => response.json())
+    .then(data => {
+        displayBestScores(data, document.getElementById('ranking__list'));       
+    })
+    .catch(error => {
+        console.error("Error :", error);
+    });
+
 // get theme to display from local storaga
 let modeToDisplay = localStorage.getItem('barbie-display-mode') || 'light';
 // to change img in regards of theme
@@ -58,17 +67,18 @@ if (localStorage.getItem('barbie-lang') === 'fr') {
 
 // To display correct language at start
 if (!localStorage.getItem('barbie-lang')) {
-    fetch('api.php?lang=us')
+    fetch('api.php?lang=us' + '&modify')
         .then(response => response.json())
         .then(data => {
-            displayLang(data);          
+            displayLang(data);
+            localStorage.setItem('barbie-lang', 'us');         
         })
         .catch(error => {
             console.error("Error :", error);
         });
 }
 else if (localStorage.getItem('barbie-lang')) {
-    fetch('api.php?lang=' + localStorage.getItem('barbie-lang'))
+    fetch('api.php?lang=' + localStorage.getItem('barbie-lang') + '&modify')
         .then(response => response.json())
         .then(data => {
             displayLang(data);           
@@ -90,7 +100,7 @@ document.getElementById('flags').addEventListener('click', (event) => {
         lang = 'us';
     }
     localStorage.setItem('barbie-lang', lang);
-    fetch('api.php?lang=' + lang)
+    fetch('api.php?lang=' + lang + '&modify')
         .then(response => response.json())
         .then(data => {
             displayLang(data);           
@@ -113,9 +123,6 @@ else if (modeToDisplay === 'dark') {
     document.querySelector(':root').style.setProperty('--opacityThemeHide', 1);
     document.querySelector('.moon-logo').style.setProperty('transform', 'translateY(0%) rotateZ(0deg)');
 };
-
-// display scores if exist, or small sentences if not
-displayBestScores(document.getElementById('ranking__list'));
 
 // listen switch theme btn
 document.getElementById("switch-mode").addEventListener("click", () => {
@@ -141,12 +148,13 @@ document.getElementById('player__number').addEventListener("change", function ()
 // listen btn-category to reveal categories
 document.getElementById('player__btn-category').addEventListener('click', function () {
     document.getElementById('category-responsive').innerHTML = "";
-    fetch('api.php?category')
+    fetch('api.php?lang=' + localStorage.getItem('barbie-lang') + '&category')
         .then(response => response.json())
         .then(data => {
             data.forEach(i => {
                 const newCategory = document.createElement('button');
                 newCategory.setAttribute('type', 'button');
+                newCategory.setAttribute('data-category-table-name', i['table_name']);
                 newCategory.setAttribute('data-category-name', i['name']);
                 newCategory.classList.add('btn', 'category__btn', 'flex', 'justify-center', 'w-90');
                 newCategory.textContent = i['name'];
@@ -197,7 +205,8 @@ document.getElementById('category').addEventListener('click', function (event) {
     })
     // get category in a var
     categoryName = event.target.dataset.categoryName;
-    // document.getElementById('difficulty__title').textContent = `Select difficulty for ${event.target.textContent}:`
+    categoryTableName = event.target.dataset.categoryTableName;
+
     displayDifficulty();
     // add select class if difficulty already added in questions for this category
     addSelectClassIfAlreadyClick();
@@ -210,7 +219,7 @@ document.getElementById('difficulty').addEventListener('click', function (event)
     }
     if (!event.target.classList.contains('difficulty__btn')) return;
     if (!categoryName) return;
-    difficulty = event.target.getAttribute('id');
+    difficulty = event.target.dataset.level;
     // to remove a quiz if already selected
     if (alreadySelected.includes(categoryName + ', ' + difficulty)) {
         const index = alreadySelected.indexOf(categoryName + ', ' + difficulty);
@@ -224,7 +233,19 @@ document.getElementById('difficulty').addEventListener('click', function (event)
     event.target.classList.add('select');
     alreadySelected[alreadySelectedCount] = categoryName + ', ' + difficulty;
     alreadySelectedCount++;
-    getQuiz(`assets/json/${categoryName}.json`);
+    fetch('api.php?lang=' + localStorage.getItem('barbie-lang') + '&quiztable=' + categoryTableName + '&difficulty=' + difficulty)
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(question => {
+                questions.push(question);
+            })
+            // questions[count] = data.question;
+            // count++;
+            console.log(questions); 
+        })
+        .catch(error => {
+            console.error("Error :", error);
+        });
     colorCategory();
     // to display validate btn
     document.getElementById('category__nav__btn-validate').classList.remove('hidden');
@@ -259,6 +280,8 @@ document.getElementById('game__answer').addEventListener('click', function (even
     hideOrShowElement(elementsToHide, elementsToShow);
     endTimer();
     // and here we display personal sentence for each player
+    console.log(event.target.textContent);
+    console.log(answer);
     if (event.target.textContent === answer) {
         !playerScores[round] ? playerScores[round] = 50 : playerScores[round] += 50;
         playerScores[round] += endTime;

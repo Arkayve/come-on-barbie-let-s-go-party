@@ -2,8 +2,8 @@
 require './vendor/autoload.php';
 include_once './includes/_db.php';
 include_once './includes/_function.php';
-// session_start();
-// getToken();
+session_start();
+generateToken();
 ?>
 
 <!DOCTYPE html>

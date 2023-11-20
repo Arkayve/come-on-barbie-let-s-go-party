@@ -268,32 +268,14 @@ function fromScratch() {
 }
 
 function displayLang(object) {
-    document.querySelector('[data-text="0"]').textContent = object[0]['description'];
-    document.querySelector('[data-text="1"]').placeholder = object[1]['description'];
-    document.querySelector('[data-text="2"]').placeholder = object[2]['description'];
-    document.querySelector('[data-text="3"]').placeholder = object[3]['description'];
-    document.querySelector('[data-text="4"]').placeholder = object[4]['description'];
-    document.querySelector('[data-text="5"]').textContent = object[5]['description'];
-    document.querySelector('[data-text="6"]').textContent = object[6]['description'];
-    document.querySelector('[data-text="7"]').textContent = object[7]['description'];
-    document.querySelector('[data-text="8"]').textContent = object[8]['description'];
-    document.querySelector('[data-text="9"]').textContent = object[9]['description'];
-    document.querySelector('[data-text="10"]').textContent = object[10]['description'];
-    document.querySelector('[data-text="11"]').textContent = object[11]['description'];
-    document.querySelector('[data-text="12"]').textContent = object[12]['description'];
-    document.querySelector('[data-text="13"]').textContent = object[13]['description'];
-    document.querySelector('[data-text="14"]').textContent = object[14]['description'];
-    document.querySelector('[data-text="15"]').textContent = object[15]['description'];
-    document.querySelector('[data-text="16"]').textContent = object[16]['description'];
-    document.querySelector('[data-text="17"]').placeholder = object[17]['description'];
-    document.querySelector('[data-text="18"]').textContent = object[18]['description'];
-    document.querySelector('[data-text="19"]').placeholder = object[19]['description'];
-    document.querySelector('[data-text="20"]').placeholder = object[20]['description'];
-    document.querySelector('[data-text="21"]').placeholder = object[21]['description'];
-    document.querySelector('[data-text="22"]').placeholder = object[22]['description'];
-    document.querySelector('[data-text="23"]').placeholder = object[23]['description'];
-    document.querySelector('[data-text="24"]').textContent = object[24]['description'];
-    document.querySelector('[data-text="25"]').textContent = object[25]['description'];
+    const textContentArray = [0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 24, 25];
+    const placeholderArray = [1, 2, 3, 4, 17, 19, 20, 21, 22, 23];
+    textContentArray.forEach(i => {
+        document.querySelector('[data-text="' + i + '"]').textContent = object[i]['description'];
+    });
+    placeholderArray.forEach(i => {
+        document.querySelector('[data-text="' + i + '"]').placeholder = object[i]['description'];
+    });
 }
 
 // to save scores of each players in scores array
@@ -316,3 +298,19 @@ function saveBestScores() {
 // function saveInLocalStorage() {
     
 // }
+
+async function fetchApi(method, data) {
+    try {
+        const response = await fetch('././api.php', {
+            method: method,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        return response.json();
+    }
+    catch (error) {
+        console.error('Unable to load api');
+    }
+}

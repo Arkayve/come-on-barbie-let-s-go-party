@@ -1,7 +1,10 @@
 
-// get best scores data and display it
-fetch('api.php?score=request')
-    .then(response => response.json())
+let data = {
+    action: 'score-request',
+    // token: getToken()
+}
+
+fetchApi('POST', data)
     .then(data => {
         displayBestScores(data, document.getElementById('ranking__list'));       
     })
@@ -67,8 +70,12 @@ if (localStorage.getItem('barbie-lang') === 'fr') {
 
 // To display correct language at start
 if (!localStorage.getItem('barbie-lang')) {
-    fetch('api.php?lang=us' + '&modify')
-        .then(response => response.json())
+    let data = {
+        lang: 'us',
+        action: 'lang-modify',
+        // token: getToken()
+    }
+    fetchApi('POST', data)
         .then(data => {
             displayLang(data);
             localStorage.setItem('barbie-lang', 'us');         
@@ -78,10 +85,14 @@ if (!localStorage.getItem('barbie-lang')) {
         });
 }
 else if (localStorage.getItem('barbie-lang')) {
-    fetch('api.php?lang=' + localStorage.getItem('barbie-lang') + '&modify')
-        .then(response => response.json())
+    let data = {
+        lang: localStorage.getItem('barbie-lang'),
+        action: 'lang-modify',
+        // token: getToken()
+    }
+    fetchApi('POST', data)
         .then(data => {
-            displayLang(data);           
+            displayLang(data);       
         })
         .catch(error => {
             console.error("Error :", error);
@@ -100,10 +111,14 @@ document.getElementById('flags').addEventListener('click', (event) => {
         lang = 'us';
     }
     localStorage.setItem('barbie-lang', lang);
-    fetch('api.php?lang=' + lang + '&modify')
-        .then(response => response.json())
+    let data = {
+        lang: lang,
+        action: 'lang-modify',
+        // token: getToken()
+    }
+    fetchApi('POST', data)
         .then(data => {
-            displayLang(data);           
+            displayLang(data);       
         })
         .catch(error => {
             console.error("Error :", error);
@@ -148,8 +163,12 @@ document.getElementById('player__number').addEventListener("change", function ()
 // listen btn-category to reveal categories
 document.getElementById('player__btn-category').addEventListener('click', function () {
     document.getElementById('category-responsive').innerHTML = "";
-    fetch('api.php?lang=' + localStorage.getItem('barbie-lang') + '&category')
-        .then(response => response.json())
+    let data = {
+        lang: localStorage.getItem('barbie-lang'),
+        action: 'category',
+        // token: getToken()
+    }
+    fetchApi('POST', data)
         .then(data => {
             data.forEach(i => {
                 const newCategory = document.createElement('button');
@@ -161,7 +180,7 @@ document.getElementById('player__btn-category').addEventListener('click', functi
                 document.getElementById('category-responsive').appendChild(newCategory);
             })     
             savePlayerName();
-            displayCategories();
+            displayCategories();      
         })
         .catch(error => {
             console.error("Error :", error);
@@ -233,15 +252,21 @@ document.getElementById('difficulty').addEventListener('click', function (event)
     event.target.classList.add('select');
     alreadySelected[alreadySelectedCount] = categoryName + ', ' + difficulty;
     alreadySelectedCount++;
-    fetch('api.php?lang=' + localStorage.getItem('barbie-lang') + '&quiztable=' + categoryTableName + '&difficulty=' + difficulty)
-        .then(response => response.json())
+    let data = {
+        lang: localStorage.getItem('barbie-lang'),
+        action: 'add-quiz',
+        quiztable: categoryTableName,
+        difficulty: difficulty,
+        // token: getToken()
+    }
+    fetchApi('POST', data)
         .then(data => {
             data.forEach(question => {
                 questions.push(question);
             })
             // questions[count] = data.question;
             // count++;
-            console.log(questions); 
+            console.log(questions);      
         })
         .catch(error => {
             console.error("Error :", error);
@@ -280,8 +305,6 @@ document.getElementById('game__answer').addEventListener('click', function (even
     hideOrShowElement(elementsToHide, elementsToShow);
     endTimer();
     // and here we display personal sentence for each player
-    console.log(event.target.textContent);
-    console.log(answer);
     if (event.target.textContent === answer) {
         !playerScores[round] ? playerScores[round] = 50 : playerScores[round] += 50;
         playerScores[round] += endTime;

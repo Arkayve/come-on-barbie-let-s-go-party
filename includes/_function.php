@@ -45,7 +45,7 @@ function checkCSRF(string $url): void
  */
 function checkCSRFAsync(array $data): void
 {
-    if (!isset($_SERVER['HTTP_REFERER']) || !str_contains($_SERVER['HTTP_REFERER'], 'http://localhost/todolist/')) {
+    if (!isset($_SERVER['HTTP_REFERER']) || !str_contains($_SERVER['HTTP_REFERER'], 'http://localhost/come-on-barbie-let-s-go-party/')) {
         $error = 'error_referer';
     } else if (
         !isset($_SESSION['token']) || !isset($data['token'])

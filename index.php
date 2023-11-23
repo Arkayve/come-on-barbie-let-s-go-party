@@ -15,6 +15,7 @@ generateToken();
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" type="png" href="assets/img/star-icon.png" />
+    <input id="tokenField" type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
     <title>Come on Barbie let's go party</title>
 </head>
 

@@ -314,3 +314,7 @@ async function fetchApi(method, data) {
         console.error('Unable to load api');
     }
 }
+
+function getToken() {
+    return document.getElementById('tokenField').value;
+}

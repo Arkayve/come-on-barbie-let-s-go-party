@@ -1,7 +1,7 @@
 
 let data = {
     action: 'score-request',
-    // token: getToken()
+    token: getToken()
 }
 
 fetchApi('POST', data)
@@ -73,7 +73,7 @@ if (!localStorage.getItem('barbie-lang')) {
     let data = {
         lang: 'us',
         action: 'lang-modify',
-        // token: getToken()
+        token: getToken()
     }
     fetchApi('POST', data)
         .then(data => {
@@ -88,7 +88,7 @@ else if (localStorage.getItem('barbie-lang')) {
     let data = {
         lang: localStorage.getItem('barbie-lang'),
         action: 'lang-modify',
-        // token: getToken()
+        token: getToken()
     }
     fetchApi('POST', data)
         .then(data => {
@@ -114,7 +114,7 @@ document.getElementById('flags').addEventListener('click', (event) => {
     let data = {
         lang: lang,
         action: 'lang-modify',
-        // token: getToken()
+        token: getToken()
     }
     fetchApi('POST', data)
         .then(data => {
@@ -166,7 +166,7 @@ document.getElementById('player__btn-category').addEventListener('click', functi
     let data = {
         lang: localStorage.getItem('barbie-lang'),
         action: 'category',
-        // token: getToken()
+        token: getToken()
     }
     fetchApi('POST', data)
         .then(data => {
@@ -257,7 +257,7 @@ document.getElementById('difficulty').addEventListener('click', function (event)
         action: 'add-quiz',
         quiztable: categoryTableName,
         difficulty: difficulty,
-        // token: getToken()
+        token: getToken()
     }
     fetchApi('POST', data)
         .then(data => {

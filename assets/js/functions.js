@@ -36,7 +36,7 @@ function hideOrShowElement(arrayToHide, arrayToShow) {
     });
 }
 
-// display best scores, take array of best scores and location in parameter
+// display best scores, take array of best scores and where to display in parameter
 function displayBestScores(array, where) {
     if (array.length > 0) {
         where.innerHTML = '';
@@ -60,10 +60,9 @@ function savePlayerName() {
     const maxPlayer = parseInt(document.getElementById('player__number').value);
     for (let i = 0; i < maxPlayer; i++) {
         const playerName = document.getElementById(playerNameIdArray[i]).value.trim();
-        if (playerName !== "" && !playerNames.includes(playerName)) {
+        if (playerName.length > 0 && !playerNames.includes(playerName)) {
             playerNames[i] = playerName;
         }
-        playerNames.splice(maxPlayer, 3)
     }
 }
 

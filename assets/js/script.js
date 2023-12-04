@@ -236,8 +236,7 @@ document.getElementById('difficulty').addEventListener('click', function (event)
     if (event.target.dataset.value === 'back') {
         displayCategories();
     }
-    if (!event.target.classList.contains('difficulty__btn')) return;
-    if (!categoryName) return;
+    if (!event.target.classList.contains('difficulty__btn') || !categoryName) return;
     difficulty = event.target.dataset.level;
     // to remove a quiz if already selected
     if (alreadySelected.includes(categoryName + ', ' + difficulty)) {
@@ -344,3 +343,9 @@ document.getElementById('endgame__btn-home').addEventListener('click', function 
     window.scroll(0, 0);
     fromScratch();
 });
+
+document.getElementById('own-quiz-link').addEventListener('click', function (event) {
+    const elementsToHide = ['index'];
+    const elementsToShow = ['own-quiz'];
+    hideOrShowElement(elementsToHide, elementsToShow);
+})

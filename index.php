@@ -15,7 +15,6 @@ generateToken();
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" type="png" href="assets/img/star-icon.png" />
-    <input id="tokenField" type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
     <title>Come on Barbie let's go party</title>
 </head>
 
@@ -46,6 +45,7 @@ generateToken();
                     <img id="us" class="img flag" src="assets/img/usa.png" alt="usa flag">
                     <img id="fr" class="img flag hidden" src="assets/img/france.png" alt="france flag">
                 </div>
+                <a href="#">Connexion</a>
             </div>
             <img id="main__img" class="main__img w-90 max-w-500" alt="dabbing unicorn" src="assets/img/unicorn-bg.png">
             <div class="player-responsive justify-center w-90 m-auto">
@@ -67,7 +67,7 @@ generateToken();
                 <div id="ranking">
                     <h3 id="ranking__title" class="ranking__title" data-text="7"></h3>
                     <ol id="ranking__list" class="btn ranking__list w-90 max-w-500 m-auto"></ol>
-                    <a id="own-quiz-link" class="own-quiz-link" href="#" data-text="8"></a>
+                    <a id="own-quiz-link" class="own-quiz-link" href="#quiz-creation" data-text="8"></a>
                     <button type="button" id="ranking__btn-clear"
                         class="btn ranking__btn-clear" data-text="9"></button>
                 </div>
@@ -141,34 +141,44 @@ generateToken();
             <img src="assets/img/home-mushroom.png" alt="home mushroom" id="endgame__btn-home" class="img endgame__btn-home">
         </section>
 
-        <section id="own-quiz" class="own-quiz hidden">
-            <h2 data-text="16"></h2>
-            <input id="own-quiz__name" class="own-quiz__name" type="text" data-text="17" placeholder="">
-            <h3 data-text="18"></h3>
-            <input id="own-quiz__first-answer" class="own-quiz__answer" type="text" data-text="19" placeholder="">
-            <input id="own-quiz__second-answer" class="own-quiz__answer" type="text" data-text="20" placeholder="">
-            <input id="own-quiz__third-answer" class="own-quiz__answer" type="text" data-text="21" placeholder="">
-            <input id="own-quiz__fourth-answer" class="own-quiz__answer" type="text" data-text="22" placeholder="">
-            <h3 data-text="23"></h3>
-            <div>
-                <input id="own-quiz__first-radio" type="radio" value="1">
-                <label for="own-quiz__first-radio" data-text="19"></label>
-            </div>
-            <div>
-                <input id="own-quiz__second-radio" type="radio" value="2">
-                <label for="own-quiz__second-radio" data-text="20"></label>
-            </div>
-            <div>
-                <input id="own-quiz__third-radio" type="radio" value="3">
-                <label for="own-quiz__third-radio" data-text="21"></label>
-            </div>
-            <div>
-                <input id="own-quiz__fourth-radio" type="radio" value="4">
-                <label for="own-quiz__fourth-radio" data-text="22"></label>
-            </div>
-            <h3 data-text="24"></h3>
-            <textarea id="own-quiz__anecdote" class="own-quiz__anecdote" data-text="25" placeholder=""></textarea>
+        <section id="connexion" class="connexion-container">
+            
         </section>
+
+        <!-- <section id="own-quiz" class="own-quiz hidden">
+            <div id="quiz-name" class="quiz-name">
+                <h2 data-text="16"></h2>
+                <input id="own-quiz__name" class="own-quiz__name" type="text" data-text="17" placeholder="">
+                <button id="oq-name__btn" data_text="26"></button>
+            </div>
+            <div id="quiz-question" class="quiz-question hidden">
+                <h3 data-text="18"></h3>
+                <input id="own-quiz__first-answer" class="own-quiz__answer" type="text" data-text="19" placeholder="">
+                <input id="own-quiz__second-answer" class="own-quiz__answer" type="text" data-text="20" placeholder="">
+                <input id="own-quiz__third-answer" class="own-quiz__answer" type="text" data-text="21" placeholder="">
+                <input id="own-quiz__fourth-answer" class="own-quiz__answer" type="text" data-text="22" placeholder="">
+                <h3 data-text="23"></h3>
+                <div>
+                    <input id="own-quiz__first-radio" type="radio" value="1">
+                    <input id="tokenField" type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+                    <label for="own-quiz__first-radio" data-text="19"></label>
+                </div>
+                <div>
+                    <input id="own-quiz__second-radio" type="radio" value="2">
+                    <label for="own-quiz__second-radio" data-text="20"></label>
+                </div>
+                <div>
+                    <input id="own-quiz__third-radio" type="radio" value="3">
+                    <label for="own-quiz__third-radio" data-text="21"></label>
+                </div>
+                <div>
+                    <input id="own-quiz__fourth-radio" type="radio" value="4">
+                    <label for="own-quiz__fourth-radio" data-text="22"></label>
+                </div>
+                <h3 data-text="24"></h3>
+                <textarea id="own-quiz__anecdote" class="own-quiz__anecdote" data-text="25" placeholder=""></textarea>
+            </div>
+        </section> -->
 
     </main>
 
